@@ -1,0 +1,89 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+html, body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.upr-custom-navbar{
+    margin-bottom: 0px !important;
+    padding: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    top: 30px;
+
+    .upr-logo-navbar{
+        position: absolute;
+    }
+
+    .navbar-nav{
+        .nav-item{
+            padding: 5px;
+            transition: 0.2s;
+            min-width: 100px;
+            text-align: center;
+
+            &:hover{
+                background: #fff;
+                .nav-link{
+                    color: #333;
+                }
+            }
+
+            .nav-link{
+                color: #fff;
+                font-weight: 500;
+                transition: 0.2s;
+            }
+        }
+    }
+}
+
+.header-jumbotron{
+    height: 580px;
+    background: url('/img/starbg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+
+    .header-right{
+        height: 30px;
+        width: 50%;
+        z-index: 2;
+        position: relative;
+        img{
+            width: 300px;
+        }
+    }
+
+    .header-center{
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        top: 0px;
+    }
+
+    .header-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        img{
+            width: 100%;
+        }
+    }
+}
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}

@@ -14,22 +14,22 @@
                 Global UPR 2019
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#upr-navbar" aria-controls="upr-navbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="upr-navbar">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Donation</a>
+                        <a class="nav-link" href="/donation">Donation</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="#">Join As Volunteer</a>
+                            <a class="nav-link" href="/donation#joinnow">Join As Volunteer</a>
                     </li>
                     <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 45);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10437,15 +10437,15 @@ return jQuery;
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(45);
+module.exports = __webpack_require__(46);
 
 
 /***/ }),
 
-/***/ 45:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10454,13 +10454,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).scroll(function () {
-        var scroll = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html, body').scrollTop();
-        if (scroll > 100) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.upr-custom-navbar').addClass('active');
-        } else {
+var onScroll = function onScroll() {
+    var scroll = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html, body').scrollTop();
+    var opened = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.navbar-collapse').hasClass('active');
+    if (scroll > 100) {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.upr-custom-navbar').addClass('active');
+    } else {
+        if (!opened) {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.upr-custom-navbar').removeClass('active');
+        }
+    }
+};
+
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
+    onScroll();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).scroll(onScroll);
+
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.navbar-toggler').click(function () {
+        var opened = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.navbar-collapse').hasClass('active');
+        if (opened) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.navbar-collapse').removeClass('active');
+            var scroll = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html, body').scrollTop();
+            if (scroll <= 100) {
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.upr-custom-navbar').removeClass('active');
+            }
+        } else {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.navbar-collapse').addClass('active');
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.upr-custom-navbar').addClass('active');
         }
     });
 });

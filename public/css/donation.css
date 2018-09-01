@@ -1,0 +1,40 @@
+.donation {
+  padding-top: 35px;
+  padding-bottom: 70px;
+  text-align: center;
+}
+
+.donation .container {
+  max-width: 650px;
+}
+
+.donation ul.list-group {
+  text-align: left;
+}
+
+.donation ul.list-group img {
+  max-width: 200px;
+}
+
+@media screen and (max-width: 767px) {
+  .donation ul.list-group img {
+    max-width: 100px;
+  }
+}
+
+.donation ul.list-group .img-center {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.donation ul.list-group .img-center .img-center-cell {
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.donation ul.list-group p {
+  margin-bottom: 5px;
+}
+

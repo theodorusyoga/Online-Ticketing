@@ -10486,6 +10486,11 @@ body {
   min-width: 150px;
 }
 
+.custom-btn.btn-lg,
+.btn-group-lg > .custom-btn.btn {
+  font-size: 20px;
+}
+
 .upr-custom-navbar {
   margin-bottom: 0px !important;
   padding: 0;
@@ -10497,8 +10502,13 @@ body {
 }
 
 .upr-custom-navbar .navbar-brand {
-  display: none;
+  opacity: 0;
   color: #333;
+}
+
+.upr-custom-navbar .navbar-toggler {
+  color: #fff;
+  border: 0;
 }
 
 .upr-custom-navbar .upr-logo-navbar {
@@ -10535,7 +10545,12 @@ body {
 }
 
 .upr-custom-navbar.active .navbar-brand {
+  opacity: 1;
   display: block;
+}
+
+.upr-custom-navbar.active .navbar-toggler {
+  color: #333;
 }
 
 .upr-custom-navbar.active .navbar-nav .nav-item:hover {
@@ -10550,13 +10565,57 @@ body {
   color: #333;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .upr-custom-navbar .navbar-brand {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .upr-custom-navbar {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .upr-custom-navbar .navbar-collapse {
+    display: block;
+    background: #fff;
+    overflow: hidden;
+    max-height: 0px;
+    -webkit-transition: max-height 0.25s ease-in;
+    transition: max-height 0.25s ease-in;
+  }
+
+  .upr-custom-navbar .navbar-collapse.active {
+    max-height: 1000px;
+  }
+
+  .upr-custom-navbar .navbar-nav .nav-item:hover {
+    background: #333;
+  }
+
+  .upr-custom-navbar .navbar-nav .nav-item:hover .nav-link {
+    color: #fff;
+  }
+
+  .upr-custom-navbar .navbar-nav .nav-item .nav-link {
+    color: #333;
+  }
+}
+
 .header-jumbotron {
-  height: 580px;
+  height: 550px;
   background: url("/img/starbg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .header-jumbotron {
+    height: 100vh;
+  }
 }
 
 .header-jumbotron .upr-logo {
@@ -10590,10 +10649,43 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  overflow-x: hidden;
 }
 
 .header-jumbotron .header-bottom img {
   width: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .header-jumbotron .upr-logo {
+    width: 125px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header-jumbotron .upr-logo {
+    max-width: 150px;
+  }
+
+  .header-jumbotron .header-right {
+    top: 200px;
+  }
+
+  .header-jumbotron .header-right img {
+    width: 150px;
+  }
+
+  .header-jumbotron .header-center {
+    top: 200px;
+  }
+
+  .header-jumbotron .header-center img {
+    max-width: 300px;
+  }
+
+  .header-jumbotron .header-bottom img {
+    width: auto;
+  }
 }
 
 .venue {
@@ -10608,7 +10700,7 @@ body {
 }
 
 .venue iframe {
-  width: 750px;
+  width: 100%;
   height: 450px;
 }
 

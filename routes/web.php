@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('dashboard.index');
 });
+
+Route::get('/donation', 'DonationController@index');

@@ -8,9 +8,22 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Font Awesome
+
+
 html, body{
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
+    background: #fff;
+}
+
+.custom-btn{
+    &.btn-primary{
+        background: linear-gradient(#fe835d, #fe5a29);
+        border: 1px solid #f3501f;
+        color: #fff;
+        min-width: 150px;
+    }
 }
 
 .upr-custom-navbar{
@@ -18,7 +31,13 @@ html, body{
     padding: 0;
     padding-left: 50px;
     padding-right: 50px;
-    top: 30px;
+    padding-top: 30px;
+    transition: 0.3s linear;
+
+    .navbar-brand{
+        display: none;
+        color: #333;
+    }
 
     .upr-logo-navbar{
         position: absolute;
@@ -45,7 +64,33 @@ html, body{
             }
         }
     }
+    &.active{
+        padding-top: 0;
+        background: #fff;
+        border-bottom: 1px solid #dfdfdf;
+
+        .navbar-brand{
+            display: block;
+        }
+
+        .navbar-nav{
+            .nav-item{
+                &:hover{
+                    background: #333 !important;
+                    .nav-link{
+                        color: #fff !important;
+                    }
+                }
+
+                .nav-link{
+                    color: #333;
+                }
+            }
+        }
+    }
 }
+
+
 
 .header-jumbotron{
     height: 580px;
@@ -54,6 +99,10 @@ html, body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     position: relative;
+
+    .upr-logo{
+        position: absolute;
+    }
 
     .header-right{
         height: 30px;
@@ -70,6 +119,9 @@ html, body{
         z-index: 1;
         text-align: center;
         top: 0px;
+        img{
+            max-width: 650px;
+        }
     }
 
     .header-bottom {
@@ -83,7 +135,103 @@ html, body{
     }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.venue{
+    text-align: center;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    line-height: 1.67;
+    > .container{
+        max-width: 750px;
+    }
+    iframe{
+        width: 750px;
+        height: 450px;
+    }
+    h2{
+        font-size: 38px;
+    }
+    p{
+        margin-top: 20px;
+    }
+}
+
+.speakers{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: #f9f9f9;
+    text-align: center;
+    h1{
+        font-size: 38px;
+        margin-bottom: 50px;
+    }
+}
+
+.custom-media{
+    padding: 30px;
+    h3{
+        font-size: 22px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+}
+
+.location{
+    iframe{
+        width: 100%;
+        height: 400px;
+    }
+}
+
+.subfooter{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    .container{
+        max-width: 500px;
+    }
+    p{
+        margin-bottom: 30px;
+    }
+}
+
+.footer{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: url('/img/starbg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: #cfcece;
+    .container{
+        max-width: 600px;
+    }
+    .icons{
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        li{
+            cursor: pointer;
+            display: inline-block;
+            background: #cecdcd;
+            width: 56px;
+            height: 56px;
+            border-radius: 56px;
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            color: #333;
+
+            &:hover{
+                background: #fff;
+            }
+            i{
+                font-size: 26px;
+                padding-top: 15px;
+            }
+        }
+    }
+    .address{
+        margin-bottom: 40px;
+    }
 }

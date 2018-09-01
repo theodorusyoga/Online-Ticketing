@@ -10475,6 +10475,15 @@ html,
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+  background: #fff;
+}
+
+.custom-btn.btn-primary {
+  background: -webkit-gradient(linear, left top, left bottom, from(#fe835d), to(#fe5a29));
+  background: linear-gradient(#fe835d, #fe5a29);
+  border: 1px solid #f3501f;
+  color: #fff;
+  min-width: 150px;
 }
 
 .upr-custom-navbar {
@@ -10482,7 +10491,14 @@ body {
   padding: 0;
   padding-left: 50px;
   padding-right: 50px;
-  top: 30px;
+  padding-top: 30px;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+
+.upr-custom-navbar .navbar-brand {
+  display: none;
+  color: #333;
 }
 
 .upr-custom-navbar .upr-logo-navbar {
@@ -10512,6 +10528,28 @@ body {
   transition: 0.2s;
 }
 
+.upr-custom-navbar.active {
+  padding-top: 0;
+  background: #fff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.upr-custom-navbar.active .navbar-brand {
+  display: block;
+}
+
+.upr-custom-navbar.active .navbar-nav .nav-item:hover {
+  background: #333 !important;
+}
+
+.upr-custom-navbar.active .navbar-nav .nav-item:hover .nav-link {
+  color: #fff !important;
+}
+
+.upr-custom-navbar.active .navbar-nav .nav-item .nav-link {
+  color: #333;
+}
+
 .header-jumbotron {
   height: 580px;
   background: url("/img/starbg.jpg");
@@ -10519,6 +10557,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
+}
+
+.header-jumbotron .upr-logo {
+  position: absolute;
 }
 
 .header-jumbotron .header-right {
@@ -10539,6 +10581,10 @@ body {
   top: 0px;
 }
 
+.header-jumbotron .header-center img {
+  max-width: 650px;
+}
+
 .header-jumbotron .header-bottom {
   position: absolute;
   bottom: 0;
@@ -10550,9 +10596,115 @@ body {
   width: 100%;
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.venue {
+  text-align: center;
+  padding-top: 150px;
+  padding-bottom: 50px;
+  line-height: 1.67;
+}
+
+.venue > .container {
+  max-width: 750px;
+}
+
+.venue iframe {
+  width: 750px;
+  height: 450px;
+}
+
+.venue h2 {
+  font-size: 38px;
+}
+
+.venue p {
+  margin-top: 20px;
+}
+
+.speakers {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.speakers h1 {
+  font-size: 38px;
+  margin-bottom: 50px;
+}
+
+.custom-media {
+  padding: 30px;
+}
+
+.custom-media h3 {
+  font-size: 22px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.location iframe {
+  width: 100%;
+  height: 400px;
+}
+
+.subfooter {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.subfooter .container {
+  max-width: 500px;
+}
+
+.subfooter p {
+  margin-bottom: 30px;
+}
+
+.footer {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background: url("/img/starbg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #cfcece;
+}
+
+.footer .container {
+  max-width: 600px;
+}
+
+.footer .icons {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.footer .icons li {
+  cursor: pointer;
+  display: inline-block;
+  background: #cecdcd;
+  width: 56px;
+  height: 56px;
+  border-radius: 56px;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #333;
+}
+
+.footer .icons li:hover {
+  background: #fff;
+}
+
+.footer .icons li i {
+  font-size: 26px;
+  padding-top: 15px;
+}
+
+.footer .address {
+  margin-bottom: 40px;
 }
 

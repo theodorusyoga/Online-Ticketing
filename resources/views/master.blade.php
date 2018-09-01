@@ -11,7 +11,7 @@
     <body>
         <nav class="upr-custom-navbar navbar navbar-expand-md fixed-top">
             <a class="navbar-brand" href="#">
-                <img class="upr-logo-navbar" src="/img/logo-top.png" alt="Global UPR 2018" />
+                Global UPR 2019
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#upr-navbar" aria-controls="upr-navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,5 +40,6 @@
         <div class="content">
             @yield('content')
         </div>
+        <script src="/js/index.js" type="text/javascript"></script>
     </body>
 </html>

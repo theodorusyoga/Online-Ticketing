@@ -20,7 +20,7 @@
                 </div>
             </li>
             <li class="list-group-item text-center">
-                <button class="btn btn-primary custom-btn btn-lg">
+                <button id="donation-confirm" class="btn btn-primary custom-btn btn-lg">
                     Konfirmasi Donasi
                 </button>
             </li>

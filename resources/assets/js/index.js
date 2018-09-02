@@ -1,4 +1,5 @@
 import $ from 'jquery';
+require('./bootstrap');
 
 const onScroll = () => {
     const scroll = $('html, body').scrollTop();
@@ -28,5 +29,13 @@ $(document).ready(() => {
             $('.navbar-collapse').addClass('active');
             $('.upr-custom-navbar').addClass('active');
         }
+    });
+
+    $('#donation-confirm').click(() => {
+        $('#modal-donation').modal({
+            show: true,
+            keyboard: false,
+            backdrop: 'static'
+        });
     });
 });

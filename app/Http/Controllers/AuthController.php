@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Donation;
+use App\UserType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use JWTAuth;
@@ -31,6 +32,10 @@ class AuthController extends Controller
 
     public function getDonations(){
         return json_encode(Donation::all());
+    }
+
+    public function getUserTypes(){
+        return json_encode(UserType::all());
     }
 
     public function confirmDonate(Request $req){

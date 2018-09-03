@@ -6,26 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $usertypeid
- * @property string $fullname
- * @property string $phone
- * @property string $email
+ * @property string $name
+ * @property string $bank
+ * @property float $amount
+ * @property string $transfer_date
+ * @property string $file
+ * @property string $other
  * @property string $created_at
  * @property string $updated_at
- * @property UserType $userType
  */
 class Donation extends Model
 {
     /**
      * @var array
      */
-    protected $fillable = ['usertypeid', 'fullname', 'phone', 'email', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'bank', 'amount', 'transfer_date', 'file', 'other', 'created_at', 'updated_at'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function userType()
-    {
-        return $this->belongsTo('App\UserType', 'usertypeid');
-    }
 }

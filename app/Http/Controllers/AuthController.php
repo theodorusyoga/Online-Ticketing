@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Volunteer;
 use App\Donation;
 use App\UserType;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 use JWTAuth;
 
 class AuthController extends Controller
@@ -38,16 +41,53 @@ class AuthController extends Controller
         return json_encode(UserType::all());
     }
 
-    public function confirmDonate(Request $req){
+    public function joinVolunteer(Request $req){
         $fullname = $req['fullname'];
         $phone = $req['phone'];
         $email = $req['email'];
         $usertypeid = $req['usertypeid'];
+        $volunteer = new Volunteer;
+        $volunteer->fullname = $fullname;
+        $volunteer->phone = $phone;
+        $volunteer->email = $email;
+        $volunteer->usertypeid = $usertypeid;
+
+        try{
+            $volunteer->save();
+            return json_encode(array(
+                'status' => 0,
+                'message' => 'Join as volunteer saved'
+            ));
+        }
+        catch(QueryException $e){
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'User type does not exist'
+            ));
+        }
+    }
+
+    public function confirmDonate(Request $req){
+        $name = $req['name'];
+        $bank = $req['bank'];
+        $amount = $req['amount'];
+        $transfer_date = $req['transfer_date'];
+
+        $other = $req['other'];
         $donation = new Donation;
-        $donation->fullname = $fullname;
-        $donation->phone = $phone;
-        $donation->email = $email;
-        $donation->usertypeid = $usertypeid;
+        $donation->name = $name;
+        $donation->bank = $bank;
+        $donation->amount = $amount;
+        $donation->transfer_date = $transfer_date;
+
+        $donation->other = $other;
+
+        if($req->file('file') != null){
+            $file = $req->file('file');
+            $path = $file->store('public/files');
+            $file = Storage::url($path);
+            $donation->file = $file;
+        }
 
         try{
             $donation->save();
@@ -59,10 +99,8 @@ class AuthController extends Controller
         catch(QueryException $e){
             return json_encode(array(
                 'status' => 1,
-                'message' => 'User type does not exist'
+                'message' => $e
             ));
         }
-
-
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DonationsTableSeeder extends Seeder
+class VolunteersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,6 +19,6 @@ class DonationsTableSeeder extends Seeder
             'created_at' => '2018-09-02 00:00:00',
             'updated_at' => '2018-09-02 00:00:00'
         );
-        DB::table('donations')->insert($donation);
+        DB::table('volunteers')->insert($donation);
     }
 }

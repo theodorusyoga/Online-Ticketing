@@ -36035,7 +36035,7 @@ var getUserTypes = function () {
     };
 }();
 
-var postConfirmation = function () {
+var postJoinAsVolunteer = function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(token, data) {
         var status;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
@@ -36044,7 +36044,7 @@ var postConfirmation = function () {
                     case 0:
                         status = {};
                         _context3.next = 3;
-                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/confirm-donate', data, {
+                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/join-volunteer', data, {
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': 'Bearer ' + token
@@ -36064,8 +36064,42 @@ var postConfirmation = function () {
         }, _callee3, _this);
     }));
 
-    return function postConfirmation(_x2, _x3) {
+    return function postJoinAsVolunteer(_x2, _x3) {
         return _ref3.apply(this, arguments);
+    };
+}();
+
+var postDonation = function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(token, data) {
+        var status;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+                switch (_context4.prev = _context4.next) {
+                    case 0:
+                        status = {};
+                        _context4.next = 3;
+                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/confirm-donate', data, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + token
+                            }
+                        }).then(function (response) {
+                            status = response.data;
+                        });
+
+                    case 3:
+                        return _context4.abrupt('return', status);
+
+                    case 4:
+                    case 'end':
+                        return _context4.stop();
+                }
+            }
+        }, _callee4, _this);
+    }));
+
+    return function postDonation(_x4, _x5) {
+        return _ref4.apply(this, arguments);
     };
 }();
 
@@ -36087,34 +36121,41 @@ __WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
         }
     });
 
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-confirm').click(_asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#about-link').click(function () {
+        var scrollTop = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#header-home').offset().top + 60;
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').animate({
+            scrollTop: scrollTop
+        }, 500);
+    });
+
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#join-volunteer-link').click(_asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
         var token, usertypes;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
             while (1) {
-                switch (_context4.prev = _context4.next) {
+                switch (_context5.prev = _context5.next) {
                     case 0:
                         __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#success-alert').hide();
                         __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#error-alert').hide();
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').show();
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').attr('disabled', true);
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').show();
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').attr('disabled', true);
                         __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').attr('disabled', true);
 
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#modal-donation').modal({
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#modal-volunteer').modal({
                             show: true,
                             keyboard: false,
                             backdrop: 'static'
                         });
 
-                        _context4.next = 8;
+                        _context5.next = 8;
                         return getToken();
 
                     case 8:
-                        token = _context4.sent;
-                        _context4.next = 11;
+                        token = _context5.sent;
+                        _context5.next = 11;
                         return getUserTypes(token);
 
                     case 11:
-                        usertypes = _context4.sent;
+                        usertypes = _context5.sent;
 
 
                         setTimeout(function () {
@@ -36128,30 +36169,30 @@ __WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
                             }
 
                             __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').removeAttr('disabled');
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').removeAttr('disabled');
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').removeAttr('disabled');
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').hide();
                         }, 1000);
 
                     case 13:
                     case 'end':
-                        return _context4.stop();
+                        return _context5.stop();
                 }
             }
-        }, _callee4, _this);
+        }, _callee5, _this);
     })));
 
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-form').submit(function () {
-        var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5(e) {
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-form').submit(function () {
+        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6(e) {
             var data, token, result;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                 while (1) {
-                    switch (_context5.prev = _context5.next) {
+                    switch (_context6.prev = _context6.next) {
                         case 0:
                             e.preventDefault();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#success-alert').hide();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#error-alert').hide();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').show();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').attr('disabled', true);
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').show();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').attr('disabled', true);
 
                             data = {
                                 fullname: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#fullname').val(),
@@ -36159,45 +36200,111 @@ __WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
                                 phone: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#phone').val(),
                                 usertypeid: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').val()
                             };
-                            _context5.next = 8;
+                            _context6.next = 8;
                             return getToken();
 
                         case 8:
-                            token = _context5.sent;
-                            _context5.next = 11;
-                            return postConfirmation(token, data);
+                            token = _context6.sent;
+                            _context6.next = 11;
+                            return postJoinAsVolunteer(token, data);
 
                         case 11:
-                            result = _context5.sent;
+                            result = _context6.sent;
 
 
                             setTimeout(function () {
                                 if (result.status == 0) {
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#success-alert').show();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#error-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').show();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').hide();
                                     __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#fullname').val('');
                                     __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#email').val('');
                                     __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#phone').val('');
                                     __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').val('');
                                 } else {
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#success-alert').hide();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#error-alert').show();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').show();
+                                }
+
+                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').removeAttr('disabled');
+                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').hide();
+                            }, 1000);
+
+                        case 13:
+                        case 'end':
+                            return _context6.stop();
+                    }
+                }
+            }, _callee6, _this);
+        }));
+
+        return function (_x6) {
+            return _ref6.apply(this, arguments);
+        };
+    }());
+
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-form').submit(function () {
+        var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7(e) {
+            var data, token, result;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                while (1) {
+                    switch (_context7.prev = _context7.next) {
+                        case 0:
+                            e.preventDefault();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').show();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').attr('disabled', true);
+
+                            data = new FormData();
+
+                            data.append('name', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#name').val());
+                            data.append('bank', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#bank').val());
+                            data.append('amount', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#amount').val());
+                            data.append('transfer_date', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#date').val());
+                            data.append('other', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#other').val());
+                            data.append('file', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#file')[0].files[0]);
+
+                            _context7.next = 14;
+                            return getToken();
+
+                        case 14:
+                            token = _context7.sent;
+                            _context7.next = 17;
+                            return postDonation(token, data);
+
+                        case 17:
+                            result = _context7.sent;
+
+
+                            setTimeout(function () {
+                                if (result.status == 0) {
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').show();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#name').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#bank').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#amount').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#date').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#other').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#file').val('');
+                                } else {
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').show();
                                 }
 
                                 __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').removeAttr('disabled');
                                 __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').hide();
                             }, 1000);
 
-                        case 13:
+                        case 19:
                         case 'end':
-                            return _context5.stop();
+                            return _context7.stop();
                     }
                 }
-            }, _callee5, _this);
+            }, _callee7, _this);
         }));
 
-        return function (_x4) {
-            return _ref5.apply(this, arguments);
+        return function (_x7) {
+            return _ref7.apply(this, arguments);
         };
     }());
 });

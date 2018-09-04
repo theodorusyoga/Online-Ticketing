@@ -23,16 +23,16 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a id="about-link" class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/donation">Donation</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="/donation#joinnow">Join As Volunteer</a>
+                        <a id="join-volunteer-link" class="nav-link" href="#volunteer">Join As Volunteer</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="/register">Register</a>
                     </li>
                 </ul>
             </div>

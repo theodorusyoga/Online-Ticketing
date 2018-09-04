@@ -20,4 +20,7 @@
 @component('dashboard.footer')
 @endcomponent
 
+@component('donation.volunteer')
+@endcomponent
+
 @endsection

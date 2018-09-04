@@ -17,7 +17,7 @@
 @component('dashboard.footer')
 @endcomponent
 
-@component('donation.form')
+@component('donation.volunteer')
 @endcomponent
 
 @endsection

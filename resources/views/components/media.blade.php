@@ -6,4 +6,7 @@
     <p class="description">
         {{ $description }}
     </p>
+    {{--  <p class="description">
+        {{ $description_2 }}
+    </p>  --}}
 </div>

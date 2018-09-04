@@ -17,7 +17,7 @@ class CreateDonationsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('bank');
-            $table->decimal('amount', 8, 2);
+            $table->decimal('amount', 20, 2);
             $table->date('transfer_date');
             $table->string('file');
             $table->string('other')->nullable();

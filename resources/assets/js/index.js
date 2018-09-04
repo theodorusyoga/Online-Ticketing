@@ -41,7 +41,20 @@ const getUserTypes = async (token) => {
     return usertypes;
 }
 
-const postConfirmation = async (token, data) => {
+const postJoinAsVolunteer = async (token, data) => {
+    let status = {};
+    await axios.post('/api/join-volunteer', data, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    }).then((response) => {
+        status = response.data;
+    })
+    return status;
+}
+
+const postDonation = async (token, data) => {
     let status = {};
     await axios.post('/api/confirm-donate', data, {
         headers: {
@@ -72,14 +85,21 @@ $(document).ready(() => {
         }
     });
 
-    $('#donation-confirm').click(async () => {
+    $('#about-link').click(() => {
+        const scrollTop = $('#header-home').offset().top + 60;
+        $('html, body').animate({
+            scrollTop
+        }, 500);
+    });
+
+    $('#join-volunteer-link').click(async () => {
         $('#success-alert').hide();
         $('#error-alert').hide();
-        $('.donation-loading').show();
-        $('#donation-submit').attr('disabled', true);
+        $('.volunteer-loading').show();
+        $('#volunteer-submit').attr('disabled', true);
         $('#user-types').attr('disabled', true);
 
-        $('#modal-donation').modal({
+        $('#modal-volunteer').modal({
             show: true,
             keyboard: false,
             backdrop: 'static'
@@ -99,17 +119,17 @@ $(document).ready(() => {
             }
 
             $('#user-types').removeAttr('disabled');
-            $('#donation-submit').removeAttr('disabled');
-            $('.donation-loading').hide();
+            $('#volunteer-submit').removeAttr('disabled');
+            $('.volunteer-loading').hide();
         }, 1000);
     });
 
-    $('#donation-form').submit(async (e) => {
+    $('#volunteer-form').submit(async (e) => {
         e.preventDefault();
-        $('#success-alert').hide();
-        $('#error-alert').hide();
-        $('.donation-loading').show();
-        $('#donation-submit').attr('disabled', true);
+        $('#volunteer-success-alert').hide();
+        $('#volunteer-error-alert').hide();
+        $('.volunteer-loading').show();
+        $('#volunteer-submit').attr('disabled', true);
 
         const data = {
             fullname: $('#fullname').val(),
@@ -118,23 +138,61 @@ $(document).ready(() => {
             usertypeid: $('#user-types').val()
         };
         const token = await getToken();
-        const result = await postConfirmation(token, data);
+        const result = await postJoinAsVolunteer(token, data);
 
         setTimeout(() => {
             if(result.status == 0){
-                $('#success-alert').show();
-                $('#error-alert').hide();
+                $('#volunteer-success-alert').show();
+                $('#volunteer-error-alert').hide();
                 $('#fullname').val('');
                 $('#email').val('');
                 $('#phone').val('');
                 $('#user-types').val('');
             } else {
-                $('#success-alert').hide();
-                $('#error-alert').show();
+                $('#volunteer-success-alert').hide();
+                $('#volunteer-error-alert').show();
+            }
+
+            $('#volunteer-submit').removeAttr('disabled');
+            $('.volunteer-loading').hide();
+        }, 1000);
+    });
+
+    $('#donation-form').submit(async (e) => {
+        e.preventDefault();
+        $('#donation-success-alert').hide();
+        $('#donation-error-alert').hide();
+        $('.donation-loading').show();
+        $('#donation-submit').attr('disabled', true);
+
+        let data = new FormData();
+        data.append('name', $('#name').val());
+        data.append('bank', $('#bank').val());
+        data.append('amount', $('#amount').val());
+        data.append('transfer_date', $('#date').val());
+        data.append('other', $('#other').val());
+        data.append('file', $('#file')[0].files[0]);
+
+        const token = await getToken();
+        const result = await postDonation(token, data);
+
+        setTimeout(() => {
+            if(result.status == 0){
+                $('#donation-success-alert').show();
+                $('#donation-error-alert').hide();
+                $('#name').val('');
+                $('#bank').val('');
+                $('#amount').val('');
+                $('#date').val('');
+                $('#other').val('');
+                $('#file').val('');
+            } else {
+                $('#donation-success-alert').hide();
+                $('#donation-error-alert').show();
             }
 
             $('#donation-submit').removeAttr('disabled');
             $('.donation-loading').hide();
         }, 1000);
-    })
+    });
 });

@@ -1,20 +1,20 @@
-<div id="modal-donation" class="modal fade" tabindex="-1" role="dialog">
+<div id="modal-volunteer" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Konfirmasi Donasi</h5>
+              <h5 class="modal-title">Join As Volunteer</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form id="donation-form">
+            <form id="volunteer-form">
                 <div class="modal-body">
                     {{ csrf_field() }}
-                    <div id="success-alert" class="alert alert-success" style="display: none;" role="alert">
-                        Konfirmasi donasi berhasil dikirim
+                    <div id="volunteer-success-alert" class="alert alert-success" style="display: none;" role="alert">
+                        Formulir berhasil dikirim
                     </div>
-                    <div id="error-alert" class="alert alert-danger" role="alert">
-                        Konfirmasi donasi gagal dikirim karena ada kesalahan
+                    <div id="volunteer-error-alert" class="alert alert-danger" style="display: none;" role="alert">
+                        Formulir gagal dikirim karena ada kesalahan
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nama Lengkap</label>
@@ -34,8 +34,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <img class="donation-loading" src="/img/loading-small.svg"/>
-                <button id="donation-submit" type="submit" class="btn btn-primary custom-btn" disabled>Konfirmasi</button>
+                <img class="volunteer-loading" src="/img/loading-small.svg"/>
+                <button id="volunteer-submit" type="submit" class="btn btn-primary custom-btn" disabled>Kirim</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
             </form>

@@ -6,17 +6,12 @@
     <h1>
         404
     </h1>
-    <p>
-        Apakah Engkau Mencari-Ku?
-    </p>
-    <p>"Mengapa kamu mencari Aku? Tidakkah kamu tahu, bahwa Aku harus berada di dalam rumah Bapa-Ku?" - Lukas 2:49</p>
+    <h3>Are You Looking For Me?</h3>
     <img src="/img/error-404.png" alt="404 Not Found" />
+    <p>"Marilah kepada-Ku, semua yang letih lesu dan berbeban berat, Aku akan memberi kelegaan kepadamu." - Matius‬ ‭11:28</p>
 </section>
 
 @component('donation.volunteer')
-@endcomponent
-
-@component('dashboard.subfooter')
 @endcomponent
 
 @component('dashboard.footer')

@@ -234,6 +234,11 @@ html, body{
     p{
         margin-top: 20px;
     }
+    @media screen and (max-width: 767px) {
+        h2{
+            font-size: 30px;
+        }
+    }
 }
 
 .speakers{
@@ -313,6 +318,9 @@ html, body{
                 font-size: 26px;
                 padding-top: 15px;
             }
+            a{
+                color: #333;
+            }
         }
     }
     .address{
@@ -333,8 +341,16 @@ html, body{
         font-size: 72px;
         color: #fff;
     }
-    p{
+    h3{
+        font-size: 54px;
         color: #fff;
+        margin-bottom: 20px;
+    }
+    p{
+        margin-top: 20px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
     }
     .upr-logo{
         position: absolute;

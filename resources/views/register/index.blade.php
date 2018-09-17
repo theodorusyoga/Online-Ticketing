@@ -9,7 +9,12 @@
 <div id="register">
     @component('register.header')
     @endcomponent
+    @component('register.pricing')
+    @endcomponent
 </div>
+
+@component('dashboard.footer')
+@endcomponent
 
 @endsection
 

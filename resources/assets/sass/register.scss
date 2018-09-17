@@ -1,6 +1,16 @@
 #register{
     .container{
         max-width: 768px;
+        &.subpricing{
+            max-width: 1100px;
+        }
+        &.line-container{
+            height: 2px;
+            max-width: 960px;
+            border-top: solid 1px #d5d5d5;
+            margin-top: 70px;
+            margin-bottom: 70px;
+        }
     }
 }
 .countdown{
@@ -37,5 +47,89 @@
                 font-size: 20px;
             }
         }
+    }
+}
+
+.register-pricing{
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    line-height: 1.67;
+    .title{
+        font-weight: bold;
+        font-size: 38px;
+    }
+    .subtitle{
+        font-size: 24px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .title-line{
+        background: #d4db48;
+        min-height: 0.5rem;
+        max-width: 8rem;
+        border-radius: 4.5px;
+        margin: 0 auto;
+        margin-bottom: 4rem;
+    }
+
+    .card-group{
+        box-shadow: 0 3px 10px 0 rgba(205, 205, 205, 0.5);
+        background-color: #ffffff;
+        border: solid 0.5px #c2c2c2;
+        padding: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        .column{
+            padding: 0;
+            .card{
+                border-radius: 0px;
+                border: 0px;
+                .card-img-top{
+                    max-width: 105px;
+                    width: 105px;
+                    margin: 0 auto;
+                }
+                .card-title{
+                    color: #767676;
+                    font-size: 26px;
+                }
+                .card-subtitle{
+                    font-size: 22px;
+                    margin-bottom: 32px;
+                }
+            }
+            .subpricing-list{
+                padding-left: 0;
+                text-align: left;
+                list-style-type: none;
+                font-size: 16px;
+                line-height: 2.3;
+                .not-eligible{
+                    color: #a5a5a5;
+                }
+                li{
+                    &:before{
+                        content: '✓';
+                        margin-right: 10px;
+                    }
+                    &.not-eligible{
+                        &:before{
+                            content: '✖';
+                        }
+                    }
+                }
+            }
+            &:not(:last-child){
+                .card{
+                    border-right: solid 1px #d5d5d5;
+                }
+            }
+        }
+    }
+    .subpricing-register{
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 }

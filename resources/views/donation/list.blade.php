@@ -23,7 +23,6 @@
                 <h3>Konfirmasi Donasi</h3>
                 <form id="donation-form">
                     <div class="modal-body">
-                        {{ csrf_field() }}
                         <div class="form-group">
                             <label for="name" class="col-form-label">Nama Sesuai Rekening</label>
                             <input type="text" class="form-control" id="name" name="name" required>

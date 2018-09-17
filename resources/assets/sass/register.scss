@@ -1,0 +1,41 @@
+#register{
+    .container{
+        max-width: 768px;
+    }
+}
+.countdown{
+    padding-top: 150px;
+
+    @media screen and (max-width: 767px) {
+        padding-top: 200px;
+    }
+
+    .col-3{
+        &.odd{
+            .title{
+                color: #d4db48;
+            }
+            .subtitle{
+                color: #d4db48;
+            }
+        }
+        .title{
+            color: #fff;
+            font-weight: bold;
+            font-size: 54px;
+
+            @media screen and (max-width: 767px) {
+                font-size: 32px;
+            }
+        }
+        .subtitle{
+            color: #fff;
+            font-weight: 500;
+            font-size: 26px;
+
+            @media screen and (max-width: 767px) {
+                font-size: 20px;
+            }
+        }
+    }
+}

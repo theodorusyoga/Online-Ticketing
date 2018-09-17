@@ -1,0 +1,46 @@
+#register .container {
+  max-width: 768px;
+}
+
+.countdown {
+  padding-top: 150px;
+}
+
+@media screen and (max-width: 767px) {
+  .countdown {
+    padding-top: 200px;
+  }
+}
+
+.countdown .col-3.odd .title {
+  color: #d4db48;
+}
+
+.countdown .col-3.odd .subtitle {
+  color: #d4db48;
+}
+
+.countdown .col-3 .title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 54px;
+}
+
+@media screen and (max-width: 767px) {
+  .countdown .col-3 .title {
+    font-size: 32px;
+  }
+}
+
+.countdown .col-3 .subtitle {
+  color: #fff;
+  font-weight: 500;
+  font-size: 26px;
+}
+
+@media screen and (max-width: 767px) {
+  .countdown .col-3 .subtitle {
+    font-size: 20px;
+  }
+}
+

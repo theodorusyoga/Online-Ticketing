@@ -47495,7 +47495,7 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\n.main[data-v-32863a1a] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-32863a1a] {\n    margin-top: 60px;\n    background-color: #fff;\n    max-width: 375px;\n    border-radius: 4px;\n    border: solid 1px #e6e6e6;\n}\n.main .register-step1 .register-step1-header[data-v-32863a1a] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-32863a1a] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        margin-left: 21px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 30px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-32863a1a] {\n            margin-top: 18px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-32863a1a]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-32863a1a] {\n            margin-top: 18px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-32863a1a]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-32863a1a] {\n      font-size: 20px;\n      text-align: left;\n      color: #333333;\n}\n", ""]);
+exports.push([module.i, "\n.main[data-v-32863a1a] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-32863a1a] {\n    margin-top: 60px;\n    background-color: #fff;\n    max-width: 375px;\n    border-radius: 4px;\n    border: solid 1px #e6e6e6;\n}\n.main .register-step1 .register-step1-header[data-v-32863a1a] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-32863a1a] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-32863a1a] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-32863a1a]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-32863a1a] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-32863a1a] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-32863a1a]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-32863a1a] {\n      padding: 24px;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-32863a1a] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-32863a1a] {\n        padding: 16px;\n        width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-32863a1a] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-32863a1a] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-32863a1a] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-32863a1a] {\n            margin-bottom: 5px;\n}\n", ""]);
 
 // exports
 
@@ -47907,7 +47907,7 @@ var render = function() {
   return _c("div", { staticClass: "container main" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "mx-auto text-center register-step1" }, [
+        _c("div", { staticClass: "mx-auto register-step1" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
@@ -47934,7 +47934,9 @@ var staticRenderFns = [
       _c("ul", { staticClass: "wizard" }, [
         _c("li", { staticClass: "wizard-step" }, [
           _c("a", { staticClass: "wizard-step-link", attrs: { href: "#1" } }, [
-            _vm._v("\n                Detil Order\n              ")
+            _c("span", { staticClass: "wizard-caption" }, [
+              _vm._v("Detil Order")
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -47942,7 +47944,11 @@ var staticRenderFns = [
           _c(
             "a",
             { staticClass: "wizard-step-link-2", attrs: { href: "#2" } },
-            [_vm._v("\n                Data Diri\n              ")]
+            [
+              _c("span", { staticClass: "wizard-caption" }, [
+                _vm._v("Data Diri")
+              ])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -47950,7 +47956,11 @@ var staticRenderFns = [
           _c(
             "a",
             { staticClass: "wizard-step-link-2", attrs: { href: "#3" } },
-            [_vm._v("\n                Pembayaran\n              ")]
+            [
+              _c("span", { staticClass: "wizard-caption" }, [
+                _vm._v("Pembayaran")
+              ])
+            ]
           )
         ])
       ])
@@ -47965,10 +47975,10 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("h3", [_vm._v("TWC - Regular")]),
       _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "content-header-title" }, [
         _c("h5", [_vm._v("e-ticket")]),
         _vm._v(" "),
-        _c("p", [
+        _c("div", [
           _vm._v(
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam itaque."
           )

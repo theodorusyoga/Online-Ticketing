@@ -2,22 +2,22 @@
     <div class="container main">
       <div class="row">
         <div class="col-md-12">
-          <div class="mx-auto text-center register-step1">
+          <div class="mx-auto register-step1">
             <div class="register-step1-header mx-auto">
               <ul class="wizard">
                 <li class="wizard-step">
                   <a href="#1" class="wizard-step-link">
-                    Detil Order
+                    <span class="wizard-caption">Detil Order</span>
                   </a>
                 </li>
                 <li class="wizard-step">
                   <a href="#2" class="wizard-step-link-2">
-                    Data Diri
+                    <span class="wizard-caption">Data Diri</span>
                   </a>
                 </li>
                 <li class="wizard-step">
                   <a href="#3" class="wizard-step-link-2">
-                    Pembayaran
+                    <span class="wizard-caption">Pembayaran</span>
                   </a>
                 </li>
               </ul>
@@ -27,9 +27,9 @@
               <div class="content-header">
                 <h5>Product</h5>
                 <h3>TWC - Regular</h3>
-                <div>
+                <div class="content-header-title">
                   <h5>e-ticket</h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam itaque.</p>
+                  <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam itaque.</div>
                 </div>
               </div>
             </div>

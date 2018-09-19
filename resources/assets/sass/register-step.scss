@@ -10,12 +10,14 @@
     .register-step1-header {
       background-color: #f2f3f4;
       min-height: 90px;
+      
       .wizard {
         counter-reset: stepNo;
         display: -webkit-flex;
         display: -ms-flex;
         display: flex;
-        margin-left: 21px;
+        width: 70%;
+        margin: auto;
 
         .wizard-step {
           -webkit-flex: 1 0 0px;
@@ -30,7 +32,7 @@
             left: 0;
             position: absolute;
             right: 0;
-            top: 30px;
+            top: 32px;
           }
           &:last-child {
             border: 0;
@@ -42,7 +44,7 @@
           }
 
           .wizard-step-link {
-            margin-top: 18px;
+            margin-top: 20px;
             text-align: left;
             color: #ff5722;
             display: block;
@@ -65,10 +67,16 @@
               height: 25px;
               border-radius: 50%;
             }
+            
+          }
+
+          .wizard-caption {
+            position: relative;
+            left: -12px;
           }
 
           .wizard-step-link-2 {
-            margin-top: 18px;
+            margin-top: 20px;
             text-align: left;
             color: #b9b7b7;
             display: block;
@@ -97,10 +105,40 @@
     }
 
     .register-step1-content {
+      padding: 24px;
       .detil-order {
         font-size: 20px;
         text-align: left;
         color: #333333;
+      }
+      .content-header {
+        padding: 16px;
+        width: 327px;
+        min-height: 124px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);
+        background-color: #f2f3f4;
+        border: solid 1px #dadada;
+        h5 {
+          font-weight: 400;
+          font-size: 14px;
+          color: #3b3a3a;
+          margin-bottom: 14px;
+        }
+        h3 {
+          margin-bottom: 14px;
+          font-size: 14px;
+          font-weight: bold;
+          color: #3b3a3a;
+        }
+        .content-header-title {
+          font-weight: 400;
+          font-size: 14px;
+          color: #3b3a3a;
+          h5 {
+            margin-bottom: 5px;
+          }
+        }
       }
     }
   }

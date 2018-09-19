@@ -36,6 +36,7 @@
                     <li class="nav-item">
                             <a class="nav-link" href="/register">Register</a>
                     </li>
+                    
                 </ul>
             </div>
             </nav>
@@ -43,6 +44,7 @@
             @yield('content')
         </div>
         <script src="/js/index.js" type="text/javascript"></script>
+        <script src="/js/app.js" type="text/javascript"></script>
         @yield('scripts')
     </body>
 </html>

@@ -3,11 +3,10 @@
 }
 
 .main .register-step1 {
-  margin-top: 60px;
+  margin-top: 30px;
   background-color: #fff;
   max-width: 375px;
-  border-radius: 4px;
-  border: solid 1px #e6e6e6;
+  margin-bottom: 30px;
 }
 
 .main .register-step1 .register-step1-header {
@@ -23,6 +22,12 @@
   display: flex;
   width: 70%;
   margin: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .main .register-step1 .register-step1-header .wizard {
+    width: 80%;
+  }
 }
 
 .main .register-step1 .register-step1-header .wizard .wizard-step {
@@ -112,8 +117,96 @@
   border-radius: 50%;
 }
 
+.main .register-step1 .register-step1-header .wizard .wizard-step-2 {
+  -ms-flex: 1 0 0px;
+  -webkit-box-flex: 1;
+          flex: 1 0 0px;
+  list-style: none;
+  padding: 0 2% 0 0;
+  position: relative;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2:before {
+  border-top: 1px solid #ff5722;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 32px;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2:last-child {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2:last-child:before {
+  border: 0;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link {
+  margin-top: 20px;
+  text-align: left;
+  color: #ff5722;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  position: relative;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link:before {
+  background: #ff5722;
+  color: #fff;
+  counter-increment: stepNo;
+  content: counter(stepNo);
+  display: block;
+  font-size: 12px;
+  line-height: 27px;
+  margin-bottom: 12px;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption {
+  position: relative;
+  left: -12px;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2 {
+  margin-top: 20px;
+  text-align: left;
+  color: #b9b7b7;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  position: relative;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2:before {
+  background: #b9b7b7;
+  color: #fff;
+  counter-increment: stepNo;
+  content: counter(stepNo);
+  display: block;
+  font-size: 12px;
+  line-height: 27px;
+  margin-bottom: 12px;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
 .main .register-step1 .register-step1-content {
   padding: 24px;
+  border: solid 1px #e6e6e6;
 }
 
 .main .register-step1 .register-step1-content .detil-order {
@@ -124,7 +217,8 @@
 
 .main .register-step1 .register-step1-content .content-header {
   padding: 16px;
-  width: 327px;
+  margin-bottom: 16px;
+  max-width: 327px;
   min-height: 124px;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);
@@ -155,5 +249,56 @@
 
 .main .register-step1 .register-step1-content .content-header .content-header-title h5 {
   margin-bottom: 5px;
+}
+
+.main .register-step1 .register-step1-content input::-webkit-input-placeholder {
+  font-size: 14px;
+}
+
+.main .register-step1 .register-step1-content input:-ms-input-placeholder {
+  font-size: 14px;
+}
+
+.main .register-step1 .register-step1-content input::-ms-input-placeholder {
+  font-size: 14px;
+}
+
+.main .register-step1 .register-step1-content input::placeholder {
+  font-size: 14px;
+}
+
+.main .register-step1 .register-step1-content select {
+  font-size: 14px;
+}
+
+.main .register-step1 .register-step1-content .label-jumlah-tiket {
+  font-size: 12px;
+  color: #8d8d8d;
+}
+
+.main .register-step1 .register-step1-content .label-radio {
+  font-size: 14px;
+  color: #3b3a3a;
+  margin-top: -16px;
+}
+
+.main .register-step1 .register-step1-content .form-check-inline {
+  font-size: 14px;
+}
+
+.main .register-step1 .register-step1-content .btn-wrapper {
+  margin-top: 28px;
+}
+
+.main .register-step1 .register-step1-content .btn-wrapper .btn-custom {
+  max-width: 327px;
+  width: 100%;
+  background-color: #f4511e;
+  border: 1px solid #f4511e;
+}
+
+.main .register-step1 .register-step1-footer {
+  height: 64px;
+  background-color: #f2f3f4;
 }
 

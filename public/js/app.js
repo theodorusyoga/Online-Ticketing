@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 38);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -13876,12 +13876,6 @@ module.exports = Cancel;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(17);
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -13990,6 +13984,12 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(17);
+
+/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14015,7 +14015,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(11);
+window.axios = __webpack_require__(12);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -47254,254 +47254,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 /* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(39);
-__webpack_require__(51);
-__webpack_require__(52);
-__webpack_require__(53);
-module.exports = __webpack_require__(54);
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-__webpack_require__(13);
-
-window.Vue = __webpack_require__(35);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', __webpack_require__(40));
-Vue.component('halo', __webpack_require__(43));
-
-var app = new Vue({
-  el: '#app'
-});
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(12)
-/* script */
-var __vue_script__ = __webpack_require__(41)
-/* template */
-var __vue_template__ = __webpack_require__(42)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
-  } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
-  }
-}
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(44)
-}
-var normalizeComponent = __webpack_require__(12)
-/* script */
-var __vue_script__ = __webpack_require__(49)
-/* template */
-var __vue_template__ = __webpack_require__(50)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-32863a1a"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Halo.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-32863a1a", Component.options)
-  } else {
-    hotAPI.reload("data-v-32863a1a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(45);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(47)("42df20d8", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-32863a1a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Halo.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-32863a1a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Halo.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(46)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.main[data-v-32863a1a] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-32863a1a] {\n    margin-top: 60px;\n    background-color: #fff;\n    max-width: 375px;\n    border-radius: 4px;\n    border: solid 1px #e6e6e6;\n}\n.main .register-step1 .register-step1-header[data-v-32863a1a] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-32863a1a] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-32863a1a]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-32863a1a] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-32863a1a]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-32863a1a] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-32863a1a] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-32863a1a]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-32863a1a] {\n      padding: 24px;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-32863a1a] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-32863a1a] {\n        padding: 16px;\n        width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-32863a1a] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-32863a1a] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-32863a1a] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-32863a1a] {\n            margin-bottom: 5px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 46 */
 /***/ (function(module, exports) {
 
 /*
@@ -47583,7 +47335,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 47 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -47811,6 +47563,255 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(41);
+__webpack_require__(56);
+__webpack_require__(57);
+__webpack_require__(58);
+module.exports = __webpack_require__(59);
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+__webpack_require__(13);
+
+window.Vue = __webpack_require__(35);
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example-component', __webpack_require__(42));
+Vue.component('register-step1', __webpack_require__(45));
+Vue.component('register-step2', __webpack_require__(51));
+
+var app = new Vue({
+  el: '#app'
+});
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = __webpack_require__(43)
+/* template */
+var __vue_template__ = __webpack_require__(44)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7168fb6a", Component.options)
+  } else {
+    hotAPI.reload("data-v-7168fb6a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card card-default" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Example Component")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _vm._v(
+                "\n                    I'm an example component.\n                "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+  }
+}
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(46)
+}
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = __webpack_require__(49)
+/* template */
+var __vue_template__ = __webpack_require__(50)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5d18c85b"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/RegisterStep1.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5d18c85b", Component.options)
+  } else {
+    hotAPI.reload("data-v-5d18c85b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(47);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(39)("05d8db3a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d18c85b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterStep1.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d18c85b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterStep1.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(38)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.main[data-v-5d18c85b] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d18c85b] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d18c85b] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d18c85b] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d18c85b] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d18c85b]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d18c85b] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d18c85b]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d18c85b]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d18c85b] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d18c85b]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d18c85b] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d18c85b] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d18c85b] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d18c85b] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d18c85b] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d18c85b] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d18c85b] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d18c85b] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d18c85b] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d18c85b] {\n        font-size: 14px;\n        color: #3b3a3a;\n        margin-top: -16px;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d18c85b] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d18c85b] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper .btn-custom[data-v-5d18c85b] {\n          max-width: 327px;\n          width: 100%;\n          background-color: #f4511e;\n          border: 1px solid #f4511e;\n}\n.main .register-step1 .register-step1-footer[data-v-5d18c85b] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 48 */
 /***/ (function(module, exports) {
 
@@ -47891,9 +47892,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'halo'
+  name: 'register-step1'
 });
 
 /***/ }),
@@ -47904,7 +47956,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container main" }, [
+  return _c("div", { staticClass: "container main mx-auto" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "mx-auto register-step1" }, [
@@ -47916,10 +47968,14 @@ var render = function() {
             [
               _c("H1", { staticClass: "detil-order" }, [_vm._v("Detil Order")]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2)
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "register-step1-footer" })
         ])
       ])
     ])
@@ -47985,6 +48041,158 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("form", [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlSelect1", placeholder: "tes" }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Jenis Pendaftaran")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("5")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlSelect2", placeholder: "tes" }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Status Pekerjaan")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("5")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "exampleFormControlInput1",
+            placeholder: "Nama Grup"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlSelect3", placeholder: "tes" }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Jenis Tiket")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("5")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "exampleFormControlInput2",
+            placeholder: "Jumlah Tiket"
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { staticClass: "label-jumlah-tiket" }, [
+          _vm._v("Tuliskan angka 1 - 100")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "label-radio" }, [
+        _vm._v("Transportasi Dari Airport ke Hotel")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-check form-check-inline" }, [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: {
+            type: "radio",
+            name: "inlineRadioOptions",
+            id: "inlineRadio1",
+            value: "option1"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "form-check-label", attrs: { for: "inlineRadio1" } },
+          [_vm._v("Ya")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-check form-check-inline" }, [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: {
+            type: "radio",
+            name: "inlineRadioOptions",
+            id: "inlineRadio2",
+            value: "option2"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "form-check-label", attrs: { for: "inlineRadio2" } },
+          [_vm._v("Tidak")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "btn-wrapper" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-custom",
+            attrs: { type: "button" }
+          },
+          [_vm._v("Selanjutnya")]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -47992,30 +48200,472 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-32863a1a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5d18c85b", module.exports)
   }
 }
 
 /***/ }),
 /* 51 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(52)
+}
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = __webpack_require__(54)
+/* template */
+var __vue_template__ = __webpack_require__(55)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5d26dfdc"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/RegisterStep2.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5d26dfdc", Component.options)
+  } else {
+    hotAPI.reload("data-v-5d26dfdc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 /* 52 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(53);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(39)("647f569f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d26dfdc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterStep2.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d26dfdc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterStep2.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(38)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.main[data-v-5d26dfdc] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d26dfdc] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d26dfdc] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d26dfdc] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d26dfdc] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d26dfdc]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d26dfdc] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d26dfdc]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d26dfdc]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d26dfdc] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d26dfdc]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d26dfdc] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d26dfdc] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d26dfdc] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d26dfdc] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d26dfdc] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d26dfdc] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d26dfdc] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d26dfdc] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d26dfdc] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d26dfdc] {\n        font-size: 14px;\n        color: #3b3a3a;\n        margin-top: -16px;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d26dfdc] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d26dfdc] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper .btn-custom[data-v-5d26dfdc] {\n          max-width: 327px;\n          width: 100%;\n          background-color: #f4511e;\n          border: 1px solid #f4511e;\n}\n.main .register-step1 .register-step1-footer[data-v-5d26dfdc] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'register-step2'
+});
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container main mx-auto" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "mx-auto register-step1" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "register-step1-content" },
+            [
+              _c("H1", { staticClass: "detil-order" }, [_vm._v("Detil Order")]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "register-step1-footer" })
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "register-step1-header mx-auto" }, [
+      _c("ul", { staticClass: "wizard" }, [
+        _c("li", { staticClass: "wizard-step-2" }, [
+          _c("a", { staticClass: "wizard-step-link", attrs: { href: "#1" } }, [
+            _c("span", { staticClass: "wizard-caption" }, [
+              _vm._v("Detil Order")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "wizard-step" }, [
+          _c("a", { staticClass: "wizard-step-link", attrs: { href: "#2" } }, [
+            _c("span", { staticClass: "wizard-caption" }, [_vm._v("Data Diri")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "wizard-step" }, [
+          _c(
+            "a",
+            { staticClass: "wizard-step-link-2", attrs: { href: "#3" } },
+            [
+              _c("span", { staticClass: "wizard-caption" }, [
+                _vm._v("Pembayaran")
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content-header" }, [
+      _c("h5", [_vm._v("Product")]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("TWC - Regular")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content-header-title" }, [
+        _c("h5", [_vm._v("e-ticket")]),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v(
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam itaque."
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("form", [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlSelect1", placeholder: "tes" }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Jenis Pendaftaran")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("5")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlSelect2", placeholder: "tes" }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Status Pekerjaan")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("5")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "exampleFormControlInput1",
+            placeholder: "Nama Grup"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { id: "exampleFormControlSelect3", placeholder: "tes" }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Jenis Tiket")
+            ]),
+            _vm._v(" "),
+            _c("option", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("5")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "exampleFormControlInput2",
+            placeholder: "Jumlah Tiket"
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { staticClass: "label-jumlah-tiket" }, [
+          _vm._v("Tuliskan angka 1 - 100")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "label-radio" }, [
+        _vm._v("Transportasi Dari Airport ke Hotel")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-check form-check-inline" }, [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: {
+            type: "radio",
+            name: "inlineRadioOptions",
+            id: "inlineRadio1",
+            value: "option1"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "form-check-label", attrs: { for: "inlineRadio1" } },
+          [_vm._v("Ya")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-check form-check-inline" }, [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: {
+            type: "radio",
+            name: "inlineRadioOptions",
+            id: "inlineRadio2",
+            value: "option2"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "form-check-label", attrs: { for: "inlineRadio2" } },
+          [_vm._v("Tidak")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "btn-wrapper" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-custom",
+            attrs: { type: "button" }
+          },
+          [_vm._v("Selanjutnya")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5d26dfdc", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 54 */
+/* 57 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

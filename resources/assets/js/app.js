@@ -15,7 +15,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('halo', require('./components/Halo.vue'));
+Vue.component('register-step1', require('./components/RegisterStep1.vue'));
+Vue.component('register-step2', require('./components/RegisterStep2.vue'));
 
 const app = new Vue({
     el: '#app'

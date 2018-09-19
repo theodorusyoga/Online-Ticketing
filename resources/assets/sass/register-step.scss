@@ -1,12 +1,11 @@
 .main {
   min-height: 100vh;
   .register-step1 {
-    margin-top: 60px;
+    margin-top: 30px;
     background-color: #fff;
     max-width: 375px;
-    border-radius: 4px;
-    border: solid 1px #e6e6e6;
-
+    margin-bottom: 30px;
+    
     .register-step1-header {
       background-color: #f2f3f4;
       min-height: 90px;
@@ -18,6 +17,9 @@
         display: flex;
         width: 70%;
         margin: auto;
+        @media screen and (max-width: 767px){
+          width: 80%;
+        }
 
         .wizard-step {
           -webkit-flex: 1 0 0px;
@@ -101,11 +103,95 @@
             }
           }
         }
+
+        .wizard-step-2 {
+          -webkit-flex: 1 0 0px;
+          -ms-flex: 1 0 0px;
+          flex: 1 0 0px;
+          list-style: none;
+          padding: 0 2% 0 0;
+          position: relative;
+          &:before {
+            border-top: 1px solid #ff5722;
+            content: "";
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 32px;
+          }
+          &:last-child {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            &:before {
+              border: 0;
+            }
+          }
+
+          .wizard-step-link {
+            margin-top: 20px;
+            text-align: left;
+            color: #ff5722;
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            position: relative;
+            text-decoration: none;
+            z-index: 10;
+            &:before {
+              background: #ff5722;
+              color: #fff;
+              counter-increment: stepNo;
+              content: counter(stepNo);
+              display: block;
+              font-size: 12px;
+              line-height: 27px;
+              margin-bottom: 12px;
+              text-align: center;
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+            }
+            
+          }
+
+          .wizard-caption {
+            position: relative;
+            left: -12px;
+          }
+
+          .wizard-step-link-2 {
+            margin-top: 20px;
+            text-align: left;
+            color: #b9b7b7;
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            position: relative;
+            text-decoration: none;
+            z-index: 10;
+            &:before {
+              background: #b9b7b7;
+              color: #fff;
+              counter-increment: stepNo;
+              content: counter(stepNo);
+              display: block;
+              font-size: 12px;
+              line-height: 27px;
+              margin-bottom: 12px;
+              text-align: center;
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+            }
+          }
+        }
       }
     }
 
     .register-step1-content {
       padding: 24px;
+      border: solid 1px #e6e6e6;
       .detil-order {
         font-size: 20px;
         text-align: left;
@@ -113,7 +199,8 @@
       }
       .content-header {
         padding: 16px;
-        width: 327px;
+        margin-bottom: 16px;
+        max-width: 327px;
         min-height: 124px;
         border-radius: 4px;
         box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);
@@ -140,6 +227,40 @@
           }
         }
       }
+      input {
+        &::placeholder {
+          font-size: 14px;
+        }
+      }
+      select {
+        font-size: 14px;
+      }
+      .label-jumlah-tiket {
+        font-size: 12px;
+        color: #8d8d8d;
+      }
+      .label-radio {
+        font-size: 14px;
+        color: #3b3a3a;
+        margin-top: -16px;
+      }
+      .form-check-inline {
+        font-size: 14px;
+      }
+      .btn-wrapper {
+        margin-top: 28px;
+        .btn-custom {
+          max-width: 327px;
+          width: 100%;
+          background-color: #f4511e;
+          border: 1px solid #f4511e;
+        }
+      }
+      
+    }
+    .register-step1-footer {
+      height: 64px;
+      background-color: #f2f3f4;
     }
   }
 }

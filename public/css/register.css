@@ -73,7 +73,7 @@
 .register-pricing .subtitle {
   font-size: 24px;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .register-pricing .title-line {
@@ -95,6 +95,16 @@
   padding-right: 10px;
 }
 
+@media screen and (max-width: 767px) {
+  .register-pricing .card-group {
+    border: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-top: solid 0.5px #c2c2c2;
+    border-bottom: solid 0.5px #c2c2c2;
+  }
+}
+
 .register-pricing .card-group .column {
   padding: 0;
 }
@@ -102,6 +112,16 @@
 .register-pricing .card-group .column .card {
   border-radius: 0px;
   border: 0px;
+}
+
+@media screen and (max-width: 767px) {
+  .register-pricing .card-group .column .card {
+    padding-top: 30px;
+  }
+}
+
+.register-pricing .card-group .column .card .card-body {
+  min-height: 650px;
 }
 
 .register-pricing .card-group .column .card .card-img-top {
@@ -132,6 +152,11 @@
   color: #a5a5a5;
 }
 
+.register-pricing .card-group .column .subpricing-list li {
+  margin-left: 20px;
+  text-indent: -2.5ch;
+}
+
 .register-pricing .card-group .column .subpricing-list li:before {
   content: '\2713';
   margin-right: 10px;
@@ -141,6 +166,13 @@
   content: '\2716';
 }
 
+@media screen and (max-width: 767px) {
+  .register-pricing .card-group .column:not(:last-child) .card {
+    border-right: 0px !important;
+    border-bottom: solid 1px #d5d5d5;
+  }
+}
+
 .register-pricing .card-group .column:not(:last-child) .card {
   border-right: solid 1px #d5d5d5;
 }
@@ -148,5 +180,47 @@
 .register-pricing .subpricing-register {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+.terms {
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-bottom: 40px;
+  background: #f9f9f9;
+}
+
+@media screen and (max-width: 767px) {
+  .terms {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .terms {
+    padding-left: 20px;
+    padding-right: 40px;
+  }
+}
+
+.terms h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.terms .terms-list {
+  list-style-type: none;
+}
+
+.terms .terms-list li {
+  margin-left: 20px;
+  text-indent: -2ch;
+}
+
+.terms .terms-list li:before {
+  content: '*';
+  margin-right: 10px;
 }
 

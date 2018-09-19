@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('styles')
-<link href="css/register.css" rel="stylesheet" type="text/css">
+<link href="/css/register.css" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -12,6 +12,9 @@
     @component('register.pricing')
     @endcomponent
 </div>
+
+@component('register.terms')
+@endcomponent
 
 @component('dashboard.footer')
 @endcomponent

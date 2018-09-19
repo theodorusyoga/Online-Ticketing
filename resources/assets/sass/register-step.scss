@@ -262,5 +262,41 @@
       height: 64px;
       background-color: #f2f3f4;
     }
+    .upload-btn-wrapper {
+      display: grid;
+      cursor: pointer;
+      border-radius: 4px;
+      background: #f2f3f4;
+      height: 164px;
+      max-width: 327px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #ced4da;
+      border-style: dashed;
+      .label-upload {
+        margin: auto;
+        display: grid;
+        span {
+          margin: auto;
+          font-size: 25px;
+        }
+        div {
+          font-size: 14px;
+          color: #888888;
+        }
+      }
+    }
+    
+    .upload-btn-wrapper input[type=file] {
+      height: 164px;
+      max-width: 327px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
   }
 }

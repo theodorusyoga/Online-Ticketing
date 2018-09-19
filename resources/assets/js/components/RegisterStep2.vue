@@ -24,57 +24,39 @@
             </div>
             <div class="register-step1-content">
               <H1 class="detil-order">Detil Order</H1>
-              <div class="content-header">
-                <h5>Product</h5>
-                <h3>TWC - Regular</h3>
-                <div class="content-header-title">
-                  <h5>e-ticket</h5>
-                  <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam itaque.</div>
-                </div>
-              </div>
               <form>
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect1" placeholder="tes">
-                    <option value="" disabled selected>Jenis Pendaftaran</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                  <input type="text" class="form-control" placeholder="Nomor KTP">
                 </div>
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect2" placeholder="tes">
-                    <option value="" disabled selected>Status Pekerjaan</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                  <div class="upload-btn-wrapper">
+                    <input type="file" name="myfile" />
+                    <div className="preview" v-if="file">
+                      <img :src="file" alt="nophoto" />
+                    </div>
+                    <div class="label-upload" v-else>
+                      <span><i class="fas fa-camera"></i></span>
+                      <div>Upload KTP</div>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nama Grup">
+                  <input type="text" class="form-control" placeholder="Nama Lengkap">
                 </div>
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect3" placeholder="tes">
-                    <option value="" disabled selected>Jenis Tiket</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                  <input type="email" class="form-control" placeholder="Alamat Email">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Jumlah Tiket">
-                  <label class="label-jumlah-tiket">Tuliskan angka 1 - 100</label>
+                  <input type="email" class="form-control" placeholder="Ulangi Alamat Email">
                 </div>
-                <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                  <label class="form-check-label" for="inlineRadio1">Ya</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Nomor Handphone">
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                  <label class="form-check-label" for="inlineRadio2">Tidak</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Domisili">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Usia">
                 </div>
                 <div class="btn-wrapper">
                   <button type="button" class="btn btn-primary btn-custom">Selanjutnya</button>
@@ -90,7 +72,12 @@
 
 <script>
   export default {
-    name: 'register-step2'
+    name: 'register-step2',
+    data () {
+      return {
+        file: ''
+      }
+    }
   }
 </script>
 

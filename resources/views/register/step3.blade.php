@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="register">
-    <register-step1></register-step1>
+    <register-step3></register-step3>
 </div>
 
 @endsection

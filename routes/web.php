@@ -19,6 +19,14 @@ Route::get('/register/step1', function () {
     return view('register.step1');
 });
 
+Route::get('/register/step2', function () {
+    return view('register.step2');
+});
+
+Route::get('/register/step3', function () {
+    return view('register.step3');
+});
+
 Route::get('/donation', 'DonationController@index');
 
 Route::get('/register', 'RegisterController@index');

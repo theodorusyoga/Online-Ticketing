@@ -7,7 +7,7 @@
               <ul class="wizard">
                 <li class="wizard-step-2">
                   <a href="#1" class="wizard-step-link">
-                    <span class="wizard-caption">Detil Order</span>
+                    <span class="wizard-caption">Data Diri</span>
                   </a>
                 </li>
                 <li class="wizard-step">
@@ -30,9 +30,9 @@
                 </div>
                 <div class="form-group">
                   <div class="upload-btn-wrapper">
-                    <input type="file" name="myfile" />
-                    <div className="preview" v-if="file">
-                      <img :src="file" alt="nophoto" />
+                    <input type="file" name="myfile" @change="onFileChange" />
+                    <div className="preview" v-if="imgSrc">
+                      <img :src="imgSrc" alt="nophoto" />
                     </div>
                     <div class="label-upload" v-else>
                       <span><i class="fas fa-camera"></i></span>
@@ -75,7 +75,21 @@
     name: 'register-step2',
     data () {
       return {
-        file: ''
+        imgSrc: ''
+      }
+    },
+    methods: {
+      onFileChange(e) {
+        e.preventDefault()
+
+        let reader = new FileReader();
+        let file = e.target.files[0]
+        
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+          this.imgSrc = reader.result
+        }
+        
       }
     }
   }

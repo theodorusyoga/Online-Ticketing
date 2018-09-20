@@ -207,6 +207,7 @@
 .main .register-step1 .register-step1-content {
   padding: 24px;
   border: solid 1px #e6e6e6;
+  display: grid;
 }
 
 .main .register-step1 .register-step1-content .detil-order {
@@ -297,6 +298,66 @@
   border: 1px solid #f4511e;
 }
 
+.main .register-step1 .register-step1-content .kode-invoice {
+  font-size: 12px;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.main .register-step1 .register-step1-content .register-info {
+  border-bottom: solid 1px #dadada;
+  margin-bottom: 14px;
+}
+
+.main .register-step1 .register-step1-content .register-info h1 {
+  font-size: 12px;
+  color: #a5a4a4;
+}
+
+.main .register-step1 .register-step1-content .register-info h5 {
+  font-size: 14px;
+  color: #333333;
+}
+
+.main .register-step1 .register-step1-content .booking-info {
+  border-bottom: solid 1px #dadada;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  font-size: 14px;
+}
+
+.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption {
+  text-align: left;
+}
+
+.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content {
+  float: right;
+}
+
+.main .register-step1 .register-step1-content .amount-total-wrapper {
+  padding-top: 16px;
+  margin: auto;
+}
+
+.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1 {
+  text-align: center;
+  font-size: 14px;
+  color: #333333;
+  font-weight: bold;
+}
+
+.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff5722;
+}
+
+.main .register-step1 .register-step3-separator {
+  height: 12px;
+  background-color: #e6e6e6;
+}
+
 .main .register-step1 .register-step1-footer {
   height: 64px;
   background-color: #f2f3f4;
@@ -314,6 +375,14 @@
   overflow: hidden;
   border: 2px solid #ced4da;
   border-style: dashed;
+}
+
+.main .register-step1 .upload-btn-wrapper img {
+  height: 164px;
+  max-width: 327px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .main .register-step1 .upload-btn-wrapper .label-upload {

@@ -62,7 +62,7 @@
     .subtitle{
         font-size: 24px;
         margin-top: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 60px;
     }
 
     .title-line{
@@ -81,11 +81,23 @@
         padding: 30px;
         padding-left: 10px;
         padding-right: 10px;
+        @media screen and (max-width: 767px){
+            border: 0;
+            box-shadow: none;
+            border-top: solid 0.5px #c2c2c2;
+            border-bottom: solid 0.5px #c2c2c2;
+        }
         .column{
             padding: 0;
             .card{
                 border-radius: 0px;
                 border: 0px;
+                @media screen and (max-width: 767px){
+                    padding-top: 30px;
+                }
+                .card-body{
+                    min-height: 650px;
+                }
                 .card-img-top{
                     max-width: 105px;
                     width: 105px;
@@ -110,6 +122,8 @@
                     color: #a5a5a5;
                 }
                 li{
+                    margin-left: 20px;
+                    text-indent: -2.5ch;
                     &:before{
                         content: '✓';
                         margin-right: 10px;
@@ -118,6 +132,14 @@
                         &:before{
                             content: '✖';
                         }
+                    }
+                }
+            }
+            @media screen and (max-width: 767px){
+                &:not(:last-child){
+                    .card{
+                        border-right: 0px !important;
+                        border-bottom: solid 1px #d5d5d5;
                     }
                 }
             }
@@ -131,5 +153,37 @@
     .subpricing-register{
         margin-top: 40px;
         margin-bottom: 40px;
+    }
+}
+
+.terms{
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    margin-bottom: 40px;
+    background: #f9f9f9;
+    @media screen and (max-width: 767px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        padding-left: 20px;
+        padding-right: 40px;
+    }
+    h3{
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .terms-list{
+        list-style-type: none;
+        li{
+            margin-left: 20px;
+            text-indent: -2ch;
+            &:before{
+                content: '*';
+                margin-right: 10px;
+            }
+        }
     }
 }

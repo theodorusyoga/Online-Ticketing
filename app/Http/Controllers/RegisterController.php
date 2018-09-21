@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\OrderDetails;
+use App\PersonalData;
+use App\PaymentData;
 
 class RegisterController extends Controller
 {
@@ -32,7 +35,82 @@ class RegisterController extends Controller
             $orderdetails->save();
             return json_encode(array(
                 'status' => 0,
-                'message' => 'Register step 1 saved'
+                'message' => 'Register step 1 saved',
+                'user_id' => $user_id
+            ));
+        }
+        catch(QueryException $e){
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'Unknown error while saving'
+            ));
+        }
+    }
+    public function registerStep2(Request $req){
+        $user_id = $req['user_id'];
+        $identity_card = $req['identity_card'];
+        $fullname = $req['fullname'];
+        $email = $req['email'];
+        $phone_number = $req['phone_number'];
+        $domicile = $req['domicile'];
+        $domicile_city = $req['domicile_city'];
+        $age = $req['age'];
+        $booking_code = $req['booking_code'];
+        $total_price = $req['total_price'];
+
+        $personaldata = new PersonalData();
+        $personaldata->user_id = $user_id;
+        $personaldata->identity_card = $identity_card;
+        $personaldata->fullname = $fullname;
+        $personaldata->email = $email;
+        $personaldata->phone_number = $phone_number;
+        $personaldata->domicile = $domicile;
+        $personaldata->domicile_city = $domicile_city;
+        $personaldata->age = $age;
+
+        if($req->file('identity_card_photo') != null){
+            $file = $req->file('identity_card_photo');
+            $path = $file->store('public/registerfiles');
+            $file = Storage::url($path);
+            $personaldata->identity_card_photo = $file;
+        }
+
+        try{
+            $personaldata->save();
+            return json_encode(array(
+                'status' => 0,
+                'message' => 'Register step 2 saved'
+            ));
+        }
+        catch(QueryException $e){
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'Unknown error while saving'
+            ));
+        }
+    }
+
+    public function registerStep3(Request $req){
+        $user_id = $req['user_id'];
+        $request_date = $req['request_date'];
+        $expired_date = $req['expired_date'];
+        $ticket_price = $req['ticket_price'];
+        $booking_code = $req['booking_code'];
+        $total_price = $req['total_price'];
+
+        $paymentdata = new PaymentData();
+        $paymentdata->user_id = $user_id;
+        $paymentdata->request_date = $request_date;
+        $paymentdata->expired_date = $expired_date;
+        $paymentdata->ticket_price = $ticket_price;
+        $paymentdata->booking_code = $booking_code;
+        $paymentdata->total_price = $total_price;
+
+        try{
+            $paymentdata->save();
+            return json_encode(array(
+                'status' => 0,
+                'message' => 'Register step 3 saved'
             ));
         }
         catch(QueryException $e){

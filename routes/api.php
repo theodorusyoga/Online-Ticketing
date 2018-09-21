@@ -24,3 +24,5 @@ Route::get('/get-user-types', 'AuthController@getUserTypes')->middleware(CheckJW
 Route::post('/join-volunteer', 'AuthController@joinVolunteer')->middleware(CheckJWT::class);
 Route::post('/confirm-donate', 'AuthController@confirmDonate')->middleware(CheckJWT::class);
 Route::post('/step1', 'RegisterController@registerStep1')->middleware(CheckJWT::class);
+Route::post('/step2', 'RegisterController@registerStep2')->middleware(CheckJWT::class);
+Route::post('/step3', 'RegisterController@registerStep3')->middleware(CheckJWT::class);

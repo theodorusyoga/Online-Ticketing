@@ -6,6 +6,6 @@
     @component('register.subpricing')
     @endcomponent
     <div class="container line-container"></div>
-    @component('register.subpricing')
+    @component('register.subpricing_intl')
     @endcomponent
 </section>

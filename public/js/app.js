@@ -49360,17 +49360,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 var baseURL = 'http://localhost:8000/api';
+var token = __WEBPACK_IMPORTED_MODULE_1_js_cookie___default.a.get('token');
+var header = {
+  'Content-type': 'application/json',
+  'Authorization': token
+};
 
 var postData = function postData(payload) {
-  var token = __WEBPACK_IMPORTED_MODULE_1_js_cookie___default.a.get('token');
   var config = {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      'Authorization': token
-    },
-    data: payload,
-    url: baseURL + '/step1'
+    url: baseURL + '/step1',
+    method: 'post',
+    headers: header,
+    data: payload
   };
   return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
 };

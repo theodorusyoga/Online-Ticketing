@@ -21,8 +21,6 @@ class PersonalDataTableSeeder extends Seeder
             'domicile' => 'Jakarta',
             'domicile_city' => 'Jakarta Selatan',
             'age' => 40,
-            'booking_code' => '123ABCD',
-            'total_price' => 4000000,
             'created_at' => '2018-09-02 00:00:00',
             'updated_at' => '2018-09-02 00:00:00'
         );
@@ -36,8 +34,6 @@ class PersonalDataTableSeeder extends Seeder
             'domicile' => 'Jakarta',
             'domicile_city' => 'Jakarta Utara',
             'age' => 20,
-            'booking_code' => '678DEFG',
-            'total_price' => 2000000,
             'created_at' => '2018-09-02 00:00:00',
             'updated_at' => '2018-09-02 00:00:00'
         );

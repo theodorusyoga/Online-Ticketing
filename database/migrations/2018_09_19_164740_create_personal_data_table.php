@@ -25,8 +25,6 @@ class CreatePersonalDataTable extends Migration
             $table->string('domicile');
             $table->string('domicile_city');
             $table->integer('age');
-            $table->string('booking_code');
-            $table->decimal('total_price', 20, 2);
             $table->timestamps();
         });
     }

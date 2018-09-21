@@ -32,52 +32,54 @@
                   <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam itaque.</div>
                 </div>
               </div>
-              <form>
+              <form @submit="handleSubmit">
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect1" placeholder="tes">
+                  <select class="form-control" id="exampleFormControlSelect1"
+                  v-model="dataRegister.registration_type"
+                  placeholder="tes">
                     <option value="" disabled selected>Jenis Pendaftaran</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option>Delegasi Indonesia</option>
+                    <option>Delegasi Luar Negeri</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect2" placeholder="tes">
+                  <select class="form-control" id="exampleFormControlSelect2"
+                  v-model="dataRegister.job_status"
+                  placeholder="tes">
                     <option value="" disabled selected>Status Pekerjaan</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option>Karyawan</option>
+                    <option>Pemilik Usaha</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nama Grup">
+                  <input type="text" class="form-control" v-model="dataRegister.group_name"
+                  id="exampleFormControlInput1" placeholder="Nama Grup">
                 </div>
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect3" placeholder="tes">
+                  <select class="form-control" id="exampleFormControlSelect3"
+                  v-model="dataRegister.ticket_type"
+                  placeholder="tes">
                     <option value="" disabled selected>Jenis Tiket</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option>Gold</option>
+                    <option>Silver</option>
+                    <option>Bronze</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Jumlah Tiket">
+                  <input type="text" class="form-control" id="exampleFormControlInput2" v-model="dataRegister.ticket_amount" placeholder="Jumlah Tiket">
                   <label class="label-jumlah-tiket">Tuliskan angka 1 - 100</label>
                 </div>
                 <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel">
                   <label class="form-check-label" for="inlineRadio1">Ya</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel">
                   <label class="form-check-label" for="inlineRadio2">Tidak</label>
                 </div>
                 <div class="btn-wrapper">
-                  <button type="button" class="btn btn-primary btn-custom">Selanjutnya</button>
+                  <button type="submit" class="btn btn-primary btn-custom">Selanjutnya</button>
                 </div>
                 
               </form>
@@ -92,8 +94,32 @@
 </template>
 
 <script>
+import { postData } from '../API.js';
+import { loggingIn } from '../index.js'
     export default {
-      name: 'register-step1'
+      name: 'register-step1',
+      data () {
+        return {
+          dataRegister : {
+            registration_type: '',
+            job_status: '',
+            group_name: '',
+            ticket_type: '',
+            ticket_amount: '',
+            transport_to_hotel: ''
+          }
+        }
+      },
+      methods: {
+        async handleSubmit(e) {
+          e.preventDefault()
+          await loggingIn()
+          const data = await postData(this.dataRegister)
+          
+          // window.location.replace('/register/step2/'+data.userid)
+          // console.log('-->', this.dataRegister)
+        }
+      }
     }
 </script>
 

@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import axios from 'axios';
+import Cookie from 'js-cookie'
 require('./bootstrap');
 
 const onScroll = () => {
@@ -14,7 +15,7 @@ const onScroll = () => {
         }
 };
 
-const getToken = async () => {
+export const loggingIn = async () => {
     let token = '';
     await axios.post('/api/login', {
         email: 'admin@wgg-globalupr.com',
@@ -25,6 +26,7 @@ const getToken = async () => {
         }
     }).then((response) => {
         token = response.data.token;
+        Cookie.set('token', token)
     })
     return token;
 };

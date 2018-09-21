@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 71);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,8 +70,8 @@
 "use strict";
 
 
-var bind = __webpack_require__(7);
-var isBuffer = __webpack_require__(18);
+var bind = __webpack_require__(8);
+var isBuffer = __webpack_require__(20);
 
 /*global toString:true*/
 
@@ -402,110 +402,6 @@ module.exports = g;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(20);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(8);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(8);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10876,7 +10772,117 @@ return jQuery;
 
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(22);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(9);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(9);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(19);
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11066,8 +11072,8 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13608,7 +13614,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13626,19 +13632,19 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(21);
-var buildURL = __webpack_require__(23);
-var parseHeaders = __webpack_require__(24);
-var isURLSameOrigin = __webpack_require__(25);
-var createError = __webpack_require__(9);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(26);
+var settle = __webpack_require__(23);
+var buildURL = __webpack_require__(25);
+var parseHeaders = __webpack_require__(26);
+var isURLSameOrigin = __webpack_require__(27);
+var createError = __webpack_require__(10);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -13735,7 +13741,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(27);
+      var cookies = __webpack_require__(29);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -13813,13 +13819,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(22);
+var enhanceError = __webpack_require__(24);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -13838,7 +13844,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13850,7 +13856,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13876,18 +13882,12 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(17);
-
-/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(14);
-window.Popper = __webpack_require__(6).default;
+window._ = __webpack_require__(16);
+window.Popper = __webpack_require__(7).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -13896,9 +13896,9 @@ window.Popper = __webpack_require__(6).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(3);
+  window.$ = window.jQuery = __webpack_require__(2);
 
-  __webpack_require__(16);
+  __webpack_require__(18);
 } catch (e) {}
 
 /**
@@ -13907,7 +13907,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(12);
+window.axios = __webpack_require__(4);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -13944,6 +13944,188 @@ if (token) {
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(42);
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.2.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				// We're using "expires" because "max-age" is not supported by IE
+				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				var stringifiedAttributes = '';
+
+				for (var attributeName in attributes) {
+					if (!attributes[attributeName]) {
+						continue;
+					}
+					stringifiedAttributes += '; ' + attributeName;
+					if (attributes[attributeName] === true) {
+						continue;
+					}
+					stringifiedAttributes += '=' + attributes[attributeName];
+				}
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (!this.json && cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -31053,10 +31235,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(17)(module)))
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -31084,7 +31266,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -31093,7 +31275,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(3), __webpack_require__(6)) :
+   true ? factory(exports, __webpack_require__(2), __webpack_require__(7)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -35034,16 +35216,16 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(7);
-var Axios = __webpack_require__(19);
-var defaults = __webpack_require__(2);
+var bind = __webpack_require__(8);
+var Axios = __webpack_require__(21);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -35076,15 +35258,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(11);
-axios.CancelToken = __webpack_require__(33);
-axios.isCancel = __webpack_require__(10);
+axios.Cancel = __webpack_require__(12);
+axios.CancelToken = __webpack_require__(35);
+axios.isCancel = __webpack_require__(11);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(34);
+axios.spread = __webpack_require__(36);
 
 module.exports = axios;
 
@@ -35093,7 +35275,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /*!
@@ -35120,16 +35302,16 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(28);
-var dispatchRequest = __webpack_require__(29);
+var InterceptorManager = __webpack_require__(30);
+var dispatchRequest = __webpack_require__(31);
 
 /**
  * Create a new instance of Axios
@@ -35206,7 +35388,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35225,13 +35407,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -35258,7 +35440,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35286,7 +35468,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35359,7 +35541,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35419,7 +35601,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35494,7 +35676,7 @@ module.exports = (
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35537,7 +35719,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35597,7 +35779,7 @@ module.exports = (
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35656,18 +35838,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(30);
-var isCancel = __webpack_require__(10);
-var defaults = __webpack_require__(2);
-var isAbsoluteURL = __webpack_require__(31);
-var combineURLs = __webpack_require__(32);
+var transformData = __webpack_require__(32);
+var isCancel = __webpack_require__(11);
+var defaults = __webpack_require__(3);
+var isAbsoluteURL = __webpack_require__(33);
+var combineURLs = __webpack_require__(34);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -35749,7 +35931,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35776,7 +35958,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35797,7 +35979,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35818,13 +36000,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(11);
+var Cancel = __webpack_require__(12);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -35882,7 +36064,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35916,428 +36098,12 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 35 */,
-/* 36 */,
 /* 37 */,
 /* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(66);
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-
-
-var _this = this;
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-
-
-__webpack_require__(13);
-
-var onScroll = function onScroll() {
-    var scroll = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').scrollTop();
-    var opened = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').hasClass('active');
-    if (scroll > 100) {
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').addClass('active');
-    } else {
-        if (!opened) {
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').removeClass('active');
-        }
-    }
-};
-
-var getToken = function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var token;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-            while (1) {
-                switch (_context.prev = _context.next) {
-                    case 0:
-                        token = '';
-                        _context.next = 3;
-                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/login', {
-                            email: 'admin@wgg-globalupr.com',
-                            password: 'pass@word1'
-                        }, {
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        }).then(function (response) {
-                            token = response.data.token;
-                        });
-
-                    case 3:
-                        return _context.abrupt('return', token);
-
-                    case 4:
-                    case 'end':
-                        return _context.stop();
-                }
-            }
-        }, _callee, _this);
-    }));
-
-    return function getToken() {
-        return _ref.apply(this, arguments);
-    };
-}();
-
-var getUserTypes = function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(token) {
-        var usertypes;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-            while (1) {
-                switch (_context2.prev = _context2.next) {
-                    case 0:
-                        usertypes = [];
-                        _context2.next = 3;
-                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/get-user-types', {
-                            headers: {
-                                'Authorization': 'Bearer ' + token
-                            }
-                        }).then(function (response) {
-                            usertypes = response.data;
-                        });
-
-                    case 3:
-                        return _context2.abrupt('return', usertypes);
-
-                    case 4:
-                    case 'end':
-                        return _context2.stop();
-                }
-            }
-        }, _callee2, _this);
-    }));
-
-    return function getUserTypes(_x) {
-        return _ref2.apply(this, arguments);
-    };
-}();
-
-var postJoinAsVolunteer = function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(token, data) {
-        var status;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
-            while (1) {
-                switch (_context3.prev = _context3.next) {
-                    case 0:
-                        status = {};
-                        _context3.next = 3;
-                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/join-volunteer', data, {
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + token
-                            }
-                        }).then(function (response) {
-                            status = response.data;
-                        });
-
-                    case 3:
-                        return _context3.abrupt('return', status);
-
-                    case 4:
-                    case 'end':
-                        return _context3.stop();
-                }
-            }
-        }, _callee3, _this);
-    }));
-
-    return function postJoinAsVolunteer(_x2, _x3) {
-        return _ref3.apply(this, arguments);
-    };
-}();
-
-var postDonation = function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(token, data) {
-        var status;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-            while (1) {
-                switch (_context4.prev = _context4.next) {
-                    case 0:
-                        status = {};
-                        _context4.next = 3;
-                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/confirm-donate', data, {
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + token
-                            }
-                        }).then(function (response) {
-                            status = response.data;
-                        });
-
-                    case 3:
-                        return _context4.abrupt('return', status);
-
-                    case 4:
-                    case 'end':
-                        return _context4.stop();
-                }
-            }
-        }, _callee4, _this);
-    }));
-
-    return function postDonation(_x4, _x5) {
-        return _ref4.apply(this, arguments);
-    };
-}();
-
-__WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
-    onScroll();
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(window).scroll(onScroll);
-
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-toggler').click(function () {
-        var opened = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').hasClass('active');
-        if (opened) {
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').removeClass('active');
-            var scroll = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').scrollTop();
-            if (scroll <= 100) {
-                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').removeClass('active');
-            }
-        } else {
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').addClass('active');
-            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').addClass('active');
-        }
-    });
-
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#about-link').click(function () {
-        var scrollTop = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#header-home').offset().top + 60;
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').animate({
-            scrollTop: scrollTop
-        }, 500);
-    });
-
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#join-volunteer-link').click(_asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-        var token, usertypes;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
-            while (1) {
-                switch (_context5.prev = _context5.next) {
-                    case 0:
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#success-alert').hide();
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#error-alert').hide();
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').show();
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').attr('disabled', true);
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').attr('disabled', true);
-
-                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#modal-volunteer').modal({
-                            show: true,
-                            keyboard: false,
-                            backdrop: 'static'
-                        });
-
-                        _context5.next = 8;
-                        return getToken();
-
-                    case 8:
-                        token = _context5.sent;
-                        _context5.next = 11;
-                        return getUserTypes(token);
-
-                    case 11:
-                        usertypes = _context5.sent;
-
-
-                        setTimeout(function () {
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').html('');
-                            for (var key in usertypes) {
-                                if (usertypes.hasOwnProperty(key)) {
-                                    var usertype = usertypes[key];
-                                    var option = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('<option></option>').attr('value', usertype.id).text(usertype.type);
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').append(option);
-                                }
-                            }
-
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').removeAttr('disabled');
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').removeAttr('disabled');
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').hide();
-                        }, 1000);
-
-                    case 13:
-                    case 'end':
-                        return _context5.stop();
-                }
-            }
-        }, _callee5, _this);
-    })));
-
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-form').submit(function () {
-        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6(e) {
-            var data, token, result;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
-                while (1) {
-                    switch (_context6.prev = _context6.next) {
-                        case 0:
-                            e.preventDefault();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').hide();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').hide();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').show();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').attr('disabled', true);
-
-                            data = {
-                                fullname: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#fullname').val(),
-                                email: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#email').val(),
-                                phone: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#phone').val(),
-                                usertypeid: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').val()
-                            };
-                            _context6.next = 8;
-                            return getToken();
-
-                        case 8:
-                            token = _context6.sent;
-                            _context6.next = 11;
-                            return postJoinAsVolunteer(token, data);
-
-                        case 11:
-                            result = _context6.sent;
-
-
-                            setTimeout(function () {
-                                if (result.status == 0) {
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').show();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').hide();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#fullname').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#email').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#phone').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').val('');
-                                } else {
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').hide();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').show();
-                                }
-
-                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').removeAttr('disabled');
-                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').hide();
-                            }, 1000);
-
-                        case 13:
-                        case 'end':
-                            return _context6.stop();
-                    }
-                }
-            }, _callee6, _this);
-        }));
-
-        return function (_x6) {
-            return _ref6.apply(this, arguments);
-        };
-    }());
-
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-form').submit(function () {
-        var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7(e) {
-            var data, token, result;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
-                while (1) {
-                    switch (_context7.prev = _context7.next) {
-                        case 0:
-                            e.preventDefault();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').hide();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').hide();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').show();
-                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').attr('disabled', true);
-
-                            data = new FormData();
-
-                            data.append('name', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#name').val());
-                            data.append('bank', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#bank').val());
-                            data.append('amount', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#amount').val());
-                            data.append('transfer_date', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#date').val());
-                            data.append('other', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#other').val());
-                            data.append('file', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#file')[0].files[0]);
-
-                            _context7.next = 14;
-                            return getToken();
-
-                        case 14:
-                            token = _context7.sent;
-                            _context7.next = 17;
-                            return postDonation(token, data);
-
-                        case 17:
-                            result = _context7.sent;
-
-
-                            setTimeout(function () {
-                                if (result.status == 0) {
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').show();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').hide();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#name').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#bank').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#amount').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#date').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#other').val('');
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#file').val('');
-                                } else {
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').hide();
-                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').show();
-                                }
-
-                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').removeAttr('disabled');
-                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').hide();
-                            }, 1000);
-
-                        case 19:
-                        case 'end':
-                            return _context7.stop();
-                    }
-                }
-            }, _callee7, _this);
-        }));
-
-        return function (_x7) {
-            return _ref7.apply(this, arguments);
-        };
-    }());
-});
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(68);
-
-
-/***/ }),
-/* 68 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -36362,7 +36128,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(69);
+module.exports = __webpack_require__(43);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -36378,7 +36144,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 69 */
+/* 43 */
 /***/ (function(module, exports) {
 
 /**
@@ -37108,6 +36874,421 @@ if (hadRuntime) {
   // of indirect eval which violates Content Security Policy.
   (function() { return this })() || Function("return this")()
 );
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loggingIn", function() { return loggingIn; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_js_cookie__);
+
+
+var _this = this;
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
+
+__webpack_require__(13);
+
+var onScroll = function onScroll() {
+    var scroll = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').scrollTop();
+    var opened = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').hasClass('active');
+    if (scroll > 100) {
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').addClass('active');
+    } else {
+        if (!opened) {
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').removeClass('active');
+        }
+    }
+};
+
+var loggingIn = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var token;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+            while (1) {
+                switch (_context.prev = _context.next) {
+                    case 0:
+                        token = '';
+                        _context.next = 3;
+                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/login', {
+                            email: 'admin@wgg-globalupr.com',
+                            password: 'pass@word1'
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(function (response) {
+                            token = response.data.token;
+                            __WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.set('token', token);
+                        });
+
+                    case 3:
+                        return _context.abrupt('return', token);
+
+                    case 4:
+                    case 'end':
+                        return _context.stop();
+                }
+            }
+        }, _callee, _this);
+    }));
+
+    return function loggingIn() {
+        return _ref.apply(this, arguments);
+    };
+}();
+
+var getUserTypes = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(token) {
+        var usertypes;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+                switch (_context2.prev = _context2.next) {
+                    case 0:
+                        usertypes = [];
+                        _context2.next = 3;
+                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/get-user-types', {
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            }
+                        }).then(function (response) {
+                            usertypes = response.data;
+                        });
+
+                    case 3:
+                        return _context2.abrupt('return', usertypes);
+
+                    case 4:
+                    case 'end':
+                        return _context2.stop();
+                }
+            }
+        }, _callee2, _this);
+    }));
+
+    return function getUserTypes(_x) {
+        return _ref2.apply(this, arguments);
+    };
+}();
+
+var postJoinAsVolunteer = function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(token, data) {
+        var status;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+                switch (_context3.prev = _context3.next) {
+                    case 0:
+                        status = {};
+                        _context3.next = 3;
+                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/join-volunteer', data, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + token
+                            }
+                        }).then(function (response) {
+                            status = response.data;
+                        });
+
+                    case 3:
+                        return _context3.abrupt('return', status);
+
+                    case 4:
+                    case 'end':
+                        return _context3.stop();
+                }
+            }
+        }, _callee3, _this);
+    }));
+
+    return function postJoinAsVolunteer(_x2, _x3) {
+        return _ref3.apply(this, arguments);
+    };
+}();
+
+var postDonation = function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(token, data) {
+        var status;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+                switch (_context4.prev = _context4.next) {
+                    case 0:
+                        status = {};
+                        _context4.next = 3;
+                        return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/confirm-donate', data, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + token
+                            }
+                        }).then(function (response) {
+                            status = response.data;
+                        });
+
+                    case 3:
+                        return _context4.abrupt('return', status);
+
+                    case 4:
+                    case 'end':
+                        return _context4.stop();
+                }
+            }
+        }, _callee4, _this);
+    }));
+
+    return function postDonation(_x4, _x5) {
+        return _ref4.apply(this, arguments);
+    };
+}();
+
+__WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
+    onScroll();
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(window).scroll(onScroll);
+
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-toggler').click(function () {
+        var opened = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').hasClass('active');
+        if (opened) {
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').removeClass('active');
+            var scroll = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').scrollTop();
+            if (scroll <= 100) {
+                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').removeClass('active');
+            }
+        } else {
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').addClass('active');
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.upr-custom-navbar').addClass('active');
+        }
+    });
+
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#about-link').click(function () {
+        var scrollTop = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#header-home').offset().top + 60;
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').animate({
+            scrollTop: scrollTop
+        }, 500);
+    });
+
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#join-volunteer-link').click(_asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+        var token, usertypes;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+            while (1) {
+                switch (_context5.prev = _context5.next) {
+                    case 0:
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#success-alert').hide();
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#error-alert').hide();
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').show();
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').attr('disabled', true);
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').attr('disabled', true);
+
+                        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#modal-volunteer').modal({
+                            show: true,
+                            keyboard: false,
+                            backdrop: 'static'
+                        });
+
+                        _context5.next = 8;
+                        return getToken();
+
+                    case 8:
+                        token = _context5.sent;
+                        _context5.next = 11;
+                        return getUserTypes(token);
+
+                    case 11:
+                        usertypes = _context5.sent;
+
+
+                        setTimeout(function () {
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').html('');
+                            for (var key in usertypes) {
+                                if (usertypes.hasOwnProperty(key)) {
+                                    var usertype = usertypes[key];
+                                    var option = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('<option></option>').attr('value', usertype.id).text(usertype.type);
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').append(option);
+                                }
+                            }
+
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').removeAttr('disabled');
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').removeAttr('disabled');
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').hide();
+                        }, 1000);
+
+                    case 13:
+                    case 'end':
+                        return _context5.stop();
+                }
+            }
+        }, _callee5, _this);
+    })));
+
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-form').submit(function () {
+        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6(e) {
+            var data, token, result;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                while (1) {
+                    switch (_context6.prev = _context6.next) {
+                        case 0:
+                            e.preventDefault();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').show();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').attr('disabled', true);
+
+                            data = {
+                                fullname: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#fullname').val(),
+                                email: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#email').val(),
+                                phone: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#phone').val(),
+                                usertypeid: __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').val()
+                            };
+                            _context6.next = 8;
+                            return getToken();
+
+                        case 8:
+                            token = _context6.sent;
+                            _context6.next = 11;
+                            return postJoinAsVolunteer(token, data);
+
+                        case 11:
+                            result = _context6.sent;
+
+
+                            setTimeout(function () {
+                                if (result.status == 0) {
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').show();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#fullname').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#email').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#phone').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#user-types').val('');
+                                } else {
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-success-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-error-alert').show();
+                                }
+
+                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#volunteer-submit').removeAttr('disabled');
+                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.volunteer-loading').hide();
+                            }, 1000);
+
+                        case 13:
+                        case 'end':
+                            return _context6.stop();
+                    }
+                }
+            }, _callee6, _this);
+        }));
+
+        return function (_x6) {
+            return _ref6.apply(this, arguments);
+        };
+    }());
+
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-form').submit(function () {
+        var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7(e) {
+            var data, token, result;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                while (1) {
+                    switch (_context7.prev = _context7.next) {
+                        case 0:
+                            e.preventDefault();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').hide();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').show();
+                            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').attr('disabled', true);
+
+                            data = new FormData();
+
+                            data.append('name', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#name').val());
+                            data.append('bank', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#bank').val());
+                            data.append('amount', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#amount').val());
+                            data.append('transfer_date', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#date').val());
+                            data.append('other', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#other').val());
+                            data.append('file', __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#file')[0].files[0]);
+
+                            _context7.next = 14;
+                            return getToken();
+
+                        case 14:
+                            token = _context7.sent;
+                            _context7.next = 17;
+                            return postDonation(token, data);
+
+                        case 17:
+                            result = _context7.sent;
+
+
+                            setTimeout(function () {
+                                if (result.status == 0) {
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').show();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#name').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#bank').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#amount').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#date').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#other').val('');
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#file').val('');
+                                } else {
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-success-alert').hide();
+                                    __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-error-alert').show();
+                                }
+
+                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#donation-submit').removeAttr('disabled');
+                                __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.donation-loading').hide();
+                            }, 1000);
+
+                        case 19:
+                        case 'end':
+                            return _context7.stop();
+                    }
+                }
+            }, _callee7, _this);
+        }));
+
+        return function (_x7) {
+            return _ref7.apply(this, arguments);
+        };
+    }());
+});
+
+/***/ }),
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(44);
 
 
 /***/ })

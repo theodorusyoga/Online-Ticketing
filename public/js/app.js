@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 45);
+/******/ 	return __webpack_require__(__webpack_require__.s = 46);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -13993,6 +13993,13 @@ module.exports = Cancel;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(42);
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
 
 window._ = __webpack_require__(16);
 window.Popper = __webpack_require__(7).default;
@@ -14049,13 +14056,6 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(42);
-
 
 /***/ }),
 /* 15 */
@@ -47536,7 +47536,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(53)
+var listToStyles = __webpack_require__(54)
 
 /*
 type StyleObject = {
@@ -48525,7 +48525,7 @@ if (hadRuntime) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loggingIn", function() { return loggingIn; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
@@ -48542,7 +48542,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
-__webpack_require__(13);
+__webpack_require__(14);
 
 var onScroll = function onScroll() {
     var scroll = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').scrollTop();
@@ -48902,9 +48902,68 @@ __WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
 
 /***/ }),
 /* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return postData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return postDataStep2; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_cookie__);
+
+
+
+var baseURL = 'http://localhost:8000/api';
+var token = __WEBPACK_IMPORTED_MODULE_1_js_cookie___default.a.get('token');
+var JSONHeader = {
+  'Content-type': 'application/json',
+  'Authorization': token
+};
+
+var formDataHeader = {
+  'Content-type': 'application/x-www-form-urlencoded',
+  'Authorization': token
+};
+
+var postData = function postData(payload) {
+  var config = {
+    url: baseURL + '/step1',
+    method: 'post',
+    headers: JSONHeader,
+    data: payload
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
+var postDataStep2 = function postDataStep2(payload) {
+  // console.log('--->', payload.user_id)
+  var data = new FormData();
+  data.append('user_id', payload.user_id);
+  data.append('identity_card', payload.identity_card);
+  data.append('fullname', payload.fullname);
+  data.append('email', payload.email);
+  data.append('phone_number', payload.phone_number);
+  data.append('domicile', payload.domicile);
+  data.append('domicile_city', payload.domicile_city);
+  data.append('age', payload.age);
+  data.append('identity_card_photo', payload.identity_card_photo);
+  // console.log('---> ini', data)
+
+  var config = {
+    url: baseURL + '/step2',
+    method: 'post',
+    headers: formDataHeader,
+    data: data
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
+/***/ }),
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(46);
+__webpack_require__(47);
 __webpack_require__(67);
 __webpack_require__(68);
 __webpack_require__(69);
@@ -48912,7 +48971,7 @@ module.exports = __webpack_require__(70);
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -48922,7 +48981,7 @@ module.exports = __webpack_require__(70);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(13);
+__webpack_require__(14);
 
 window.Vue = __webpack_require__(37);
 /**
@@ -48931,8 +48990,8 @@ window.Vue = __webpack_require__(37);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(47));
-Vue.component('register-step1', __webpack_require__(50));
+Vue.component('example-component', __webpack_require__(48));
+Vue.component('register-step1', __webpack_require__(51));
 Vue.component('register-step2', __webpack_require__(57));
 Vue.component('register-step3', __webpack_require__(62));
 
@@ -48941,15 +49000,15 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(6)
 /* script */
-var __vue_script__ = __webpack_require__(48)
+var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = __webpack_require__(49)
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48988,7 +49047,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49017,7 +49076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49060,17 +49119,17 @@ if (false) {
 }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(51)
+  __webpack_require__(52)
 }
 var normalizeComponent = __webpack_require__(6)
 /* script */
-var __vue_script__ = __webpack_require__(54)
+var __vue_script__ = __webpack_require__(55)
 /* template */
 var __vue_template__ = __webpack_require__(56)
 /* template functional */
@@ -49111,13 +49170,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(52);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -49137,7 +49196,7 @@ if(false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(40)(false);
@@ -49151,7 +49210,7 @@ exports.push([module.i, "\n.main[data-v-5d18c85b] {\n  min-height: 100vh;\n}\n.m
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 /**
@@ -49184,14 +49243,14 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__API_js__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__API_js__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(44);
 
 
@@ -49348,36 +49407,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }()
   }
 });
-
-/***/ }),
-/* 55 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return postData; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_cookie__);
-
-
-
-var baseURL = 'http://localhost:8000/api';
-var token = __WEBPACK_IMPORTED_MODULE_1_js_cookie___default.a.get('token');
-var header = {
-  'Content-type': 'application/json',
-  'Authorization': token
-};
-
-var postData = function postData(payload) {
-  var config = {
-    url: baseURL + '/step1',
-    method: 'post',
-    headers: header,
-    data: payload
-  };
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
-};
 
 /***/ }),
 /* 56 */
@@ -49901,6 +49930,16 @@ exports.push([module.i, "\n.main[data-v-5d26dfdc] {\n  min-height: 100vh;\n}\n.m
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__API_js__ = __webpack_require__(45);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
 //
 //
 //
@@ -49974,11 +50013,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'register-step2',
   data: function data() {
     return {
-      imgSrc: ''
+      dataStep2: {
+        user_id: location.pathname.split('/')[3],
+        identity_card: '',
+        fullname: '',
+        email: '',
+        phone_number: '',
+        domicile: '',
+        domicile_city: '',
+        age: '',
+        identity_card_photo: ''
+      }
     };
   },
 
@@ -49993,9 +50043,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       reader.readAsDataURL(file);
       reader.onloadend = function () {
-        _this.imgSrc = reader.result;
+        _this.dataStep2.identity_card_photo = reader.result;
       };
-    }
+    },
+    handleSubmitStep2: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(e) {
+        var response;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault();
+                _context.next = 3;
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["b" /* postDataStep2 */])(this.dataStep2);
+
+              case 3:
+                response = _context.sent;
+
+                console.log(response);
+
+              case 5:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmitStep2(_x) {
+        return _ref.apply(this, arguments);
+      }
+
+      return handleSubmitStep2;
+    }()
   }
 });
 
@@ -50019,8 +50099,34 @@ var render = function() {
             [
               _c("H1", { staticClass: "detil-order" }, [_vm._v("Detil Order")]),
               _vm._v(" "),
-              _c("form", [
-                _vm._m(1),
+              _c("form", { on: { submit: _vm.handleSubmitStep2 } }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataStep2.identity_card,
+                        expression: "dataStep2.identity_card"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Nomor KTP" },
+                    domProps: { value: _vm.dataStep2.identity_card },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.dataStep2,
+                          "identity_card",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("div", { staticClass: "upload-btn-wrapper" }, [
@@ -50029,33 +50135,178 @@ var render = function() {
                       on: { change: _vm.onFileChange }
                     }),
                     _vm._v(" "),
-                    _vm.imgSrc
+                    _vm.dataStep2.identity_card_photo
                       ? _c("div", { attrs: { className: "preview" } }, [
                           _c("img", {
-                            attrs: { src: _vm.imgSrc, alt: "nophoto" }
+                            attrs: {
+                              src: _vm.dataStep2.identity_card_photo,
+                              alt: "nophoto"
+                            }
                           })
                         ])
                       : _c("div", { staticClass: "label-upload" }, [
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("div", [_vm._v("Upload KTP")])
                         ])
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(3),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataStep2.fullname,
+                        expression: "dataStep2.fullname"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Nama Lengkap" },
+                    domProps: { value: _vm.dataStep2.fullname },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.dataStep2, "fullname", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataStep2.email,
+                        expression: "dataStep2.email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "email", placeholder: "Alamat Email" },
+                    domProps: { value: _vm.dataStep2.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.dataStep2, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(5),
+                _vm._m(2),
                 _vm._v(" "),
-                _vm._m(6),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataStep2.phone_number,
+                        expression: "dataStep2.phone_number"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Nomor Handphone" },
+                    domProps: { value: _vm.dataStep2.phone_number },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.dataStep2,
+                          "phone_number",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(7),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataStep2.domicile,
+                        expression: "dataStep2.domicile"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Domisili" },
+                    domProps: { value: _vm.dataStep2.domicile },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.dataStep2, "domicile", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(8),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataStep2.domicile_city,
+                        expression: "dataStep2.domicile_city"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Kota Domisili" },
+                    domProps: { value: _vm.dataStep2.domicile_city },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.dataStep2,
+                          "domicile_city",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(9)
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataStep2.age,
+                        expression: "dataStep2.age"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Usia" },
+                    domProps: { value: _vm.dataStep2.age },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.dataStep2, "age", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
               ])
             ],
             1
@@ -50104,40 +50355,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Nomor KTP" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("span", [_c("i", { staticClass: "fas fa-camera" })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Nama Lengkap" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "email", placeholder: "Alamat Email" }
-      })
-    ])
   },
   function() {
     var _vm = this
@@ -50154,45 +50372,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Nomor Handphone" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Domisili" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Usia" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "btn-wrapper" }, [
       _c(
         "button",
         {
           staticClass: "btn btn-primary btn-custom",
-          attrs: { type: "button" }
+          attrs: { type: "submit" }
         },
         [_vm._v("Selanjutnya")]
       )

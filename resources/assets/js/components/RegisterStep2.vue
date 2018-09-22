@@ -24,15 +24,15 @@
             </div>
             <div class="register-step1-content">
               <H1 class="detil-order">Detil Order</H1>
-              <form>
+              <form @submit="handleSubmitStep2">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nomor KTP">
+                  <input type="text" class="form-control" placeholder="Nomor KTP" v-model="dataStep2.identity_card">
                 </div>
                 <div class="form-group">
                   <div class="upload-btn-wrapper">
                     <input type="file" name="myfile" @change="onFileChange" />
-                    <div className="preview" v-if="imgSrc">
-                      <img :src="imgSrc" alt="nophoto" />
+                    <div className="preview" v-if="dataStep2.identity_card_photo">
+                      <img :src="dataStep2.identity_card_photo" alt="nophoto" />
                     </div>
                     <div class="label-upload" v-else>
                       <span><i class="fas fa-camera"></i></span>
@@ -41,25 +41,28 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nama Lengkap">
+                  <input type="text" class="form-control" placeholder="Nama Lengkap" v-model="dataStep2.fullname">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Alamat Email">
+                  <input type="email" class="form-control" placeholder="Alamat Email" v-model="dataStep2.email">
                 </div>
                 <div class="form-group">
                   <input type="email" class="form-control" placeholder="Ulangi Alamat Email">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nomor Handphone">
+                  <input type="text" class="form-control" placeholder="Nomor Handphone" v-model="dataStep2.phone_number">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Domisili">
+                  <input type="text" class="form-control" placeholder="Domisili" v-model="dataStep2.domicile">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Usia">
+                  <input type="text" class="form-control" placeholder="Kota Domisili" v-model="dataStep2.domicile_city">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Usia" v-model="dataStep2.age">
                 </div>
                 <div class="btn-wrapper">
-                  <button type="button" class="btn btn-primary btn-custom">Selanjutnya</button>
+                  <button type="submit" class="btn btn-primary btn-custom">Selanjutnya</button>
                 </div>
               </form>
             </div>
@@ -71,11 +74,22 @@
 </template>
 
 <script>
+import { postDataStep2 } from '../API.js';
   export default {
     name: 'register-step2',
     data () {
       return {
-        imgSrc: ''
+        dataStep2: {
+          user_id: location.pathname.split('/')[3],
+          identity_card: '',
+          fullname: '',
+          email: '',
+          phone_number: '',
+          domicile: '',
+          domicile_city: '',
+          age: '',
+          identity_card_photo: ''
+        }
       }
     },
     methods: {
@@ -87,9 +101,14 @@
         
         reader.readAsDataURL(file)
         reader.onloadend = () => {
-          this.imgSrc = reader.result
+          this.dataStep2.identity_card_photo = reader.result
         }
         
+      },
+      async handleSubmitStep2(e) {
+        e.preventDefault()
+        const response = await postDataStep2(this.dataStep2)
+        console.log(response)
       }
     }
   }

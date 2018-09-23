@@ -1,3 +1,12 @@
+.form-error{
+    border: 1px solid red;
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+}
+
 .main {
   min-height: 100vh;
   .register-step1 {
@@ -5,11 +14,11 @@
     background-color: #fff;
     max-width: 375px;
     margin-bottom: 30px;
-    
+
     .register-step1-header {
       background-color: #f2f3f4;
       min-height: 90px;
-      
+
       .wizard {
         counter-reset: stepNo;
         display: -webkit-flex;
@@ -69,7 +78,7 @@
               height: 25px;
               border-radius: 50%;
             }
-            
+
           }
 
           .wizard-caption {
@@ -152,7 +161,7 @@
               height: 25px;
               border-radius: 50%;
             }
-            
+
           }
 
           .wizard-caption {
@@ -286,12 +295,12 @@
           .text-caption {
             text-align: left;
           }
-  
+
           .text-content {
             float: right;
           }
         }
-        
+
       }
       .amount-total-wrapper {
         padding-top: 16px;
@@ -311,7 +320,7 @@
           }
         }
       }
-      
+
     }
 
     .register-step3-separator {
@@ -355,9 +364,9 @@
         }
       }
 
-      
+
     }
-    
+
     .upload-btn-wrapper input[type=file] {
       height: 164px;
       max-width: 327px;

@@ -36,28 +36,29 @@
                 <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect1"
                   v-model="dataRegister.registration_type"
-                  placeholder="tes">
+                    @change="changeRegistrationType"
+                  placeholder="tes" required>
                     <option value="" disabled selected>Jenis Pendaftaran</option>
-                    <option>Delegasi Indonesia</option>
-                    <option>Delegasi Luar Negeri</option>
+                    <option value="perseorangan">Perseorangan</option>
+                    <option value="group">Group</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect2"
-                  v-model="dataRegister.job_status"
+                  v-model="dataRegister.job_status" required
                   placeholder="tes">
                     <option value="" disabled selected>Status Pekerjaan</option>
-                    <option>Karyawan</option>
-                    <option>Pemilik Usaha</option>
+                    <option value="pelajar">Pelajar</option>
+                    <option value="nonpelajar">Non Pelajar</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control" v-model="dataRegister.group_name"
-                  id="exampleFormControlInput1" placeholder="Nama Grup">
+                  id="exampleFormControlInput1" placeholder="Nama Grup" required>
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect3"
-                  v-model="dataRegister.ticket_type"
+                  v-model="dataRegister.ticket_type" required
                   placeholder="tes">
                     <option value="" disabled selected>Jenis Tiket</option>
                     <option>Gold</option>
@@ -66,12 +67,12 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="exampleFormControlInput2" v-model="dataRegister.ticket_amount" placeholder="Jumlah Tiket">
+                  <input :min="minTicket" type="number" class="form-control" id="exampleFormControlInput2" v-model="dataRegister.ticket_amount" placeholder="Jumlah Tiket" required>
                   <label class="label-jumlah-tiket">Tuliskan angka 1 - 100</label>
                 </div>
                 <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required>
                   <label class="form-check-label" for="inlineRadio1">Ya</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -79,16 +80,17 @@
                   <label class="form-check-label" for="inlineRadio2">Tidak</label>
                 </div>
                 <div class="btn-wrapper">
-                  <button type="submit" class="btn btn-primary btn-custom">Selanjutnya</button>
+                  <button type="submit" class="btn btn-primary btn-custom"
+                  :disabled="isLoading">Selanjutnya</button>
                 </div>
-                
+
               </form>
             </div>
             <div class="register-step1-footer"></div>
           </div>
-          
+
         </div>
-        
+
       </div>
     </div>
 </template>
@@ -107,16 +109,28 @@ import { loggingIn } from '../index.js'
             ticket_type: '',
             ticket_amount: '',
             transport_to_hotel: ''
-          }
+          },
+          minTicket: 0,
+          isLoading: false
         }
       },
       methods: {
         async handleSubmit(e) {
           e.preventDefault()
+          this.isLoading = true
           await loggingIn()
           const data = await postData(this.dataRegister)
-          
+          this.isLoading = false
           window.location.replace(`/register/step2/${data.data.user_id}`)
+        },
+        changeRegistrationType(e) {
+          const type = e.target.value
+          if(type === 'perseorangan'){
+            this.minTicket = 0
+          } else {
+            this.minTicket = 10
+            this.dataRegister.ticket_amount = 10
+          }
         }
       }
     }

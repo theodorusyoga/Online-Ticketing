@@ -27,6 +27,10 @@ Route::get('/register/step3/{user_id}', function () {
     return view('register.step3');
 });
 
+Route::get('/register/finish', function () {
+    return view('register.finish');
+});
+
 Route::get('/donation', 'DonationController@index');
 
 Route::get('/register', 'RegisterController@index');

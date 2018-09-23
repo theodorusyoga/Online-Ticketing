@@ -85,7 +85,7 @@
                 </div>
               </div>
               <div class="btn-wrapper">
-                <button type="button" class="btn btn-primary btn-custom">Checkout</button>
+                <button type="button" class="btn btn-primary btn-custom" @click="handleSubmitStep3">Checkout</button>
               </div>
             </div>
             <div class="register-step1-footer"></div>
@@ -96,15 +96,15 @@
 </template>
 
 <script>
-  import { getDataRegisterStep1, getDataRegisterStep2 } from '../API.js';
+  import { getDataRegisterStep1, getDataRegisterStep2, getRequestPayment } from '../API.js';
   import { IDRFormatter, dateInWordsWithTime, expiredDate } from '../helpers/textFormatter.js';
   export default {
     name: 'register-step3',
     data () {
       return {
-        data: '',
         dataStep1: '',
         dataStep2: '',
+        dataStep3: {},
         id: location.pathname.split('/')[3],
         ticket_price: ''
       }
@@ -142,7 +142,8 @@
         this.dataStep1 = JSON.parse(dataStep1.data.data)
         this.dataStep2 = JSON.parse(dataStep2.data.data)
 
-        const { ticket_type } = this.dataStep1
+        const { ticket_type, ticket_amount, user_id } = this.dataStep1
+        const { name, domicile, domicile_city, phone_number, email } = this.dataStep2
         if (ticket_type === 'Gold') {
           this.ticket_price = 2150000
         } else if (ticket_type === 'Silver') {
@@ -150,9 +151,27 @@
         } else {
           this.ticket_price = 650000
         }
+
+        this.dataStep3.ticket_amount = ticket_amount,
+        this.dataStep3.user_id = user_id,
+        this.dataStep3.ticket_type = ticket_type,
+        this.dataStep3.student_card = '',
+        this.dataStep3.name = name,
+        this.dataStep3.domicile = domicile,
+        this.dataStep3.domicile_city = domicile_city,
+        this.dataStep3.phone_number = phone_number,
+        this.dataStep3.email = email
       
         console.log('data 1', this.dataStep1)
         console.log('data 2', this.dataStep2)
+      },
+
+      async handleSubmitStep3(e) {
+        e.preventDefault()
+
+        const result = await getRequestPayment(this.dataStep3)
+        .catch(Error => console.log(Error))
+        console.log(result)
       }
     }
   }

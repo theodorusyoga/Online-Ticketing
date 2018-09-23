@@ -70,3 +70,13 @@ export const getDataRegisterStep2 = (params) => {
   }
   return axios(config)
 }
+
+export const getRequestPayment = (payload) => {
+  setInterceptors('json')
+  const config = {
+    url: `${baseURL}/request-payment`,
+    method: 'post',
+    data: payload
+  }
+  return axios(config)
+}

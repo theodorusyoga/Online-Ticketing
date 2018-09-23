@@ -26,13 +26,13 @@
               <H1 class="detil-order">Detil Order</H1>
               <form @submit="handleSubmitStep2">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nomor KTP" v-model="dataStep2.identity_card">
+                  <input type="text" class="form-control" placeholder="Nomor KTP" v-model="dataStep2.identity_card" required>
                 </div>
                 <div class="form-group">
                   <div class="upload-btn-wrapper">
-                    <input type="file" name="myfile" @change="onFileChange" />
+                    <input type="file" name="myfile" @change="onFileChange" required />
                     <div className="preview" v-if="dataStep2.identity_card_photo">
-                      <img :src="dataStep2.identity_card_photo" alt="nophoto" />
+                      <img :src="identity_card_photo_base64" alt="nophoto" />
                     </div>
                     <div class="label-upload" v-else>
                       <span><i class="fas fa-camera"></i></span>
@@ -41,28 +41,29 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nama Lengkap" v-model="dataStep2.fullname">
+                  <input type="text" class="form-control" placeholder="Nama Lengkap" v-model="dataStep2.fullname" required>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Alamat Email" v-model="dataStep2.email">
+                  <input type="email" class="form-control" placeholder="Alamat Email" v-model="dataStep2.email" required>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Ulangi Alamat Email">
+                  <input type="email" class="form-control" :class="{'form-error' : isEmailError}" placeholder="Ulangi Alamat Email" v-model="dataStep2.confirmEmail">
+                  <span class="error" v-if="isEmailError">Email tidak sesuai.</span>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nomor Handphone" v-model="dataStep2.phone_number">
+                  <input type="text" class="form-control" placeholder="Nomor Handphone" v-model="dataStep2.phone_number" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Domisili" v-model="dataStep2.domicile">
+                  <input type="text" class="form-control" placeholder="Domisili" v-model="dataStep2.domicile" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Kota Domisili" v-model="dataStep2.domicile_city">
+                  <input type="text" class="form-control" placeholder="Kota Domisili" v-model="dataStep2.domicile_city" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Usia" v-model="dataStep2.age">
+                  <input type="number" class="form-control" placeholder="Usia" v-model="dataStep2.age" required>
                 </div>
                 <div class="btn-wrapper">
-                  <button type="submit" class="btn btn-primary btn-custom">Selanjutnya</button>
+                  <button type="submit" class="btn btn-primary btn-custom" :disabled="isLoading">Selanjutnya</button>
                 </div>
               </form>
             </div>
@@ -84,12 +85,16 @@ import { postDataStep2 } from '../API.js';
           identity_card: '',
           fullname: '',
           email: '',
+          confirmEmail: '',
           phone_number: '',
           domicile: '',
           domicile_city: '',
           age: '',
-          identity_card_photo: ''
-        }
+          identity_card_photo: '',
+        },
+        identity_card_photo_base64: '',
+        isEmailError: false,
+        isLoading: false
       }
     },
     methods: {
@@ -98,17 +103,24 @@ import { postDataStep2 } from '../API.js';
 
         let reader = new FileReader();
         let file = e.target.files[0]
-        
+
         reader.readAsDataURL(file)
         reader.onloadend = () => {
-          this.dataStep2.identity_card_photo = reader.result
+          this.identity_card_photo_base64 = reader.result
+          this.dataStep2.identity_card_photo = file
         }
-        
+
       },
       async handleSubmitStep2(e) {
         e.preventDefault()
+        if(this.dataStep2.email !== this.dataStep2.confirmEmail) {
+            this.isEmailError = true
+            return
+        } else this.isEmailError = false
+        this.isLoading = true
         const response = await postDataStep2(this.dataStep2)
-        console.log(response)
+        this.isLoading = false
+         window.location.replace(`/register/step3/${this.dataStep2.user_id}`)
       }
     }
   }

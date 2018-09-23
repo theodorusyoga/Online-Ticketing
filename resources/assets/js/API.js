@@ -1,23 +1,31 @@
 import axios from 'axios'
 import Cookie from 'js-cookie'
 
-const baseURL = 'http://localhost:8000/api'
-const token = Cookie.get('token')
-const JSONHeader = { 
-  'Content-type': 'application/json',
-  'Authorization': token
+const setInterceptors = (type) => {
+    axios.interceptors.request.use(config => {
+        const token = Cookie.get('token')
+        if(type === 'json'){
+            config.headers = {
+                'Content-type': 'application/json',
+                'Authorization': token
+            }
+        } else {
+            config.headers = {
+                'Content-type': 'application/x-www-form-urlencoded',
+                'Authorization': token
+            }
+        }
+        return config
+    })
 }
 
-const formDataHeader = {
-  'Content-type': 'application/x-www-form-urlencoded',
-  'Authorization': token
-}
+const baseURL = 'http://localhost:8000/api'
 
 export const postData = (payload) => {
+    setInterceptors('json')
   const config = {
     url: `${baseURL}/step1`,
     method: 'post',
-    headers: JSONHeader,
     data: payload
   };
   return axios(config)
@@ -25,6 +33,7 @@ export const postData = (payload) => {
 
 export const postDataStep2 = (payload) => {
   // console.log('--->', payload.user_id)
+  setInterceptors('form')
   let data = new FormData()
   data.append('user_id', payload.user_id)
   data.append('identity_card', payload.identity_card)
@@ -36,11 +45,10 @@ export const postDataStep2 = (payload) => {
   data.append('age', payload.age)
   data.append('identity_card_photo', payload.identity_card_photo)
   // console.log('---> ini', data)
-    
+
   const config = {
     url: `${baseURL}/step2`,
     method: 'post',
-    headers: formDataHeader,
     data: data
   };
   return axios(config)

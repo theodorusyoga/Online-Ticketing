@@ -23,7 +23,7 @@ Route::get('/register/step2/{user_id}', function () {
     return view('register.step2');
 });
 
-Route::get('/register/step3', function () {
+Route::get('/register/step3/{user_id}', function () {
     return view('register.step3');
 });
 

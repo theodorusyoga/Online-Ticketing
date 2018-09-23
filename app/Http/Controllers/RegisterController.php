@@ -14,6 +14,51 @@ class RegisterController extends Controller
     {
         return view('register.index');
     }
+
+    public function getRegisterStep1(Request $req){
+        $user_id = $req['user_id'];
+        if($user_id == '') {
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'User ID must be provided'
+            ));
+        }
+        $orderdetails = OrderDetails::where('user_id', $user_id)->first();
+        if($orderdetails !== null){
+            return json_encode(array(
+                'status' => 0,
+                'data' => json_encode($orderdetails)
+            ));
+        } else {
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'User not found'
+            ));
+        }
+    }
+
+    public function getRegisterStep2(Request $req){
+        $user_id = $req['user_id'];
+        if($user_id == '') {
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'User ID must be provided'
+            ));
+        }
+        $personaldata = PersonalData::where('user_id', $user_id)->first();
+        if($personaldata !== null){
+            return json_encode(array(
+                'status' => 0,
+                'data' => json_encode($personaldata)
+            ));
+        } else {
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'User not found'
+            ));
+        }
+    }
+
     public function registerStep1(Request $req){
         $user_id = $this->gen_uuid();
         $registration_type = $req['registration_type'];

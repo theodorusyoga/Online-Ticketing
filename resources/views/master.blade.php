@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Global UPR</title>
+        <link rel="icon" type="image/png" href="favicon.png">
         @component('include')
         @endcomponent
         @yield('styles')
@@ -36,7 +37,7 @@
                     <li class="nav-item">
                             <a class="nav-link" href="/register">Register</a>
                     </li>
-                    
+
                 </ul>
             </div>
             </nav>

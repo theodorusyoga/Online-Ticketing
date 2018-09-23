@@ -97,7 +97,7 @@
 
 <script>
 import { postData } from '../API.js';
-import { loggingIn } from '../index.js'
+import { getToken } from '../index.js'
     export default {
       name: 'register-step1',
       data () {
@@ -118,7 +118,7 @@ import { loggingIn } from '../index.js'
         async handleSubmit(e) {
           e.preventDefault()
           this.isLoading = true
-          await loggingIn()
+          await getToken()
           const data = await postData(this.dataRegister)
           this.isLoading = false
           window.location.replace(`/register/step2/${data.data.user_id}`)

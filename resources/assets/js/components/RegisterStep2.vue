@@ -114,7 +114,7 @@ import { postDataStep2 } from '../API.js';
       async handleSubmitStep2(e) {
         e.preventDefault()
         if(this.dataStep2.email !== this.dataStep2.confirmEmail) {
-            this.isEmailError = true
+          this.isEmailError = true
             return
         } else this.isEmailError = false
         this.isLoading = true

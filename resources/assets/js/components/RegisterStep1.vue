@@ -28,8 +28,9 @@
                 <h5>Product</h5>
                 <h3>TWC - Regular</h3>
                 <div class="content-header-title">
-                  <h5>e-ticket</h5>
-                  <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ullam itaque.</div>
+                  <h5>Gold - Rp 2,550,000</h5>
+                  <h5>Silver - Rp 1,650,000</h5>
+                  <h5>Bronze - Rp 650,000</h5>
                 </div>
               </div>
               <form @submit="handleSubmit">

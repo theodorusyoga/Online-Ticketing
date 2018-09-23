@@ -116,8 +116,7 @@ import { loggingIn } from '../index.js'
           await loggingIn()
           const data = await postData(this.dataRegister)
           
-          // window.location.replace('/register/step2/'+data.userid)
-          // console.log('-->', this.dataRegister)
+          window.location.replace(`/register/step2/${data.data.user_id}`)
         }
       }
     }

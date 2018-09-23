@@ -48524,7 +48524,7 @@ if (hadRuntime) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loggingIn", function() { return loggingIn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getToken", function() { return getToken; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(2);
@@ -48556,7 +48556,7 @@ var onScroll = function onScroll() {
     }
 };
 
-var loggingIn = function () {
+var getToken = function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
         var token;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -48588,7 +48588,7 @@ var loggingIn = function () {
         }, _callee, _this);
     }));
 
-    return function loggingIn() {
+    return function getToken() {
         return _ref.apply(this, arguments);
     };
 }();
@@ -49392,7 +49392,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 e.preventDefault();
                 this.isLoading = true;
                 _context.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_2__index_js__["loggingIn"])();
+                return Object(__WEBPACK_IMPORTED_MODULE_2__index_js__["getToken"])();
 
               case 4:
                 _context.next = 6;

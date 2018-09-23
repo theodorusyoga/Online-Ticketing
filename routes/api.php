@@ -19,10 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', 'AuthController@auth');
-Route::get('/get-donations', 'AuthController@getDonations')->middleware(CheckJWT::class);
-Route::get('/get-user-types', 'AuthController@getUserTypes')->middleware(CheckJWT::class);
-Route::post('/join-volunteer', 'AuthController@joinVolunteer')->middleware(CheckJWT::class);
-Route::post('/confirm-donate', 'AuthController@confirmDonate')->middleware(CheckJWT::class);
+Route::get('/get-donations', 'GeneralFormController@getDonations')->middleware(CheckJWT::class);
+Route::get('/get-user-types', 'GeneralFormController@getUserTypes')->middleware(CheckJWT::class);
+Route::post('/join-volunteer', 'GeneralFormController@joinVolunteer')->middleware(CheckJWT::class);
+Route::post('/confirm-donate', 'GeneralFormController@confirmDonate')->middleware(CheckJWT::class);
 Route::post('/step1', 'RegisterController@registerStep1')->middleware(CheckJWT::class);
 Route::post('/step2', 'RegisterController@registerStep2')->middleware(CheckJWT::class);
 Route::post('/step3', 'RegisterController@registerStep3')->middleware(CheckJWT::class);
+Route::get('/step1', 'RegisterController@getRegisterStep1')->middleware(CheckJWT::class);
+Route::get('/step2', 'RegisterController@getRegisterStep2')->middleware(CheckJWT::class);
+

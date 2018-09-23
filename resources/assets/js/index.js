@@ -15,7 +15,7 @@ const onScroll = () => {
         }
 };
 
-export const loggingIn = async () => {
+export const getToken = async () => {
     let token = '';
     await axios.post('/api/login', {
         email: 'admin@wgg-globalupr.com',

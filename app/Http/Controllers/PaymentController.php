@@ -8,81 +8,130 @@ use App\Veritrans\Veritrans;
 
 class PaymentController extends Controller
 {
+    public $bronze = 650000;
+    public $bronze_disc = 450000;
+    public $silver = 1650000;
+    public $silver_disc = 1600000;
+    public $gold = 2150000;
+    public $gold_disc = 2100000;
+
     public function __construct(){
         Veritrans::$serverKey = env('VERITRANS_SERVER_KEY', 'SB-Mid-server-EdKtRyYuXH0g9DUChettBAeI');
         Veritrans::$isProduction = false;
     }
 
-    public function requestVeritransToken(Request $req)
+    public function requestVeritransUrl(Request $req)
     {
-        $amount = $req['amount'];
+        $ticket_amount = $req['ticket_amount'];
         $user_id = $req['user_id'];
+        $ticket_type = $req['ticket_type'];
+        $student_card = $req['student_card'];
+        $name = $req['name'];
+        $domicile = $req['domicile'];
+        $domicile_city = $req['domicile_city'];
+        $phone_number = $req['phone_number'];
+        $email = $req['email'];
 
-        $midtrans = new Midtrans;
+        $amount = 0;
+        switch($ticket_type){
+            case 'bronze':
+                if($student_card !== '' && $student_card !== null) { // using student card
+                    $amount = $ticket_amount * $this->bronze_disc;
+                }
+                else {
+                    $amount = $ticket_amount * $this->bronze;
+                }
+                break;
+            case 'silver':
+                if($ticket_amount >= 10) { // using student card
+                    $amount = $ticket_amount * $this->silver_disc;
+                }
+                else {
+                    $amount = $ticket_amount * $this->silver;
+                }
+                break;
+            case 'gold':
+                if($ticket_amount >= 10) { // using student card
+                    $amount = $ticket_amount * $this->gold_disc;
+                }
+                else {
+                    $amount = $ticket_amount * $this->gold;
+                }
+                break;
+            default:
+                break;
+        }
+
+        $veritrans = new Veritrans;
         $transaction_details = array(
-            'order_id'          => uniqid(),
-            'gross_amount'  => 200000
+            'order_id'      => $user_id,
+            'gross_amount'  => $amount
         );
         // Populate items
         $items = [
             array(
-                'id'                => 'item1',
-                'price'         => 100000,
+                'id'            => $ticket_type,
+                'price'         => $amount,
                 'quantity'  => 1,
-                'name'          => 'Adidas f50'
-            ),
-            array(
-                'id'                => 'item2',
-                'price'         => 50000,
-                'quantity'  => 2,
-                'name'          => 'Nike N90'
+                'name'          => $ticket_type
             )
         ];
+
         // Populate customer's billing address
         $billing_address = array(
-            'first_name'        => "Andri",
-            'last_name'         => "Setiawan",
-            'address'           => "Karet Belakang 15A, Setiabudi.",
-            'city'                  => "Jakarta",
-            'postal_code'   => "51161",
-            'phone'                 => "081322311801",
-            'country_code'  => 'IDN'
+            'first_name'        => $name,
+            'last_name'         => "",
+            'address'           => $domicile,
+            'city'              => $domicile_city,
+            'postal_code'       => "",
+            'phone'             => $phone_number,
+            'country_code'      => 'IDN'
             );
         // Populate customer's shipping address
         $shipping_address = array(
-            'first_name'    => "John",
-            'last_name'     => "Watson",
-            'address'       => "Bakerstreet 221B.",
-            'city'              => "Jakarta",
-            'postal_code' => "51162",
-            'phone'             => "081322311801",
-            'country_code'=> 'IDN'
+            'first_name'        => $name,
+            'last_name'         => "",
+            'address'           => $domicile,
+            'city'              => $domicile_city,
+            'postal_code'       => "",
+            'phone'             => $phone_number,
+            'country_code'      => 'IDN'
             );
         // Populate customer's Info
         $customer_details = array(
-            'first_name'            => "Andri",
-            'last_name'             => "Setiawan",
-            'email'                     => "andrisetiawan@asdasd.com",
-            'phone'                     => "081322311801",
+            'first_name'            => $name,
+            'last_name'             => "",
+            'email'                     => $email,
+            'phone'                     => $phone_number,
             'billing_address' => $billing_address,
             'shipping_address'=> $shipping_address
             );
         // Data yang akan dikirim untuk request redirect_url.
         $transaction_data = array(
+            'payment_type'          => 'vtweb',
+            'vtweb'                         => array(
+                //'enabled_payments'    => [],
+                'credit_card_3d_secure' => true
+            ),
             'transaction_details'=> $transaction_details,
-            'item_details'           => $items,
+            'item_details'       => $items,
             'customer_details'   => $customer_details
         );
 
         try
         {
-            $snap_token = $midtrans->getSnapToken($transaction_data);
-            //return redirect($vtweb_url);
-            echo $snap_token;
+            $url = $veritrans->vtweb_charge($transaction_data);
+            return json_encode(array(
+                'status' => 0,
+                'url' => $url
+            ));
         }
         catch (Exception $e)
         {
-            return $e->getMessage;
+            return json_encode(array(
+                'status' => 1,
+                'url' => 'Error occured'
+            ));
         }
     }
 }

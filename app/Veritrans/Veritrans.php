@@ -2,6 +2,7 @@
 
 namespace App\Veritrans;
 use App\Exceptions\VeritransException as Exception;
+use Illuminate\Support\Facades\Log;
 
 Class Veritrans
 {
@@ -11,7 +12,7 @@ Class Veritrans
    	* @static
    	*/
 	public static $serverKey;
-	
+
 	/**
    	* true for production
    	* false for sandbox mode
@@ -23,7 +24,7 @@ Class Veritrans
    	* Default options for every request
    	* @static
    	*/
-  	public static $curlOptions = array();	
+  	public static $curlOptions = array();
 
   	const SANDBOX_BASE_URL = 'https://api.sandbox.midtrans.com/v2';
   	const PRODUCTION_BASE_URL = 'https://api.midtrans.com/v2';
@@ -32,6 +33,8 @@ Class Veritrans
     {
         Veritrans::$serverKey = $params['server_key'];
         Veritrans::$isProduction = $params['production'];
+        Log::info('server_key', $params['server_key']);
+        Log::info('isprod', $params['production']);
     }
 
     /**
@@ -73,8 +76,8 @@ Class Veritrans
 	 * @param bool    $post
 	 */
     public static function remoteCall($url, $server_key, $data_hash, $post = true)
-    {	
-    
+    {
+
 	    $ch = curl_init();
 
 	    $curl_options = array(
@@ -116,7 +119,7 @@ Class Veritrans
 
 	    $result = curl_exec($ch);
 	    // curl_close($ch);
-	   
+
 	    if ($result === FALSE) {
 	      throw new Exception('CURL Error: ' . curl_error($ch), curl_errno($ch));
 	    }
@@ -135,7 +138,7 @@ Class Veritrans
     }
 
     public function vtweb_charge($payloads)
-    {	
+    {
 
     	$result = Veritrans::post(
         Veritrans::getBaseUrl() . '/charge',
@@ -146,7 +149,7 @@ Class Veritrans
     }
 
     public function vtdirect_charge($payloads)
-    { 
+    {
 
       $result = Veritrans::post(
         Veritrans::getBaseUrl() . '/charge',

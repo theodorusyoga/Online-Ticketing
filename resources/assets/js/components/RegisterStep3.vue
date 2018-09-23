@@ -162,8 +162,6 @@
         this.dataStep3.phone_number = phone_number,
         this.dataStep3.email = email
       
-        console.log('data 1', this.dataStep1)
-        console.log('data 2', this.dataStep2)
       },
 
       async handleSubmitStep3(e) {

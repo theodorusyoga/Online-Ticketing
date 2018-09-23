@@ -29,3 +29,6 @@ Route::post('/step3', 'RegisterController@registerStep3')->middleware(CheckJWT::
 Route::get('/step1', 'RegisterController@getRegisterStep1')->middleware(CheckJWT::class);
 Route::get('/step2', 'RegisterController@getRegisterStep2')->middleware(CheckJWT::class);
 
+// Veritrans
+Route::post('/request-payment', 'PaymentController@requestVeritransUrl')->middleware(CheckJWT::class);
+

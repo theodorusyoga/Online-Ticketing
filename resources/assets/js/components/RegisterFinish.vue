@@ -9,19 +9,37 @@
           </div>
           <p>
             Terima Kasih telah melakukan pemesanan.
-            Batas waktu pembayaran pesanan Anda adalah 1 x 24 jam.<br>
-            Silakan lakukan pembayaran
+            Kode booking Anda adalah: <strong>{{booking_code}}</strong>
           </p>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'register-finish'
+    name: 'register-finish',
+    data(){
+        return{
+            'booking_code': ''
+        }
+    },
+    mounted() {
+        this.booking_code = getParameterByName('order_id', window.location.href)
+    }
   }
+
+
+const getParameterByName = (name, url) => {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 </script>
 
 <style lang="scss" scoped>

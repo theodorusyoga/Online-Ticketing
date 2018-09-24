@@ -43,7 +43,7 @@
               </div>
               <div class="register-info">
                 <h1>Kode Booking</h1>
-                <h5>TWC18327373W55</h5>
+                <h5>{{dataStep1.user_id}}</h5>
               </div>
               <div class="register-info">
                 <h1>Kota</h1>
@@ -66,7 +66,7 @@
               <div class="booking-info">
                 <div class="booking-info-expired">
                   <span class="text-caption"><strong>Deskripsi</strong></span>
-                  <span class="text-content"><strong>Regular</strong></span>
+                  <span class="text-content"><strong>{{dataStep1.ticket_type}}</strong></span>
                 </div>
                 <div class="booking-info-expired">
                   <span class="text-caption"><strong>Price</strong></span>
@@ -85,7 +85,7 @@
                 </div>
               </div>
               <div class="btn-wrapper">
-                <button type="button" class="btn btn-primary btn-custom" @click="handleSubmitStep3">Checkout</button>
+                <button type="button" class="btn btn-primary btn-custom" @click="handleSubmitStep3" :disabled="isLoading">Checkout</button>
               </div>
             </div>
             <div class="register-step1-footer"></div>
@@ -102,23 +102,28 @@
     name: 'register-step3',
     data () {
       return {
-        dataStep1: '',
+        dataStep1: {
+            ticket_type: ''
+        },
         dataStep2: '',
         dataStep3: {},
         id: location.pathname.split('/')[3],
-        ticket_price: ''
+        ticket_price: '',
+        isLoading: false
       }
     },
     computed: {
       total() {
         let grandTotal
         const { ticket_amount, ticket_type } = this.dataStep1
-        if (ticket_type === 'Gold') {
-          grandTotal = ticket_amount * 2150000
-        } else if (ticket_type === 'Silver') {
-          grandTotal = ticket_amount * 1650000
+        const { student_card_photo } = this.dataStep2
+        const ticket = ticket_type.toLowerCase();
+        if (ticket === 'gold') {
+          grandTotal = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000
+        } else if (ticket === 'silver') {
+          grandTotal = ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000
         } else {
-          grandTotal = ticket_amount * 650000
+          grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
         }
         return IDRFormatter(grandTotal)
       },
@@ -143,30 +148,33 @@
         this.dataStep2 = JSON.parse(dataStep2.data.data)
 
         const { ticket_type, ticket_amount, user_id } = this.dataStep1
-        const { name, domicile, domicile_city, phone_number, email } = this.dataStep2
-        if (ticket_type === 'Gold') {
-          this.ticket_price = 2150000
-        } else if (ticket_type === 'Silver') {
-          this.ticket_price = 1650000
+        const { name, domicile, domicile_city, phone_number, email, student_card_photo } = this.dataStep2
+        this.dataStep1.ticket_type = capitalizeFirstLetter(this.dataStep1.ticket_type)
+        const ticket = ticket_type.toLowerCase();
+        if (ticket === 'gold') {
+          this.ticket_price = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000
+        } else if (ticket === 'silver') {
+          this.ticket_price = ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000
         } else {
-          this.ticket_price = 650000
+          this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
         }
 
-        this.dataStep3.ticket_amount = ticket_amount,
-        this.dataStep3.user_id = user_id,
-        this.dataStep3.ticket_type = ticket_type,
-        this.dataStep3.student_card = '',
-        this.dataStep3.name = name,
-        this.dataStep3.domicile = domicile,
-        this.dataStep3.domicile_city = domicile_city,
-        this.dataStep3.phone_number = phone_number,
+        this.dataStep3.ticket_amount = ticket_amount
+        this.dataStep3.user_id = user_id
+        this.dataStep3.ticket_type = ticket_type
+        this.dataStep3.student_card = ''
+        this.dataStep3.name = name
+        this.dataStep3.domicile = domicile
+        this.dataStep3.domicile_city = domicile_city
+        this.dataStep3.phone_number = phone_number
         this.dataStep3.email = email
+        this.dataStep3.student_card_photo = student_card_photo
 
       },
 
       async handleSubmitStep3(e) {
         e.preventDefault()
-
+        this.isLoading = true;
         const result = await getRequestPayment(this.dataStep3)
         .catch(Error => console.log(Error))
         if(result.data.status === 0) {
@@ -174,9 +182,14 @@
         } else {
             console.log('error')
         }
+        this.isLoading = false;
       }
     }
   }
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 </script>
 
 <style lang="scss" scoped>

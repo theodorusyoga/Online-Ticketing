@@ -41,6 +41,18 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <div class="upload-btn-wrapper">
+                    <input type="file" name="myfile" @change="onStudentCardChange" />
+                    <div className="preview" v-if="dataStep2.student_card_photo">
+                      <img :src="student_card_photo_base64" alt="nophoto" />
+                    </div>
+                    <div class="label-upload" v-else>
+                      <span><i class="fas fa-camera"></i></span>
+                      <div>Upload Kartu Pelajar (Opsional)</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
                   <input type="text" class="form-control" placeholder="Nama Lengkap" v-model="dataStep2.fullname" required>
                 </div>
                 <div class="form-group">
@@ -91,8 +103,10 @@ import { postDataStep2 } from '../API.js';
           domicile_city: '',
           age: '',
           identity_card_photo: '',
+          student_card_photo: ''
         },
         identity_card_photo_base64: '',
+        student_card_photo_base64: '',
         isEmailError: false,
         isLoading: false
       }
@@ -108,6 +122,19 @@ import { postDataStep2 } from '../API.js';
         reader.onloadend = () => {
           this.identity_card_photo_base64 = reader.result
           this.dataStep2.identity_card_photo = file
+        }
+
+      },
+       onStudentCardChange(e) {
+        e.preventDefault()
+
+        let reader = new FileReader();
+        let file = e.target.files[0]
+
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+          this.student_card_photo_base64 = reader.result
+          this.dataStep2.student_card_photo = file
         }
 
       },

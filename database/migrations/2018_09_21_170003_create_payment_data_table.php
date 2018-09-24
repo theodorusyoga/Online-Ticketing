@@ -15,7 +15,7 @@ class CreatePaymentDataTable extends Migration
     {
         Schema::create('payment_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('user_id');
+            $table->string('user_id');
             $table->datetimetz('request_date');
             $table->datetimetz('expired_date');
             $table->decimal('ticket_price', 20, 2);

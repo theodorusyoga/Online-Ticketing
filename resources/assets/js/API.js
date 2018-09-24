@@ -19,7 +19,7 @@ const setInterceptors = (type) => {
     })
 }
 
-const baseURL = 'http://localhost:8000/api'
+const baseURL = '/api'
 
 export const postData = (payload) => {
     setInterceptors('json')

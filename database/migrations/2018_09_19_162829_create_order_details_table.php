@@ -15,7 +15,7 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id')->unique();
+            $table->string('user_id');
             $table->string('registration_type');
             $table->string('job_status');
             $table->string('group_name', 2000)->nullable();

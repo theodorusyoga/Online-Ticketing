@@ -2,6 +2,22 @@ import $ from 'jquery';
 import axios from 'axios';
 import Cookie from 'js-cookie'
 require('./bootstrap');
+window.Vue = require('vue');
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('register-step1', require('./components/RegisterStep1.vue'));
+Vue.component('register-step2', require('./components/RegisterStep2.vue'));
+Vue.component('register-step3', require('./components/RegisterStep3.vue'));
+Vue.component('register-finish', require('./components/RegisterFinish.vue'));
+
+const app = new Vue({
+    el: '#app'
+});
 
 const onScroll = () => {
     const scroll = $('html, body').scrollTop();
@@ -75,6 +91,7 @@ $(document).ready(() => {
 
     $('.navbar-toggler').click(() => {
         const opened = $('.navbar-collapse').hasClass('active');
+        console.log(opened)
         if(opened){
             $('.navbar-collapse').removeClass('active');
             const scroll = $('html, body').scrollTop();

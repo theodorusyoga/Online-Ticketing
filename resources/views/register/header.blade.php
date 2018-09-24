@@ -4,6 +4,6 @@
             <img class="header-bottom-image" src="/img/buildings.png" />
         </div>
         <div class="container">
-            <countdown></countdown>
+            <Countdown></Countdown>
         </div>
 </div>

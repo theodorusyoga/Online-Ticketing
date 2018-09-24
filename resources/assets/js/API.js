@@ -32,7 +32,7 @@ export const postData = (payload) => {
 }
 
 export const postDataStep2 = (payload) => {
-  
+
   setInterceptors('form')
   let data = new FormData()
   data.append('user_id', payload.user_id)

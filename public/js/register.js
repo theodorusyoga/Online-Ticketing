@@ -107,7 +107,7 @@ module.exports = __webpack_require__(204);
 
 window.Vue = __webpack_require__(40);
 
-Vue.component('countdown', __webpack_require__(205));
+Vue.component('Countdown', __webpack_require__(205));
 
 var app = new Vue({
     el: '#register'
@@ -212,12 +212,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'Countdown',
     beforeMount: function beforeMount() {
         var _this = this;
 
-        this.count = __WEBPACK_IMPORTED_MODULE_0_countdown___default()(new Date(2018, 9, 18, 12, 0, 0));
+        this.count = __WEBPACK_IMPORTED_MODULE_0_countdown___default()(new Date(2019, 1, 14, 12, 0, 0), null, __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.DAYS | __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.HOURS | __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.MINUTES | __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.SECONDS);
         setInterval(function () {
-            _this.count = __WEBPACK_IMPORTED_MODULE_0_countdown___default()(new Date(2018, 9, 18, 12, 0, 0));
+            _this.count = __WEBPACK_IMPORTED_MODULE_0_countdown___default()(new Date(2019, 1, 14, 12, 0, 0), null, __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.DAYS | __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.HOURS | __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.MINUTES | __WEBPACK_IMPORTED_MODULE_0_countdown___default.a.SECONDS);
         }, 1000);
     },
     data: function data() {

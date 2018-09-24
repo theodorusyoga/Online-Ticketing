@@ -161,7 +161,7 @@
         this.dataStep3.domicile_city = domicile_city,
         this.dataStep3.phone_number = phone_number,
         this.dataStep3.email = email
-      
+
       },
 
       async handleSubmitStep3(e) {
@@ -169,7 +169,11 @@
 
         const result = await getRequestPayment(this.dataStep3)
         .catch(Error => console.log(Error))
-        console.log(result)
+        if(result.data.status === 0) {
+            window.location.replace(result.data.url)
+        } else {
+            console.log('error')
+        }
       }
     }
   }

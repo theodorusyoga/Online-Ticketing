@@ -40,10 +40,11 @@
 <script>
     import countdown from 'countdown';
     export default {
+        name: 'Countdown',
         beforeMount() {
-            this.count = countdown(new Date(2018, 9, 18, 12, 0, 0));
+            this.count = countdown(new Date(2019, 1, 14, 12, 0, 0), null, countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
             setInterval(() => {
-                this.count = countdown(new Date(2018, 9, 18, 12, 0, 0));
+                this.count = countdown(new Date(2019, 1, 14, 12, 0, 0), null, countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
             }, 1000);
         },
         data() {

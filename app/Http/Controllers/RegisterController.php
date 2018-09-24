@@ -19,14 +19,14 @@ class RegisterController extends Controller
         $ticket_type = strtolower($ticket_type);
         $count = OrderDetails::where('ticket_type', $ticket_type)->count();
         $uniqueid = str_pad(($count + 1), 4, '0', STR_PAD_LEFT);
-        $prefix = 'WGG';
+        $prefix = 'WGG19';
         $ticket_short = '';
         switch($ticket_type){
             case 'bronze':
                 $ticket_short = 'BRZ';
                 break;
             case 'silver':
-                $ticket_short = 'SLVR';
+                $ticket_short = 'SLR';
                 break;
             case 'gold':
                 $ticket_short = 'GLD';

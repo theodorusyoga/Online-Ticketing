@@ -18,7 +18,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('user_id')->unique();
             $table->string('registration_type');
             $table->string('job_status');
-            $table->string('group_name', 2000);
+            $table->string('group_name', 2000)->nullable();
             $table->string('ticket_type');
             $table->integer('ticket_amount');
             $table->boolean('transport_to_hotel');

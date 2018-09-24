@@ -35,19 +35,6 @@
               </div>
               <form @submit="handleSubmit">
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect2"
-                  v-model="dataRegister.job_status" required
-                  placeholder="tes">
-                    <option value="" disabled selected>Status Pekerjaan</option>
-                    <option value="pelajar">Pelajar</option>
-                    <option value="nonpelajar">Non Pelajar</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" v-model="dataRegister.group_name"
-                  id="exampleFormControlInput1" placeholder="Nama Grup" required>
-                </div>
-                <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect3"
                   v-model="dataRegister.ticket_type" required
                   placeholder="tes">
@@ -63,6 +50,15 @@
                   <span class="label-jumlah-tiket">Tuliskan angka 1 - 100</span>
                 </div>
                 <div class="form-group">
+                  <select class="form-control" id="exampleFormControlSelect2"
+                  v-model="dataRegister.job_status" required
+                  placeholder="tes">
+                    <option value="" disabled selected>Status Pekerjaan</option>
+                    <option value="pelajar">Pelajar</option>
+                    <option value="nonpelajar">Non Pelajar</option>
+                  </select>
+                </div>
+                <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect1"
                   v-model="dataRegister.registration_type"
                   placeholder="tes" required disabled="true">
@@ -70,6 +66,10 @@
                     <option value="perseorangan">Perseorangan</option>
                     <option value="group">Group</option>
                   </select>
+                </div>
+                <div class="form-group">
+                  <input v-if="dataRegister.registration_type == 'group'" type="text" class="form-control" v-model="dataRegister.group_name"
+                  id="exampleFormControlInput1" placeholder="Nama Grup" required>
                 </div>
                  <div class="form-group">
                     <div class="label-radio">Transportasi Dari Airport ke Hotel</div>

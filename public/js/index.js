@@ -65844,95 +65844,6 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.dataRegister.job_status,
-                          expression: "dataRegister.job_status"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "exampleFormControlSelect2",
-                        required: "",
-                        placeholder: "tes"
-                      },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.dataRegister,
-                            "job_status",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c(
-                        "option",
-                        { attrs: { value: "", disabled: "", selected: "" } },
-                        [_vm._v("Status Pekerjaan")]
-                      ),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "pelajar" } }, [
-                        _vm._v("Pelajar")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "nonpelajar" } }, [
-                        _vm._v("Non Pelajar")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.dataRegister.group_name,
-                        expression: "dataRegister.group_name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "exampleFormControlInput1",
-                      placeholder: "Nama Grup",
-                      required: ""
-                    },
-                    domProps: { value: _vm.dataRegister.group_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.dataRegister,
-                          "group_name",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
                           value: _vm.dataRegister.ticket_type,
                           expression: "dataRegister.ticket_type"
                         }
@@ -66026,6 +65937,62 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
+                          value: _vm.dataRegister.job_status,
+                          expression: "dataRegister.job_status"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "exampleFormControlSelect2",
+                        required: "",
+                        placeholder: "tes"
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.dataRegister,
+                            "job_status",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "", disabled: "", selected: "" } },
+                        [_vm._v("Status Pekerjaan")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "pelajar" } }, [
+                        _vm._v("Pelajar")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "nonpelajar" } }, [
+                        _vm._v("Non Pelajar")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
                           value: _vm.dataRegister.registration_type,
                           expression: "dataRegister.registration_type"
                         }
@@ -66073,6 +66040,41 @@ var render = function() {
                       ])
                     ]
                   )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _vm.dataRegister.registration_type == "group"
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.dataRegister.group_name,
+                            expression: "dataRegister.group_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "exampleFormControlInput1",
+                          placeholder: "Nama Grup",
+                          required: ""
+                        },
+                        domProps: { value: _vm.dataRegister.group_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.dataRegister,
+                              "group_name",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [

@@ -1,9 +1,9 @@
 {
+    "/js/index.js": "/js/index.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/register.css": "/css/register.css",
     "/css/donation.css": "/css/donation.css",
     "/css/register-step.css": "/css/register-step.css",
-    "/js/index.js": "/js/index.js",
     "/js/register.js": "/js/register.js"
 }

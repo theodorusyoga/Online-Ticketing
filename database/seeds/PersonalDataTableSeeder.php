@@ -12,9 +12,10 @@ class PersonalDataTableSeeder extends Seeder
     public function run()
     {
         $data1 = array(
-            'user_id' => 'c75fb240-565e-459f-83f9-422f37e9c60d',
+            'user_id' => 'WGGBRZ0001',
             'identity_card' => '0123456789101112',
             'identity_card_photo' => '/img/andy.png',
+            'student_card_photo' => '/img/andy.png',
             'fullname' => 'Andy',
             'email' => 'andy@test.com',
             'phone_number' => '0811111111',
@@ -25,9 +26,10 @@ class PersonalDataTableSeeder extends Seeder
             'updated_at' => '2018-09-02 00:00:00'
         );
         $data2 = array(
-            'user_id' => '6ea51174-8db6-4e7d-909d-bc535010f5fb',
+            'user_id' => 'WGGGLD0001',
             'identity_card' => '2233445566778899',
             'identity_card_photo' => '/img/jerome.png',
+            'student_card_photo' => '/img/jerome.png',
             'fullname' => 'Jerome',
             'email' => 'jerome@test.com',
             'phone_number' => '08222222222',

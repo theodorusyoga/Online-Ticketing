@@ -32,7 +32,7 @@ export const postData = (payload) => {
 }
 
 export const postDataStep2 = (payload) => {
-  // console.log('--->', payload.user_id)
+  
   setInterceptors('form')
   let data = new FormData()
   data.append('user_id', payload.user_id)
@@ -44,12 +44,39 @@ export const postDataStep2 = (payload) => {
   data.append('domicile_city', payload.domicile_city)
   data.append('age', payload.age)
   data.append('identity_card_photo', payload.identity_card_photo)
-  // console.log('---> ini', data)
 
   const config = {
     url: `${baseURL}/step2`,
     method: 'post',
     data: data
   };
+  return axios(config)
+}
+
+export const getDataRegisterStep1 = (params) => {
+  setInterceptors('json')
+  const config = {
+    url: `${baseURL}/step1?user_id=${params}`,
+    method: 'get'
+  }
+  return axios(config)
+}
+
+export const getDataRegisterStep2 = (params) => {
+  setInterceptors('json')
+  const config = {
+    url: `${baseURL}/step2?user_id=${params}`,
+    method: 'get'
+  }
+  return axios(config)
+}
+
+export const getRequestPayment = (payload) => {
+  setInterceptors('json')
+  const config = {
+    url: `${baseURL}/request-payment`,
+    method: 'post',
+    data: payload
+  }
   return axios(config)
 }

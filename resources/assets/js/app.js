@@ -18,6 +18,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('register-step1', require('./components/RegisterStep1.vue'));
 Vue.component('register-step2', require('./components/RegisterStep2.vue'));
 Vue.component('register-step3', require('./components/RegisterStep3.vue'));
+Vue.component('register-finish', require('./components/RegisterFinish.vue'));
 
 const app = new Vue({
     el: '#app'

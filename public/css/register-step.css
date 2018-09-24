@@ -420,3 +420,33 @@
   cursor: pointer;
 }
 
+.register-finish-wrapper {
+  margin-top: 60px;
+  display: grid;
+}
+
+.register-finish-wrapper .register-finish {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.register-finish-wrapper .register-finish h1 {
+  font-size: 18px;
+}
+
+.register-finish-wrapper .register-finish .wrapper-logo {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.register-finish-wrapper .register-finish p {
+  max-width: 290px;
+  margin: 0 auto;
+  font-size: 16px;
+  letter-spacing: -0.6px;
+  text-align: center;
+  color: #363a41;
+}
+

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 register-finish-wrapper">
         <div class="register-finish">
-          <H1 class="detil-order text-center">Pemesanan Selesai</H1>
+          <H1 class="detil-order text-center">Transaksi Selesai</H1>
           <div class="wrapper-logo">
             <img width="100" height="100" src="/img/its-time-gradient.png" alt="Global UPR" />
           </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Veritrans\Veritrans;
+use App\PaymentData;
 
 class PaymentController extends Controller
 {
@@ -134,5 +135,19 @@ class PaymentController extends Controller
                 'url' => 'Error occured'
             ));
         }
+    }
+
+    public function paymentNotification(Request $req){
+        $user_id = $req['order_id'];
+        $transaction_date = $req['transaction_time'] . ' +GMT0700';
+        $status_code = $req['status_code'];
+        $message = $req['status_message'];
+        $signature_key = $req['signature_key'];
+        $payment_type = $req['payment_type'];
+        $masked_card = $req['masked_card'];
+        $gross_amount = $req['gross_amount'];
+        $channel_response_message = $req['channel_response_message'];
+        $bank = $req['bank'];
+        $approval_code = $req['approval_code'];
     }
 }

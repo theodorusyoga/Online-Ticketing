@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $user_id
- * @property string $request_date
- * @property string $expired_date
- * @property float $ticket_price
- * @property string $booking_code
- * @property float $total_price
+ * @property string $transaction_date
+ * @property string $status_code
+ * @property string $message
+ * @property string $signature_key
+ * @property string $payment_type
+ * @property string $masked_card
+ * @property float $gross_amount
+ * @property string $channel_response_message
+ * @property string $bank
+ * @property string $approval_code
  * @property string $created_at
  * @property string $updated_at
  */
@@ -27,6 +32,6 @@ class PaymentData extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'request_date', 'expired_date', 'ticket_price', 'booking_code', 'total_price', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'transaction_date', 'status_code', 'message', 'signature_key', 'payment_type', 'masked_card', 'gross_amount', 'channel_response_message', 'bank', 'approval_code', 'created_at', 'updated_at'];
 
 }

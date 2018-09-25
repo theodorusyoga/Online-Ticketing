@@ -149,5 +149,32 @@ class PaymentController extends Controller
         $channel_response_message = $req['channel_response_message'];
         $bank = $req['bank'];
         $approval_code = $req['approval_code'];
+
+        $paymentdata = new PaymentData();
+        $paymentdata->user_id = $user_id;
+        $paymentdata->transaction_date = $transaction_date;
+        $paymentdata->status_code = $status_code;
+        $paymentdata->message = $message;
+        $paymentdata->signature_key = $signature_key;
+        $paymentdata->payment_type = $payment_type;
+        $paymentdata->masked_card = $masked_card;
+        $paymentdata->gross_amount = $gross_amount;
+        $paymentdata->channel_response_message = $channel_response_message;
+        $paymentdata->bank = $bank;
+        $paymentdata->approval_code = $approval_code;
+
+        try{
+            $paymentdata->save();
+            return json_encode(array(
+                'status' => 0,
+                'message' => 'Payment notification saved'
+            ));
+        }
+        catch(QueryException $e){
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'Unknown error while saving'
+            ));
+        }
     }
 }

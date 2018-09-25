@@ -26,7 +26,7 @@ class PaymentController extends Controller
         $user_id = $req['user_id'];
         $ticket_type = $req['ticket_type'];
         $ticket_type = strtolower($ticket_type);
-        $student_card = $req['student_card'];
+        $student_card = $req['student_card_photo'];
         $name = $req['name'];
         $domicile = $req['domicile'];
         $domicile_city = $req['domicile_city'];

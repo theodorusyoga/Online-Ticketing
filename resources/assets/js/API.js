@@ -19,7 +19,7 @@ const setInterceptors = (type) => {
     })
 }
 
-const baseURL = 'http://localhost:8000/api'
+const baseURL = '/api'
 
 export const postData = (payload) => {
     setInterceptors('json')
@@ -44,6 +44,7 @@ export const postDataStep2 = (payload) => {
   data.append('domicile_city', payload.domicile_city)
   data.append('age', payload.age)
   data.append('identity_card_photo', payload.identity_card_photo)
+  data.append('student_card_photo', payload.student_card_photo)
 
   const config = {
     url: `${baseURL}/step2`,

@@ -15,6 +15,28 @@ class RegisterController extends Controller
         return view('register.index');
     }
 
+    public function generateUniqueNumber($ticket_type){
+        $ticket_type = strtolower($ticket_type);
+        $count = OrderDetails::where('ticket_type', $ticket_type)->count();
+        $uniqueid = str_pad(($count + 1), 4, '0', STR_PAD_LEFT);
+        $prefix = 'WGG19';
+        $ticket_short = '';
+        switch($ticket_type){
+            case 'bronze':
+                $ticket_short = 'BRZ';
+                break;
+            case 'silver':
+                $ticket_short = 'SLR';
+                break;
+            case 'gold':
+                $ticket_short = 'GLD';
+                break;
+            default:
+                break;
+        }
+        return $prefix . $ticket_short . $uniqueid;
+    }
+
     public function getRegisterStep1(Request $req){
         $user_id = $req['user_id'];
         if($user_id == '') {
@@ -60,11 +82,11 @@ class RegisterController extends Controller
     }
 
     public function registerStep1(Request $req){
-        $user_id = $this->gen_uuid();
         $registration_type = $req['registration_type'];
         $job_status = $req['job_status'];
         $group_name = $req['group_name'];
-        $ticket_type = $req['ticket_type'];
+        $ticket_type = strtolower($req['ticket_type']);
+        $user_id = $this->generateUniqueNumber($ticket_type);
         $ticket_amount = $req['ticket_amount'];
         $transport_to_hotel = $req['transport_to_hotel'];
         $orderdetails = new OrderDetails;
@@ -118,6 +140,12 @@ class RegisterController extends Controller
             $path = $file->store('public/registerfiles');
             $file = Storage::url($path);
             $personaldata->identity_card_photo = $file;
+        }
+        if($req->file('student_card_photo') != null){
+            $file = $req->file('student_card_photo');
+            $path = $file->store('public/registerfiles');
+            $file = Storage::url($path);
+            $personaldata->student_card_photo = $file;
         }
 
         try{

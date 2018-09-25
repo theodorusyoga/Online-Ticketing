@@ -15,10 +15,10 @@ class CreatePersonalDataTable extends Migration
     {
         Schema::create('personal_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('user_id');
-            $table->foreign('user_id')->references('user_id')->on('order_details');
+            $table->string('user_id');
             $table->string('identity_card');
             $table->string('identity_card_photo');
+            $table->string('student_card_photo');
             $table->string('fullname');
             $table->string('email');
             $table->string('phone_number');

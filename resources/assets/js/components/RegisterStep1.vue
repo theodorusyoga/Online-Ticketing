@@ -35,14 +35,19 @@
               </div>
               <form @submit="handleSubmit">
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect1"
-                  v-model="dataRegister.registration_type"
-                    @change="changeRegistrationType"
-                  placeholder="tes" required>
-                    <option value="" disabled selected>Jenis Pendaftaran</option>
-                    <option value="perseorangan">Perseorangan</option>
-                    <option value="group">Group</option>
+                  <select class="form-control" id="exampleFormControlSelect3"
+                  v-model="dataRegister.ticket_type" required
+                  placeholder="tes">
+                    <option value="" disabled selected>Jenis Tiket</option>
+                    <option>Gold</option>
+                    <option>Silver</option>
+                    <option>Bronze</option>
                   </select>
+                </div>
+                <div class="form-group">
+                  <input :min="minTicket" type="number" class="form-control" id="exampleFormControlInput2" v-model="dataRegister.ticket_amount" placeholder="Jumlah Tiket"
+                  @keyup="changeTicketAmount" required>
+                  <span class="label-jumlah-tiket">Tuliskan angka 1 - 100</span>
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect2"
@@ -54,31 +59,28 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" v-model="dataRegister.group_name"
-                  id="exampleFormControlInput1" placeholder="Nama Grup" required>
-                </div>
-                <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect3"
-                  v-model="dataRegister.ticket_type" required
-                  placeholder="tes">
-                    <option value="" disabled selected>Jenis Tiket</option>
-                    <option>Gold</option>
-                    <option>Silver</option>
-                    <option>Bronze</option>
+                  <select class="form-control" id="exampleFormControlSelect1"
+                  v-model="dataRegister.registration_type"
+                  placeholder="tes" required disabled="true">
+                    <option value="" disabled selected>Jenis Pendaftaran</option>
+                    <option value="perseorangan">Perseorangan</option>
+                    <option value="group">Group</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <input :min="minTicket" type="number" class="form-control" id="exampleFormControlInput2" v-model="dataRegister.ticket_amount" placeholder="Jumlah Tiket" required>
-                  <label class="label-jumlah-tiket">Tuliskan angka 1 - 100</label>
+                  <input v-if="dataRegister.registration_type == 'group'" type="text" class="form-control" v-model="dataRegister.group_name"
+                  id="exampleFormControlInput1" placeholder="Nama Grup" required>
                 </div>
-                <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required>
-                  <label class="form-check-label" for="inlineRadio1">Ya</label>
+                 <div class="form-group">
+                    <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required>
+                    <label class="form-check-label" for="inlineRadio1">Ya</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel">
+                    <label class="form-check-label" for="inlineRadio2">Tidak</label>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel">
-                  <label class="form-check-label" for="inlineRadio2">Tidak</label>
                 </div>
                 <div class="btn-wrapper">
                   <button type="submit" class="btn btn-primary btn-custom"
@@ -111,7 +113,7 @@ import { getToken } from '../index.js'
             ticket_amount: '',
             transport_to_hotel: ''
           },
-          minTicket: 0,
+          minTicket: 1,
           isLoading: false
         }
       },
@@ -124,13 +126,14 @@ import { getToken } from '../index.js'
           this.isLoading = false
           window.location.replace(`/register/step2/${data.data.user_id}`)
         },
-        changeRegistrationType(e) {
-          const type = e.target.value
-          if(type === 'perseorangan'){
-            this.minTicket = 0
+        changeTicketAmount(e) {
+          const amount = e.target.value
+          if(amount > 0 && amount < 10){
+            this.dataRegister.registration_type = 'perseorangan'
+          } else if(amount >= 10) {
+            this.dataRegister.registration_type = 'group'
           } else {
-            this.minTicket = 10
-            this.dataRegister.ticket_amount = 10
+            this.dataRegister.registration_type = ''
           }
         }
       }

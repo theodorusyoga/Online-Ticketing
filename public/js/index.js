@@ -65567,7 +65567,7 @@ var content = __webpack_require__(182);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("05d8db3a", content, false, {});
+var update = __webpack_require__(17)("0dad6203", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66320,7 +66320,7 @@ var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("647f569f", content, false, {});
+var update = __webpack_require__(17)("7519263f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66487,8 +66487,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       reader.readAsDataURL(file);
       reader.onloadend = function () {
-        _this.identity_card_photo_base64 = reader.result;
-        _this.dataStep2.identity_card_photo = file;
+        var image = new Image();
+        image.onload = function (e) {
+          var canvas = document.createElement('canvas');
+          var newSize = calculateAspectRatioFit(image.width, image.height, 600, 600);
+          canvas.width = newSize.width;
+          canvas.height = newSize.height;
+          canvas.getContext('2d').drawImage(image, 0, 0, newSize.width, newSize.height);
+          var base64Result = canvas.toDataURL('image/jpeg');
+          _this.identity_card_photo_base64 = base64Result;
+          _this.dataStep2.identity_card_photo = base64ToFile(base64Result, file.name);
+        };
+        image.src = reader.result;
       };
     },
     onStudentCardChange: function onStudentCardChange(e) {
@@ -66501,8 +66511,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       reader.readAsDataURL(file);
       reader.onloadend = function () {
-        _this2.student_card_photo_base64 = reader.result;
-        _this2.dataStep2.student_card_photo = file;
+        var image = new Image();
+        image.onload = function (e) {
+          var canvas = document.createElement('canvas');
+          var newSize = calculateAspectRatioFit(image.width, image.height, 600, 600);
+          canvas.width = newSize.width;
+          canvas.height = newSize.height;
+          canvas.getContext('2d').drawImage(image, 0, 0, newSize.width, newSize.height);
+          var base64Result = canvas.toDataURL('image/jpeg');
+          _this2.student_card_photo_base64 = base64Result;
+          _this2.dataStep2.student_card_photo = base64ToFile(base64Result, file.name);
+        };
+        image.src = reader.result;
       };
     },
     handleSubmitStep2: function () {
@@ -66552,6 +66572,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }()
   }
 });
+
+var base64ToFile = function base64ToFile(base64, filename) {
+  var blobBin = atob(base64.split(',')[1]);
+  var array = [];
+  for (var i = 0; i < blobBin.length; i++) {
+    array.push(blobBin.charCodeAt(i));
+  }
+  var file = new File([new Uint8Array(array)], filename, { type: 'image/jpeg' });
+  return file;
+};
+
+var calculateAspectRatioFit = function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+  var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+  return { width: srcWidth * ratio, height: srcHeight * ratio };
+};
 
 /***/ }),
 /* 190 */
@@ -67006,7 +67041,7 @@ var content = __webpack_require__(193);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("0703228a", content, false, {});
+var update = __webpack_require__(17)("0d183e5b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67900,7 +67935,7 @@ var content = __webpack_require__(200);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("3c9f69ea", content, false, {});
+var update = __webpack_require__(17)("3f3f8e4a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

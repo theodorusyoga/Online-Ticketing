@@ -139,7 +139,7 @@ class PaymentController extends Controller
 
     public function paymentNotification(Request $req){
         $user_id = $req['order_id'];
-        $transaction_date = $req['transaction_time'] . ' +GMT0700';
+        $transaction_date = $req['transaction_time'];
         $status_code = $req['status_code'];
         $message = $req['status_message'];
         $signature_key = $req['signature_key'];

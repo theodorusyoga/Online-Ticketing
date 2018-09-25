@@ -120,8 +120,20 @@ import { postDataStep2 } from '../API.js';
 
         reader.readAsDataURL(file)
         reader.onloadend = () => {
-          this.identity_card_photo_base64 = reader.result
-          this.dataStep2.identity_card_photo = file
+          const image = new Image()
+          image.onload = (e) => {
+            var canvas = document.createElement('canvas')
+            const newSize = calculateAspectRatioFit(
+              image.width, image.height, 600, 600
+            )
+            canvas.width = newSize.width
+            canvas.height = newSize.height
+            canvas.getContext('2d').drawImage(image, 0, 0, newSize.width, newSize.height);
+            const base64Result = canvas.toDataURL('image/jpeg')
+            this.identity_card_photo_base64 = base64Result
+            this.dataStep2.identity_card_photo = base64ToFile(base64Result, file.name)
+          }
+          image.src = reader.result
         }
 
       },
@@ -133,8 +145,20 @@ import { postDataStep2 } from '../API.js';
 
         reader.readAsDataURL(file)
         reader.onloadend = () => {
-          this.student_card_photo_base64 = reader.result
-          this.dataStep2.student_card_photo = file
+          const image = new Image()
+          image.onload = (e) => {
+            var canvas = document.createElement('canvas')
+            const newSize = calculateAspectRatioFit(
+              image.width, image.height, 600, 600
+            )
+            canvas.width = newSize.width
+            canvas.height = newSize.height
+            canvas.getContext('2d').drawImage(image, 0, 0, newSize.width, newSize.height);
+            const base64Result = canvas.toDataURL('image/jpeg')
+            this.student_card_photo_base64 =base64Result
+            this.dataStep2.student_card_photo = base64ToFile(base64Result, file.name)
+          }
+           image.src = reader.result
         }
 
       },
@@ -151,6 +175,21 @@ import { postDataStep2 } from '../API.js';
       }
     }
   }
+
+const base64ToFile = (base64, filename) => {
+  var blobBin = atob(base64.split(',')[1]);
+  var array = [];
+    for(var i = 0; i < blobBin.length; i++) {
+    array.push(blobBin.charCodeAt(i));
+  }
+  var file=new File([new Uint8Array(array)], filename, {type: 'image/jpeg'});
+  return file
+}
+
+const calculateAspectRatioFit = (srcWidth, srcHeight, maxWidth, maxHeight) => {
+    var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+    return { width: srcWidth*ratio, height: srcHeight*ratio };
+ }
 </script>
 
 <style lang="scss" scoped>

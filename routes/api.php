@@ -31,4 +31,5 @@ Route::get('/step2', 'RegisterController@getRegisterStep2')->middleware(CheckJWT
 
 // Veritrans
 Route::post('/request-payment', 'PaymentController@requestVeritransUrl')->middleware(CheckJWT::class);
+Route::post('/payment', 'PaymentController@paymentNotification');
 

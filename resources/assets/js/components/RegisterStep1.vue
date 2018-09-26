@@ -24,18 +24,22 @@
             </div>
             <div class="register-step1-content">
               <H1 class="detil-order">Detil Order</H1>
-              <div class="content-header">
-                <h5>Product</h5>
-                <h3>TWC - Regular</h3>
+              <div class="content-header" v-if="packaging.length > 0">
+                <h3>{{priceList[0]}} - {{priceList[1]}}</h3>
                 <div class="content-header-title">
-                  <h5>Gold - Rp 2,550,000</h5>
-                  <h5>Silver - Rp 1,650,000</h5>
-                  <h5>Bronze - Rp 650,000</h5>
+                  <ul v-for="(p, index) in packaging" :key="p">
+                    <li>
+                      <span>{{index+1}}.</span>
+                      <span>{{p}}</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <form @submit="handleSubmit">
                 <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect3"
+                  <select class="form-control"
+                  @change="showPackage"
+                  id="exampleFormControlSelect3"
                   v-model="dataRegister.ticket_type" required
                   placeholder="tes">
                     <option value="" disabled selected>Jenis Tiket</option>
@@ -71,16 +75,16 @@
                   <input v-if="dataRegister.registration_type == 'group'" type="text" class="form-control" v-model="dataRegister.group_name"
                   id="exampleFormControlInput1" placeholder="Nama Grup" required>
                 </div>
-                 <div class="form-group">
-                    <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
-                    <div class="form-check form-check-inline">
+                <div class="form-group" v-if="dataRegister.ticket_type === 'Bronze'">
+                  <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
+                  <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required>
                     <label class="form-check-label" for="inlineRadio1">Ya</label>
-                    </div>
-                    <div class="form-check form-check-inline">
+                  </div>
+                  <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel">
                     <label class="form-check-label" for="inlineRadio2">Tidak</label>
-                </div>
+                  </div>
                 </div>
                 <div class="btn-wrapper">
                   <button type="submit" class="btn btn-primary btn-custom"
@@ -114,7 +118,30 @@ import { getToken } from '../index.js'
             transport_to_hotel: ''
           },
           minTicket: 1,
-          isLoading: false
+          isLoading: false,
+          packaging: [],
+          priceList: [],
+          goldPackage: [
+            'Tiket konfrensi selama konfrensi berlangsung.',
+            'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.',
+            'Sarapan dan 2 kali makan selama konfrensi berlangsung.',
+            'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.',
+            ' Harga spesial untuk group register.'
+          ],
+          silverPackage: [
+            'Tiket konfrensi selama konfrensi berlangsung.',
+            'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.',
+            'Sarapan dan 2 kali makan selama konfrensi berlangsung.',
+            'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.','Harga spesial untuk pelajar/mahasiswa.',
+            'Harga spesial untuk group register.'
+          ],
+          bronzepackage: [
+            'Tiket konfrensi selama 4 hari.',
+            'Termasuk 2 makan selama konfrensi berlangsung.',
+            'Harga spesial untuk pelajar/mahasiswa.',
+            'Harga sama untuk individual maupun kelompok.',
+            'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.','Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi'
+          ]
         }
       },
       methods: {
@@ -125,6 +152,21 @@ import { getToken } from '../index.js'
           const data = await postData(this.dataRegister)
           this.isLoading = false
           window.location.replace(`/register/step2/${data.data.user_id}`)
+        },
+        showPackage() {
+          const { ticket_type } = this.dataRegister
+          if (ticket_type === 'Gold') {
+            this.packaging = this.goldPackage
+            this.priceList = ['Gold', 'RP. 2.150.000']
+          } else if (ticket_type === 'Silver') {
+            this.packaging = this.silverPackage
+            this.priceList = ['Silver', 'RP. 1.650.000']
+          } else if (ticket_type === 'Bronze') {
+            this.packaging = this.bronzepackage
+            this.priceList = ['Bronze', 'RP. 650.000']
+          } else {
+            this.packaging = []
+          }
         },
         changeTicketAmount(e) {
           const amount = e.target.value

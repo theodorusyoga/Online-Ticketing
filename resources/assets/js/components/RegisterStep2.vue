@@ -66,10 +66,10 @@
                   <input type="text" class="form-control" placeholder="Nomor Handphone" v-model="dataStep2.phone_number" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Domisili" v-model="dataStep2.domicile" required>
+                  <input type="text" class="form-control" placeholder="Nama Provinsi" v-model="dataStep2.domicile" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Kota Domisili" v-model="dataStep2.domicile_city" required>
+                  <input type="text" class="form-control" placeholder="Nama Kota" v-model="dataStep2.domicile_city" required>
                 </div>
                 <div class="form-group">
                   <input type="number" class="form-control" placeholder="Usia" v-model="dataStep2.age" required>

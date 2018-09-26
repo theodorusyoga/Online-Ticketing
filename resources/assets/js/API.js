@@ -54,6 +54,16 @@ export const postDataStep2 = (payload) => {
   return axios(config)
 }
 
+export const login = (payload) => {
+  setInterceptors('json')
+  const config = {
+    url: `${baseURL}/login`,
+    method: 'post',
+    data: payload
+  }
+  return axios(config)
+}
+
 export const getDataRegisterStep1 = (params) => {
   setInterceptors('json')
   const config = {

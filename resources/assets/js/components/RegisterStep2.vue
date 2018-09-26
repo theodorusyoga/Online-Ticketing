@@ -7,7 +7,7 @@
               <ul class="wizard">
                 <li class="wizard-step-2">
                   <a href="#1" class="wizard-step-link">
-                    <span class="wizard-caption">Data Diri</span>
+                    <span class="wizard-caption">Detil Order</span>
                   </a>
                 </li>
                 <li class="wizard-step">
@@ -26,7 +26,7 @@
               <H1 class="detil-order">Detil Order</H1>
               <form @submit="handleSubmitStep2">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nomor KTP" v-model="dataStep2.identity_card" required>
+                  <input type="text" class="form-control" :placeholder="dataStep1.job_status === 'pelajar' ? 'Nomor Kartu Pelajar' : 'Nomor KTP'" v-model="dataStep2.identity_card" required>
                 </div>
                 <div class="form-group">
                   <div class="upload-btn-wrapper">
@@ -36,11 +36,11 @@
                     </div>
                     <div class="label-upload" v-else>
                       <span><i class="fas fa-camera"></i></span>
-                      <div>Upload KTP</div>
+                      <div>{{dataStep1.job_status === 'pelajar' ? 'Upload Foto Kartu Pelajar' : 'Upload Foto KTP'}}</div>
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <div class="upload-btn-wrapper">
                     <input type="file" name="myfile" @change="onStudentCardChange" />
                     <div className="preview" v-if="dataStep2.student_card_photo">
@@ -51,7 +51,7 @@
                       <div>Upload Kartu Pelajar (Opsional)</div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Nama Lengkap" v-model="dataStep2.fullname" required>
                 </div>
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { postDataStep2 } from '../API.js';
+import { postDataStep2, getDataRegisterStep1} from '../API.js';
   export default {
     name: 'register-step2',
     data () {
@@ -105,13 +105,25 @@ import { postDataStep2 } from '../API.js';
           identity_card_photo: '',
           student_card_photo: ''
         },
+        dataStep1: {},
         identity_card_photo_base64: '',
         student_card_photo_base64: '',
         isEmailError: false,
         isLoading: false
       }
     },
+    async mounted() {
+      this.getDataStep1(this.dataStep2.user_id)
+    },
     methods: {
+      async getDataStep1() {
+        const dataStep1 = await getDataRegisterStep1(this.dataStep2.user_id)
+        if (dataStep1.data.data) {
+          this.dataStep1 = JSON.parse(dataStep1.data.data)
+          console.log(this.dataStep1)
+        }
+        
+      },
       onFileChange(e) {
         e.preventDefault()
 

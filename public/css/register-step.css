@@ -261,6 +261,16 @@
   margin-bottom: 5px;
 }
 
+.main .register-step1 .register-step1-content .content-header .content-header-title ul {
+  margin-bottom: 4px;
+}
+
+.main .register-step1 .register-step1-content .content-header .content-header-title ul li {
+  list-style: none;
+  position: relative;
+  left: -38px;
+}
+
 .main .register-step1 .register-step1-content input::-webkit-input-placeholder {
   font-size: 14px;
 }

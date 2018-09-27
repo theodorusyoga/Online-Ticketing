@@ -96,6 +96,7 @@
 </template>
 
 <script>
+  import Cookie from 'js-cookie';
   import { getDataRegisterStep1, getDataRegisterStep2, getRequestPayment } from '../API.js';
   import { IDRFormatter, dateInWordsWithTime, expiredDate } from '../helpers/textFormatter.js';
   export default {
@@ -137,10 +138,22 @@
         return expiredDate(this.dataStep2.created_at)
       }
     },
-    mounted() {
-      this.getData(this.id)
+     beforeCreate() {
+      const token = Cookie.get('token')
+      if (!token) {
+        window.location.replace('/')
+      }
+    },
+    async mounted() {
+      await this.getData(this.id)
+      await this.navigationGuards()
     },
     methods: {
+      navigationGuards() {
+        if (this.dataStep1.user_id !== this.id) {
+         window.location.replace('/')
+        }
+      },
       async getData(id) {
         const dataStep1 = await getDataRegisterStep1(id)
         const dataStep2 = await getDataRegisterStep2(id)

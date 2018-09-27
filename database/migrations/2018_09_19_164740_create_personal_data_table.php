@@ -18,7 +18,6 @@ class CreatePersonalDataTable extends Migration
             $table->string('user_id');
             $table->string('identity_card');
             $table->string('identity_card_photo');
-            $table->string('student_card_photo');
             $table->string('fullname');
             $table->string('email');
             $table->string('phone_number');

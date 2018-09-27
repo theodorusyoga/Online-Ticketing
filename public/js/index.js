@@ -66024,6 +66024,7 @@ var render = function() {
                     domProps: { value: _vm.dataRegister.ticket_amount },
                     on: {
                       keyup: _vm.changeTicketAmount,
+                      change: _vm.changeTicketAmount,
                       input: function($event) {
                         if ($event.target.composing) {
                           return

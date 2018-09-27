@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group">
                   <input :min="minTicket" type="number" class="form-control" id="exampleFormControlInput2" v-model="dataRegister.ticket_amount" placeholder="Jumlah Tiket"
-                  @keyup="changeTicketAmount" required>
+                  @keyup="changeTicketAmount" @change="changeTicketAmount" required>
                   <span class="label-jumlah-tiket">Tuliskan angka 1 - 100</span>
                 </div>
                 <div class="form-group">

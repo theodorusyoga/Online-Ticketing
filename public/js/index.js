@@ -67250,8 +67250,10 @@ exports.push([module.i, "\n.form-error[data-v-5d34f75d] {\n  border: 1px solid r
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__API_js__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_textFormatter_js__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_cookie__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__API_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__ = __webpack_require__(195);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -67356,6 +67358,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'register-step3',
   data: function data() {
@@ -67387,41 +67390,76 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       } else {
         grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000;
       }
-      return Object(__WEBPACK_IMPORTED_MODULE_2__helpers_textFormatter_js__["a" /* IDRFormatter */])(grandTotal);
+      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["a" /* IDRFormatter */])(grandTotal);
     },
     ticket_price_formatter: function ticket_price_formatter() {
-      return Object(__WEBPACK_IMPORTED_MODULE_2__helpers_textFormatter_js__["a" /* IDRFormatter */])(this.ticket_price);
+      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["a" /* IDRFormatter */])(this.ticket_price);
     },
     getRegistrationDate: function getRegistrationDate() {
-      return Object(__WEBPACK_IMPORTED_MODULE_2__helpers_textFormatter_js__["b" /* dateInWordsWithTime */])(this.dataStep2.created_at);
+      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["b" /* dateInWordsWithTime */])(this.dataStep2.created_at);
     },
     getExpiredDate: function getExpiredDate() {
-      return Object(__WEBPACK_IMPORTED_MODULE_2__helpers_textFormatter_js__["c" /* expiredDate */])(this.dataStep2.created_at);
+      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["c" /* expiredDate */])(this.dataStep2.created_at);
     }
   },
-  mounted: function mounted() {
-    this.getData(this.id);
+  beforeCreate: function beforeCreate() {
+    var token = __WEBPACK_IMPORTED_MODULE_1_js_cookie___default.a.get('token');
+    if (!token) {
+      window.location.replace('/');
+    }
   },
+  mounted: function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return this.getData(this.id);
+
+            case 2:
+              _context.next = 4;
+              return this.navigationGuards();
+
+            case 4:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+
+    function mounted() {
+      return _ref.apply(this, arguments);
+    }
+
+    return mounted;
+  }(),
 
   methods: {
+    navigationGuards: function navigationGuards() {
+      if (this.dataStep1.user_id !== this.id) {
+        window.location.replace('/');
+      }
+    },
     getData: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(id) {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(id) {
         var dataStep1, dataStep2, _dataStep2, ticket_type, ticket_amount, user_id, _dataStep3, name, domicile, domicile_city, phone_number, email, student_card_photo, ticket;
 
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["b" /* getDataRegisterStep1 */])(id);
+                _context2.next = 2;
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["b" /* getDataRegisterStep1 */])(id);
 
               case 2:
-                dataStep1 = _context.sent;
-                _context.next = 5;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["c" /* getDataRegisterStep2 */])(id);
+                dataStep1 = _context2.sent;
+                _context2.next = 5;
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["c" /* getDataRegisterStep2 */])(id);
 
               case 5:
-                dataStep2 = _context.sent;
+                dataStep2 = _context2.sent;
 
                 this.dataStep1 = JSON.parse(dataStep1.data.data);
                 this.dataStep2 = JSON.parse(dataStep2.data.data);
@@ -67453,34 +67491,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 23:
               case 'end':
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getData(_x) {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       }
 
       return getData;
     }(),
     handleSubmitStep3: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(e) {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(e) {
         var result;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 e.preventDefault();
                 this.isLoading = true;
-                _context2.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["d" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
+                _context3.next = 4;
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["d" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
                   return console.log(Error);
                 });
 
               case 4:
-                result = _context2.sent;
+                result = _context3.sent;
 
                 if (result.data.status === 0) {
                   window.location.replace(result.data.url);
@@ -67491,14 +67529,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 7:
               case 'end':
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function handleSubmitStep3(_x2) {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       }
 
       return handleSubmitStep3;

@@ -65791,8 +65791,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       isLoading: false,
       packaging: [],
       priceList: [],
-      goldPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.', ' Harga spesial untuk group register.'],
-      silverPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga spesial untuk group register.'],
+      goldPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.', ' Harga spesial untuk group register.'],
+      silverPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga spesial untuk group register.'],
       bronzepackage: ['Tiket konfrensi selama 4 hari.', 'Termasuk 2 makan selama konfrensi berlangsung.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga sama untuk individual maupun kelompok.', 'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.', 'Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi'],
       isGroupNameValid: true
     };
@@ -65875,13 +65875,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       if (ticket_type === 'Gold') {
         this.packaging = this.goldPackage;
-        this.priceList = ['Gold', 'RP. 2.150.000'];
+        this.priceList = ['Gold', 'Rp. 2.150.000'];
       } else if (ticket_type === 'Silver') {
         this.packaging = this.silverPackage;
-        this.priceList = ['Silver', 'RP. 1.650.000'];
+        this.priceList = ['Silver', 'Rp. 1.650.000'];
       } else if (ticket_type === 'Bronze') {
         this.packaging = this.bronzepackage;
-        this.priceList = ['Bronze', 'RP. 650.000'];
+        this.priceList = ['Bronze', 'Rp. 650.000'];
       } else {
         this.packaging = [];
       }
@@ -66474,7 +66474,9 @@ exports.push([module.i, "\n.form-error[data-v-5d26dfdc] {\n  border: 1px solid r
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__API_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_cookie__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__API_js__ = __webpack_require__(18);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -66569,6 +66571,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'register-step2',
   data: function data() {
@@ -66593,15 +66596,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       isLoading: false
     };
   },
+  beforeCreate: function beforeCreate() {
+    var token = __WEBPACK_IMPORTED_MODULE_1_js_cookie___default.a.get('token');
+    if (!token) {
+      window.location.replace('/');
+    }
+  },
   mounted: function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              this.getDataStep1(this.dataStep2.user_id);
+              _context.next = 2;
+              return this.getDataStep1(this.dataStep2.user_id);
 
-            case 1:
+            case 2:
+              _context.next = 4;
+              return this.navigationGuards();
+
+            case 4:
             case 'end':
               return _context.stop();
           }
@@ -66617,6 +66631,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   }(),
 
   methods: {
+    navigationGuards: function navigationGuards() {
+      if (this.dataStep1.user_id !== this.dataStep2.user_id) {
+        window.location.replace('/');
+      }
+    },
     getDataStep1: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
         var dataStep1;
@@ -66625,14 +66644,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["b" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["b" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
 
               case 2:
                 dataStep1 = _context2.sent;
 
                 if (dataStep1.data.data) {
                   this.dataStep1 = JSON.parse(dataStep1.data.data);
-                  console.log(this.dataStep1);
                 }
 
               case 4:
@@ -66720,7 +66738,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 7:
                 this.isLoading = true;
                 _context3.next = 10;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["g" /* postDataStep2 */])(this.dataStep2);
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["g" /* postDataStep2 */])(this.dataStep2);
 
               case 10:
                 response = _context3.sent;
@@ -66861,7 +66879,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      placeholder: "Nama Lengkap",
+                      placeholder: "Nama Lengkap (Sesuai Kartu Identitas)",
                       required: ""
                     },
                     domProps: { value: _vm.dataStep2.fullname },

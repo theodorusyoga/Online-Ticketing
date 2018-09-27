@@ -18852,12 +18852,13 @@ module.exports = function(module) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return postData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return postDataStep2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return login; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getDataRegisterStep1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getDataRegisterStep2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getRequestPayment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return postData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return postDataStep2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return checkGroupName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getDataRegisterStep1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getDataRegisterStep2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getRequestPayment; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(40);
@@ -18922,6 +18923,16 @@ var login = function login(payload) {
   setInterceptors('json');
   var config = {
     url: baseURL + '/login',
+    method: 'post',
+    data: payload
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
+var checkGroupName = function checkGroupName(payload) {
+  setInterceptors('json');
+  var config = {
+    url: baseURL + '/check-group-name',
     method: 'post',
     data: payload
   };
@@ -65759,6 +65770,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -65780,14 +65793,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       priceList: [],
       goldPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.', ' Harga spesial untuk group register.'],
       silverPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga spesial untuk group register.'],
-      bronzepackage: ['Tiket konfrensi selama 4 hari.', 'Termasuk 2 makan selama konfrensi berlangsung.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga sama untuk individual maupun kelompok.', 'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.', 'Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi']
+      bronzepackage: ['Tiket konfrensi selama 4 hari.', 'Termasuk 2 makan selama konfrensi berlangsung.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga sama untuk individual maupun kelompok.', 'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.', 'Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi'],
+      isGroupNameValid: true
     };
   },
 
   methods: {
     handleSubmit: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(e) {
-        var data;
+        var checkgroup, data;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -65798,16 +65812,51 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 return Object(__WEBPACK_IMPORTED_MODULE_2__index_js__["getToken"])();
 
               case 4:
-                _context.next = 6;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["e" /* postData */])(this.dataRegister);
+                if (!(this.dataRegister.ticket_amount >= 10)) {
+                  _context.next = 17;
+                  break;
+                }
 
-              case 6:
+                _context.next = 7;
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["a" /* checkGroupName */])({
+                  group_name: this.dataRegister.group_name
+                });
+
+              case 7:
+                checkgroup = _context.sent;
+
+                if (!(checkgroup.data.status === 0)) {
+                  _context.next = 12;
+                  break;
+                }
+
+                this.isGroupNameValid = true;
+                _context.next = 15;
+                break;
+
+              case 12:
+                this.isGroupNameValid = false;
+                this.isLoading = false;
+                return _context.abrupt('return');
+
+              case 15:
+                _context.next = 18;
+                break;
+
+              case 17:
+                this.isGroupNameValid = true;
+
+              case 18:
+                _context.next = 20;
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["f" /* postData */])(this.dataRegister);
+
+              case 20:
                 data = _context.sent;
 
                 this.isLoading = false;
                 window.location.replace('/register/step2/' + data.data.user_id);
 
-              case 9:
+              case 23:
               case 'end':
                 return _context.stop();
             }
@@ -66118,6 +66167,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        class: { "form-error": !_vm.isGroupNameValid },
                         attrs: {
                           type: "text",
                           id: "exampleFormControlInput1",
@@ -66138,6 +66188,13 @@ var render = function() {
                           }
                         }
                       })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.isGroupNameValid &&
+                  _vm.dataRegister.registration_type == "group"
+                    ? _c("span", { staticClass: "error" }, [
+                        _vm._v("Nama grup sudah dipakai")
+                      ])
                     : _vm._e()
                 ]),
                 _vm._v(" "),
@@ -66568,7 +66625,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["a" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["b" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
 
               case 2:
                 dataStep1 = _context2.sent;
@@ -66663,7 +66720,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 7:
                 this.isLoading = true;
                 _context3.next = 10;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["f" /* postDataStep2 */])(this.dataStep2);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["g" /* postDataStep2 */])(this.dataStep2);
 
               case 10:
                 response = _context3.sent;
@@ -67339,12 +67396,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["a" /* getDataRegisterStep1 */])(id);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["b" /* getDataRegisterStep1 */])(id);
 
               case 2:
                 dataStep1 = _context.sent;
                 _context.next = 5;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["b" /* getDataRegisterStep2 */])(id);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["c" /* getDataRegisterStep2 */])(id);
 
               case 5:
                 dataStep2 = _context.sent;
@@ -67401,7 +67458,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 e.preventDefault();
                 this.isLoading = true;
                 _context2.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["c" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["d" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
                   return console.log(Error);
                 });
 
@@ -68348,7 +68405,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 e.preventDefault();
                 this.isLoading = true;
                 _context.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["d" /* login */])(this.dataLogin);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["e" /* login */])(this.dataLogin);
 
               case 4:
                 data = _context.sent;

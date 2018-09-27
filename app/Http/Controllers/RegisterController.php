@@ -81,6 +81,26 @@ class RegisterController extends Controller
         }
     }
 
+    public function checkGroupName(Request $req){
+        $group_name = $req['group_name'];
+        $count =  OrderDetails::where('group_name', $group_name)->count();
+        $valid = false;
+        if($count === 0){
+            $valid = true;
+        }
+        if($valid) {
+            return json_encode(array(
+                'status' => 0,
+                'message' => 'Group name valid'
+            ));
+        } else {
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'Error: Group name invalid'
+            ));
+        }
+    }
+
     public function registerStep1(Request $req){
         $registration_type = $req['registration_type'];
         $job_status = $req['job_status'];

@@ -72,8 +72,10 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <input v-if="dataRegister.registration_type == 'group'" type="text" class="form-control" v-model="dataRegister.group_name"
+                  <input v-if="dataRegister.registration_type == 'group'" type="text" class="form-control"
+                  :class="{'form-error' : !isGroupNameValid}" v-model="dataRegister.group_name"
                   id="exampleFormControlInput1" placeholder="Nama Grup" required>
+                   <span class="error" v-if="!isGroupNameValid && dataRegister.registration_type == 'group'">Nama grup sudah dipakai</span>
                 </div>
                 <div class="form-group" v-if="dataRegister.ticket_type === 'Bronze'">
                   <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
@@ -103,7 +105,7 @@
 </template>
 
 <script>
-import { postData } from '../API.js';
+import { postData, checkGroupName } from '../API.js';
 import { getToken } from '../index.js'
     export default {
       name: 'register-step1',
@@ -141,7 +143,8 @@ import { getToken } from '../index.js'
             'Harga spesial untuk pelajar/mahasiswa.',
             'Harga sama untuk individual maupun kelompok.',
             'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.','Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi'
-          ]
+          ],
+          isGroupNameValid: true
         }
       },
       methods: {
@@ -149,6 +152,23 @@ import { getToken } from '../index.js'
           e.preventDefault()
           this.isLoading = true
           await getToken()
+
+          // check group name
+          if(this.dataRegister.ticket_amount >= 10) {
+              const checkgroup = await checkGroupName({
+                  group_name: this.dataRegister.group_name
+              })
+              if(checkgroup.data.status === 0){
+                  this.isGroupNameValid = true;
+              } else {
+                  this.isGroupNameValid = false;
+                   this.isLoading = false;
+                  return;
+              }
+          } else {
+              this.isGroupNameValid = true;
+          }
+
           const data = await postData(this.dataRegister)
           this.isLoading = false
           window.location.replace(`/register/step2/${data.data.user_id}`)

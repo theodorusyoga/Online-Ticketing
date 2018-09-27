@@ -64,6 +64,16 @@ export const login = (payload) => {
   return axios(config)
 }
 
+export const checkGroupName = (payload) => {
+    setInterceptors('json')
+    const config = {
+      url: `${baseURL}/check-group-name`,
+      method: 'post',
+      data: payload
+    }
+    return axios(config)
+  }
+
 export const getDataRegisterStep1 = (params) => {
   setInterceptors('json')
   const config = {

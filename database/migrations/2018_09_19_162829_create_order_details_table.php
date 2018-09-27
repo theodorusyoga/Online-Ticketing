@@ -21,7 +21,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('group_name', 2000)->nullable();
             $table->string('ticket_type');
             $table->integer('ticket_amount');
-            $table->boolean('transport_to_hotel');
+            $table->boolean('transport_to_hotel')->nullable();
             $table->timestamps();
         });
     }

@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie';
 import { postDataStep2, getDataRegisterStep1} from '../API.js';
   export default {
     name: 'register-step2',
@@ -112,10 +113,22 @@ import { postDataStep2, getDataRegisterStep1} from '../API.js';
         isLoading: false
       }
     },
+    beforeCreate() {
+      const token = Cookie.get('token')
+      if (!token) {
+        window.location.replace('/')
+      }
+    },
     async mounted() {
-      this.getDataStep1(this.dataStep2.user_id)
+      await this.getDataStep1(this.dataStep2.user_id)
+      await this.navigationGuards()
     },
     methods: {
+      navigationGuards() {
+        if (this.dataStep1.user_id !== this.dataStep2.user_id) {
+         window.location.replace('/')
+        }
+      },
       async getDataStep1() {
         const dataStep1 = await getDataRegisterStep1(this.dataStep2.user_id)
         if (dataStep1.data.data) {

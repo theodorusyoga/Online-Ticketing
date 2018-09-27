@@ -65778,8 +65778,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       isLoading: false,
       packaging: [],
       priceList: [],
-      goldPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.', ' Harga spesial untuk group register.'],
-      silverPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga spesial untuk group register.'],
+      goldPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.', ' Harga spesial untuk group register.'],
+      silverPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga spesial untuk group register.'],
       bronzepackage: ['Tiket konfrensi selama 4 hari.', 'Termasuk 2 makan selama konfrensi berlangsung.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga sama untuk individual maupun kelompok.', 'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.', 'Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi']
     };
   },
@@ -65826,13 +65826,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       if (ticket_type === 'Gold') {
         this.packaging = this.goldPackage;
-        this.priceList = ['Gold', 'RP. 2.150.000'];
+        this.priceList = ['Gold', 'Rp. 2.150.000'];
       } else if (ticket_type === 'Silver') {
         this.packaging = this.silverPackage;
-        this.priceList = ['Silver', 'RP. 1.650.000'];
+        this.priceList = ['Silver', 'Rp. 1.650.000'];
       } else if (ticket_type === 'Bronze') {
         this.packaging = this.bronzepackage;
-        this.priceList = ['Bronze', 'RP. 650.000'];
+        this.priceList = ['Bronze', 'Rp. 650.000'];
       } else {
         this.packaging = [];
       }
@@ -66575,7 +66575,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                 if (dataStep1.data.data) {
                   this.dataStep1 = JSON.parse(dataStep1.data.data);
-                  console.log(this.dataStep1);
                 }
 
               case 4:
@@ -66804,7 +66803,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      placeholder: "Nama Lengkap",
+                      placeholder: "Nama Lengkap (Sesuai Kartu Identitas)",
                       required: ""
                     },
                     domProps: { value: _vm.dataStep2.fullname },

@@ -125,14 +125,14 @@ import { getToken } from '../index.js'
             'Tiket konfrensi selama konfrensi berlangsung.',
             'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.',
             'Sarapan dan 2 kali makan selama konfrensi berlangsung.',
-            'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.',
+            'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.',
             ' Harga spesial untuk group register.'
           ],
           silverPackage: [
             'Tiket konfrensi selama konfrensi berlangsung.',
             'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.',
             'Sarapan dan 2 kali makan selama konfrensi berlangsung.',
-            'Sudah termasuk akomodasi dari airpot ke hotel dan dari hotel ke bandara.','Harga spesial untuk pelajar/mahasiswa.',
+            'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.','Harga spesial untuk pelajar/mahasiswa.',
             'Harga spesial untuk group register.'
           ],
           bronzepackage: [
@@ -157,13 +157,13 @@ import { getToken } from '../index.js'
           const { ticket_type } = this.dataRegister
           if (ticket_type === 'Gold') {
             this.packaging = this.goldPackage
-            this.priceList = ['Gold', 'RP. 2.150.000']
+            this.priceList = ['Gold', 'Rp. 2.150.000']
           } else if (ticket_type === 'Silver') {
             this.packaging = this.silverPackage
-            this.priceList = ['Silver', 'RP. 1.650.000']
+            this.priceList = ['Silver', 'Rp. 1.650.000']
           } else if (ticket_type === 'Bronze') {
             this.packaging = this.bronzepackage
-            this.priceList = ['Bronze', 'RP. 650.000']
+            this.priceList = ['Bronze', 'Rp. 650.000']
           } else {
             this.packaging = []
           }

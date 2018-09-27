@@ -66594,8 +66594,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                 if (dataStep1.data.data) {
                   this.dataStep1 = JSON.parse(dataStep1.data.data);
-                  console.log(this.dataStep1.user_id);
-                  console.log(this.dataStep2.user_id);
                 }
 
               case 4:

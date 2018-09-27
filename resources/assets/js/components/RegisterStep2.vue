@@ -63,7 +63,7 @@
                   <span class="error" v-if="isEmailError">Email tidak sesuai.</span>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nomor Handphone" v-model="dataStep2.phone_number" required>
+                    <the-mask mask="+62-##############" class="form-control" placeholder="Nomor Handphone" v-model="dataStep2.phone_number" required/>
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Nama Provinsi" v-model="dataStep2.domicile" required>
@@ -88,9 +88,14 @@
 
 <script>
 import Cookie from 'js-cookie';
+import { TheMask } from 'vue-the-mask'
 import { postDataStep2, getDataRegisterStep1} from '../API.js';
+
   export default {
     name: 'register-step2',
+    components: {
+        TheMask
+    },
     data () {
       return {
         dataStep2: {
@@ -99,7 +104,7 @@ import { postDataStep2, getDataRegisterStep1} from '../API.js';
           fullname: '',
           email: '',
           confirmEmail: '',
-          phone_number: '',
+          phone_number: ' ',
           domicile: '',
           domicile_city: '',
           age: '',
@@ -134,7 +139,7 @@ import { postDataStep2, getDataRegisterStep1} from '../API.js';
         if (dataStep1.data.data) {
           this.dataStep1 = JSON.parse(dataStep1.data.data)
         }
-        
+
       },
       onFileChange(e) {
         e.preventDefault()

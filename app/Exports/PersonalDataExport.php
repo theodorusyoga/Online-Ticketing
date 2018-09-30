@@ -33,7 +33,7 @@ class PersonalDataExport implements FromCollection, WithHeadings
         $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] ;
         $personaldata = PersonalData::all();
         foreach ($personaldata as $data) {
-            $data->identity_card_photo = str_replace('/storage/', '/storage/public/', $data->identity_card_photo);
+            $data->identity_card_photo = str_replace('/storage/', '/storage/app/public/', $data->identity_card_photo);
             $data->identity_card_photo =  $root . $data->identity_card_photo;
         }
         return $personaldata;

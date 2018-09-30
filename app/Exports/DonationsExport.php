@@ -30,7 +30,7 @@ class DonationsExport implements FromCollection, WithHeadings
         $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] ;
         $donations = Donation::all();
         foreach ($donations as $donation) {
-            $donation->file = str_replace('/storage/', '/storage/public/', $donation->file);
+            $donation->file = str_replace('/storage/', '/storage/app/public/', $donation->file);
             $donation->file = $root . $donation->file;
         }
         return $donations;

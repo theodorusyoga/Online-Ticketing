@@ -68970,7 +68970,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       return downloadFiles;
     }(),
     logout: function logout() {
-      e.preventDefault();
       __WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.remove('token');
       window.location.replace('/');
     }

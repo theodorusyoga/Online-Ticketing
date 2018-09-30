@@ -93,7 +93,6 @@ import Cookie from 'js-cookie'
         this.isLoading = false
       },
       logout() {
-        e.preventDefault();
         Cookie.remove('token');
         window.location.replace('/');
       }

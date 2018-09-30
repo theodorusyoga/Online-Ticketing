@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', 'AuthController@auth');
+Route::post('/admin', 'AuthController@authAdmin');
 Route::get('/get-donations', 'GeneralFormController@getDonations')->middleware(CheckJWT::class);
 Route::get('/get-user-types', 'GeneralFormController@getUserTypes')->middleware(CheckJWT::class);
 Route::post('/join-volunteer', 'GeneralFormController@joinVolunteer')->middleware(CheckJWT::class);
@@ -34,3 +35,8 @@ Route::post('/check-group-name', 'RegisterController@checkGroupName')->middlewar
 Route::post('/request-payment', 'PaymentController@requestVeritransUrl')->middleware(CheckJWT::class);
 Route::post('/payment', 'PaymentController@paymentNotification');
 
+// Download Excel
+Route::get('/download-donations', 'ExcelController@downloadDonations')->middleware(CheckJWT::class);
+Route::get('/download-volunteers', 'ExcelController@downloadVolunteers')->middleware(CheckJWT::class);
+Route::get('/download-order-details', 'ExcelController@downloadOrderDetails')->middleware(CheckJWT::class);
+Route::get('/download-personal-data', 'ExcelController@downloadPersonalData')->middleware(CheckJWT::class);

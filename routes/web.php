@@ -35,6 +35,10 @@ Route::get('/login', function () {
     return view('register.login');
 });
 
+Route::get('/dashboard', function () {
+    return view('register.dashboard');
+});
+
 Route::get('/donation', 'DonationController@index');
 
 Route::get('/register', 'RegisterController@index');

@@ -1,5 +1,8 @@
 <template>
     <div class="container main mx-auto">
+      <div class="image-title text-center mt-4">
+        <img src="/img/its-time-gradient.png" height="200"/>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="mx-auto register-step1">
@@ -13,7 +16,7 @@
               <H1 class="detil-order">Login</H1>
               <form @submit="handleSubmit">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="exampleFormControlInput1" v-model="dataLogin.email" placeholder="Email" required>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" v-model="dataLogin.email" placeholder="Email atau Username" required>
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control" id="exampleFormControlInput2" v-model="dataLogin.password" placeholder="Password" required>
@@ -35,7 +38,7 @@
 </template>
 
 <script>
-import { login } from '../API.js';
+import { loginAdmin } from '../API.js';
 import Cookie from 'js-cookie'
   export default {
     name: 'login',
@@ -62,15 +65,18 @@ import Cookie from 'js-cookie'
       async handleSubmit(e) {
         e.preventDefault()
         this.isLoading = true
-        const data = await login(this.dataLogin)
+        const data = await loginAdmin(this.dataLogin)
         if (data.data.token) {
           Cookie.set('token', data.data.token)
           this.errorMessage = ''
-          this.message = 'Succes Login'
+          this.message = 'Login berhasil. Mengarahkan dalam 2 detik...'
+          setTimeout(() => {
+            window.location.replace('/dashboard');
+          }, 2000);
           this.dataLogin = {}
         } else {
           this.message = ''
-          this.errorMessage = 'Email atau password Anda Salah'
+          this.errorMessage = 'Email atau password Anda salah'
         }
         this.isLoading = false
       }

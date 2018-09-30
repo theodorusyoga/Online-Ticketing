@@ -1,4 +1,4 @@
-@extends('master')
+@extends('registerHome')
 
 @section('styles')
 <link href="/css/register.css" rel="stylesheet" type="text/css">
@@ -17,6 +17,9 @@
 @endcomponent
 
 @component('dashboard.footer')
+@endcomponent
+
+@component('donation.volunteer')
 @endcomponent
 
 @endsection

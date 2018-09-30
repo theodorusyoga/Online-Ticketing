@@ -5,9 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="title" content="World Generation Gathering - Global UPR">
-        <meta name="description" content="4 hari konfrensi doa yang akan mengubah dunia. Segera daftarkan diri Anda sekarang!">
-        <title>World Generation Gathering - Global UPR</title>
+        <meta name="title" content="Registrasi | World Generation Gathering - Global UPR">
+        <meta name="description" content="Segera daftaran diri Anda dalam konfrensi doa yang akan mengubah dunia!">
+        <title>Registrasi | World Generation Gathering - Global UPR</title>
         <link rel="icon" type="image/png" href="favicon.png">
         @component('include')
         @endcomponent

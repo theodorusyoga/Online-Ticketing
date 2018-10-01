@@ -1,4 +1,4 @@
-@extends('master')
+@extends('donation')
 
 @section('content')
 

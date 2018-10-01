@@ -2,6 +2,25 @@
   border: 1px solid red;
 }
 
+.btn-custom {
+  max-width: 327px;
+  width: 100%;
+  background-color: #f4511e;
+  border: 1px solid #f4511e;
+}
+
+.menu .btn-custom {
+  margin-bottom: 10px;
+}
+
+.menu .btn-logout {
+  max-width: 327px;
+  width: 100%;
+  background-color: #fff;
+  color: #f4511e;
+  border: 1px solid #f4511e;
+}
+
 .error {
   color: red;
   font-size: 12px;
@@ -307,13 +326,6 @@
 
 .main .register-step1 .register-step1-content .btn-wrapper {
   margin-top: 28px;
-}
-
-.main .register-step1 .register-step1-content .btn-wrapper .btn-custom {
-  max-width: 327px;
-  width: 100%;
-  background-color: #f4511e;
-  border: 1px solid #f4511e;
 }
 
 .main .register-step1 .register-step1-content .kode-invoice {

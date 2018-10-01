@@ -64,6 +64,16 @@ export const login = (payload) => {
   return axios(config)
 }
 
+export const loginAdmin = (payload) => {
+    setInterceptors('json')
+    const config = {
+      url: `${baseURL}/admin`,
+      method: 'post',
+      data: payload
+    }
+    return axios(config)
+}
+
 export const checkGroupName = (payload) => {
     setInterceptors('json')
     const config = {
@@ -100,4 +110,44 @@ export const getRequestPayment = (payload) => {
     data: payload
   }
   return axios(config)
+}
+
+export const downloadDonations = () => {
+    setInterceptors('json')
+    const config = {
+      url: `${baseURL}/download-donations`,
+      method: 'get',
+      responseType: 'blob'
+    }
+    return axios(config)
+}
+
+export const downloadVolunteers = () => {
+    setInterceptors('json')
+    const config = {
+      url: `${baseURL}/download-volunteers`,
+      method: 'get',
+      responseType: 'blob'
+    }
+    return axios(config)
+}
+
+export const downloadOrderDetails = () => {
+    setInterceptors('json')
+    const config = {
+      url: `${baseURL}/download-order-details`,
+      method: 'get',
+      responseType: 'blob'
+    }
+    return axios(config)
+}
+
+export const downloadPersonalData = () => {
+    setInterceptors('json')
+    const config = {
+      url: `${baseURL}/download-personal-data`,
+      method: 'get',
+      responseType: 'blob'
+    }
+    return axios(config)
 }

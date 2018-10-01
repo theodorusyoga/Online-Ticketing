@@ -1902,7 +1902,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(196)("./" + name);
+                __webpack_require__(197)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4574,7 +4574,7 @@
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
 
 /***/ }),
 /* 1 */
@@ -18595,6 +18595,181 @@ module.exports = __webpack_require__(175);
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.2.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				// We're using "expires" because "max-age" is not supported by IE
+				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				var stringifiedAttributes = '';
+
+				for (var attributeName in attributes) {
+					if (!attributes[attributeName]) {
+						continue;
+					}
+					stringifiedAttributes += '; ' + attributeName;
+					if (attributes[attributeName] === true) {
+						continue;
+					}
+					stringifiedAttributes += '=' + attributes[attributeName];
+				}
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (!this.json && cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
@@ -18820,7 +18995,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -18848,195 +19023,25 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * JavaScript Cookie v2.2.0
- * https://github.com/js-cookie/js-cookie
- *
- * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
- * Released under the MIT license
- */
-;(function (factory) {
-	var registeredInModuleLoader = false;
-	if (true) {
-		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		registeredInModuleLoader = true;
-	}
-	if (true) {
-		module.exports = factory();
-		registeredInModuleLoader = true;
-	}
-	if (!registeredInModuleLoader) {
-		var OldCookies = window.Cookies;
-		var api = window.Cookies = factory();
-		api.noConflict = function () {
-			window.Cookies = OldCookies;
-			return api;
-		};
-	}
-}(function () {
-	function extend () {
-		var i = 0;
-		var result = {};
-		for (; i < arguments.length; i++) {
-			var attributes = arguments[ i ];
-			for (var key in attributes) {
-				result[key] = attributes[key];
-			}
-		}
-		return result;
-	}
-
-	function init (converter) {
-		function api (key, value, attributes) {
-			var result;
-			if (typeof document === 'undefined') {
-				return;
-			}
-
-			// Write
-
-			if (arguments.length > 1) {
-				attributes = extend({
-					path: '/'
-				}, api.defaults, attributes);
-
-				if (typeof attributes.expires === 'number') {
-					var expires = new Date();
-					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
-					attributes.expires = expires;
-				}
-
-				// We're using "expires" because "max-age" is not supported by IE
-				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
-
-				try {
-					result = JSON.stringify(value);
-					if (/^[\{\[]/.test(result)) {
-						value = result;
-					}
-				} catch (e) {}
-
-				if (!converter.write) {
-					value = encodeURIComponent(String(value))
-						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-				} else {
-					value = converter.write(value, key);
-				}
-
-				key = encodeURIComponent(String(key));
-				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
-				key = key.replace(/[\(\)]/g, escape);
-
-				var stringifiedAttributes = '';
-
-				for (var attributeName in attributes) {
-					if (!attributes[attributeName]) {
-						continue;
-					}
-					stringifiedAttributes += '; ' + attributeName;
-					if (attributes[attributeName] === true) {
-						continue;
-					}
-					stringifiedAttributes += '=' + attributes[attributeName];
-				}
-				return (document.cookie = key + '=' + value + stringifiedAttributes);
-			}
-
-			// Read
-
-			if (!key) {
-				result = {};
-			}
-
-			// To prevent the for loop in the first place assign an empty array
-			// in case there are no cookies at all. Also prevents odd result when
-			// calling "get()"
-			var cookies = document.cookie ? document.cookie.split('; ') : [];
-			var rdecode = /(%[0-9A-Z]{2})+/g;
-			var i = 0;
-
-			for (; i < cookies.length; i++) {
-				var parts = cookies[i].split('=');
-				var cookie = parts.slice(1).join('=');
-
-				if (!this.json && cookie.charAt(0) === '"') {
-					cookie = cookie.slice(1, -1);
-				}
-
-				try {
-					var name = parts[0].replace(rdecode, decodeURIComponent);
-					cookie = converter.read ?
-						converter.read(cookie, name) : converter(cookie, name) ||
-						cookie.replace(rdecode, decodeURIComponent);
-
-					if (this.json) {
-						try {
-							cookie = JSON.parse(cookie);
-						} catch (e) {}
-					}
-
-					if (key === name) {
-						result = cookie;
-						break;
-					}
-
-					if (!key) {
-						result[name] = cookie;
-					}
-				} catch (e) {}
-			}
-
-			return result;
-		}
-
-		api.set = api;
-		api.get = function (key) {
-			return api.call(api, key);
-		};
-		api.getJSON = function () {
-			return api.apply({
-				json: true
-			}, [].slice.call(arguments));
-		};
-		api.defaults = {};
-
-		api.remove = function (key, attributes) {
-			api(key, '', extend(attributes, {
-				expires: -1
-			}));
-		};
-
-		api.withConverter = init;
-
-		return api;
-	}
-
-	return init(function () {});
-}));
-
-
-/***/ }),
 /* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return postData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return postDataStep2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return postData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return postDataStep2; });
+/* unused harmony export login */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return loginAdmin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return checkGroupName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getDataRegisterStep1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getDataRegisterStep2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getRequestPayment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getDataRegisterStep1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getDataRegisterStep2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getRequestPayment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return downloadDonations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return downloadVolunteers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return downloadOrderDetails; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return downloadPersonalData; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_cookie__);
 
 
@@ -19104,6 +19109,16 @@ var login = function login(payload) {
   return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
 };
 
+var loginAdmin = function loginAdmin(payload) {
+  setInterceptors('json');
+  var config = {
+    url: baseURL + '/admin',
+    method: 'post',
+    data: payload
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
 var checkGroupName = function checkGroupName(payload) {
   setInterceptors('json');
   var config = {
@@ -19138,6 +19153,46 @@ var getRequestPayment = function getRequestPayment(payload) {
     url: baseURL + '/request-payment',
     method: 'post',
     data: payload
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
+var downloadDonations = function downloadDonations() {
+  setInterceptors('json');
+  var config = {
+    url: baseURL + '/download-donations',
+    method: 'get',
+    responseType: 'blob'
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
+var downloadVolunteers = function downloadVolunteers() {
+  setInterceptors('json');
+  var config = {
+    url: baseURL + '/download-volunteers',
+    method: 'get',
+    responseType: 'blob'
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
+var downloadOrderDetails = function downloadOrderDetails() {
+  setInterceptors('json');
+  var config = {
+    url: baseURL + '/download-order-details',
+    method: 'get',
+    responseType: 'blob'
+  };
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
+};
+
+var downloadPersonalData = function downloadPersonalData() {
+  setInterceptors('json');
+  var config = {
+    url: baseURL + '/download-personal-data',
+    method: 'get',
+    responseType: 'blob'
   };
   return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
 };
@@ -36314,7 +36369,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(17)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(18)(module)))
 
 /***/ }),
 /* 22 */
@@ -52476,7 +52531,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_js_cookie__);
 
 
@@ -52498,9 +52553,10 @@ window.Vue = __webpack_require__(41);
 Vue.component('example-component', __webpack_require__(177));
 Vue.component('register-step1', __webpack_require__(180));
 Vue.component('register-step2', __webpack_require__(186));
-Vue.component('register-step3', __webpack_require__(191));
-Vue.component('register-finish', __webpack_require__(198));
-Vue.component('login', __webpack_require__(203));
+Vue.component('register-step3', __webpack_require__(192));
+Vue.component('register-finish', __webpack_require__(199));
+Vue.component('login', __webpack_require__(204));
+Vue.component('dashboard', __webpack_require__(221));
 
 var app = new Vue({
     el: '#app'
@@ -65590,7 +65646,7 @@ var content = __webpack_require__(182);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(16)("0dad6203", content, false, {});
+var update = __webpack_require__(17)("0dad6203", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -65614,7 +65670,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.form-error[data-v-5d18c85b] {\n  border: 1px solid red;\n}\n.error[data-v-5d18c85b] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-5d18c85b] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d18c85b] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d18c85b] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d18c85b] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d18c85b] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d18c85b]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d18c85b] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d18c85b]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d18c85b]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d18c85b] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d18c85b]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d18c85b] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d18c85b] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d18c85b] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d18c85b] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d18c85b] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d18c85b] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d18c85b] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-5d18c85b] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-5d18c85b] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d18c85b] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d18c85b] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d18c85b] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d18c85b] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d18c85b] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper .btn-custom[data-v-5d18c85b] {\n          max-width: 327px;\n          width: 100%;\n          background-color: #f4511e;\n          border: 1px solid #f4511e;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-5d18c85b] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-5d18c85b] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-5d18c85b] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-5d18c85b] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-5d18c85b] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-5d18c85b] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-5d18c85b] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-5d18c85b] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-5d18c85b] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-5d18c85b] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-5d18c85b] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-5d18c85b] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-5d18c85b] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-5d18c85b] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-5d18c85b] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-5d18c85b] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-5d18c85b] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-5d18c85b] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-5d18c85b] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-5d18c85b] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-5d18c85b] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-5d18c85b] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-5d18c85b] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
+exports.push([module.i, "\n.form-error[data-v-5d18c85b] {\n  border: 1px solid red;\n}\n.btn-custom[data-v-5d18c85b] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.menu .btn-custom[data-v-5d18c85b] {\n  margin-bottom: 10px;\n}\n.menu .btn-logout[data-v-5d18c85b] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #fff;\n  color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.error[data-v-5d18c85b] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-5d18c85b] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d18c85b] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d18c85b] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d18c85b] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d18c85b] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d18c85b]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d18c85b]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d18c85b] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d18c85b]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d18c85b]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d18c85b]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d18c85b] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d18c85b] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d18c85b]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d18c85b] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d18c85b] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d18c85b] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d18c85b] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d18c85b] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d18c85b] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d18c85b] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-5d18c85b] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-5d18c85b] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d18c85b]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d18c85b] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d18c85b] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d18c85b] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d18c85b] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d18c85b] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-5d18c85b] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-5d18c85b] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-5d18c85b] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-5d18c85b] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-5d18c85b] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-5d18c85b] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-5d18c85b] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-5d18c85b] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-5d18c85b] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-5d18c85b] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-5d18c85b] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-5d18c85b] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-5d18c85b] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-5d18c85b] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-5d18c85b] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-5d18c85b] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-5d18c85b] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-5d18c85b] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-5d18c85b] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-5d18c85b] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-5d18c85b] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-5d18c85b] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-5d18c85b] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
 
 // exports
 
@@ -65848,7 +65904,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 18:
                 _context.next = 20;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["f" /* postData */])(this.dataRegister);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["j" /* postData */])(this.dataRegister);
 
               case 20:
                 data = _context.sent;
@@ -66389,7 +66445,7 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(189)
 /* template */
-var __vue_template__ = __webpack_require__(190)
+var __vue_template__ = __webpack_require__(191)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66438,7 +66494,7 @@ var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(16)("7519263f", content, false, {});
+var update = __webpack_require__(17)("7519263f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66462,7 +66518,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.form-error[data-v-5d26dfdc] {\n  border: 1px solid red;\n}\n.error[data-v-5d26dfdc] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-5d26dfdc] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d26dfdc] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d26dfdc] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d26dfdc] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d26dfdc] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d26dfdc]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d26dfdc] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d26dfdc]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d26dfdc]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d26dfdc] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d26dfdc]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d26dfdc] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d26dfdc] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d26dfdc] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d26dfdc] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d26dfdc] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d26dfdc] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d26dfdc] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-5d26dfdc] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-5d26dfdc] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d26dfdc] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d26dfdc] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d26dfdc] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d26dfdc] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d26dfdc] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper .btn-custom[data-v-5d26dfdc] {\n          max-width: 327px;\n          width: 100%;\n          background-color: #f4511e;\n          border: 1px solid #f4511e;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-5d26dfdc] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-5d26dfdc] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-5d26dfdc] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-5d26dfdc] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-5d26dfdc] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-5d26dfdc] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-5d26dfdc] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-5d26dfdc] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-5d26dfdc] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-5d26dfdc] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-5d26dfdc] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-5d26dfdc] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-5d26dfdc] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-5d26dfdc] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-5d26dfdc] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-5d26dfdc] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-5d26dfdc] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-5d26dfdc] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-5d26dfdc] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-5d26dfdc] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-5d26dfdc] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-5d26dfdc] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-5d26dfdc] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
+exports.push([module.i, "\n.form-error[data-v-5d26dfdc] {\n  border: 1px solid red;\n}\n.btn-custom[data-v-5d26dfdc] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.menu .btn-custom[data-v-5d26dfdc] {\n  margin-bottom: 10px;\n}\n.menu .btn-logout[data-v-5d26dfdc] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #fff;\n  color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.error[data-v-5d26dfdc] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-5d26dfdc] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d26dfdc] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d26dfdc] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d26dfdc] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d26dfdc] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d26dfdc]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d26dfdc]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d26dfdc] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d26dfdc]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d26dfdc]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d26dfdc]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d26dfdc] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d26dfdc] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d26dfdc]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d26dfdc] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d26dfdc] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d26dfdc] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d26dfdc] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d26dfdc] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d26dfdc] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d26dfdc] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-5d26dfdc] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-5d26dfdc] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d26dfdc]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d26dfdc] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d26dfdc] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d26dfdc] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d26dfdc] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d26dfdc] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-5d26dfdc] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-5d26dfdc] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-5d26dfdc] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-5d26dfdc] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-5d26dfdc] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-5d26dfdc] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-5d26dfdc] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-5d26dfdc] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-5d26dfdc] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-5d26dfdc] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-5d26dfdc] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-5d26dfdc] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-5d26dfdc] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-5d26dfdc] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-5d26dfdc] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-5d26dfdc] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-5d26dfdc] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-5d26dfdc] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-5d26dfdc] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-5d26dfdc] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-5d26dfdc] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-5d26dfdc] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-5d26dfdc] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
 
 // exports
 
@@ -66475,9 +66531,9 @@ exports.push([module.i, "\n.form-error[data-v-5d26dfdc] {\n  border: 1px solid r
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_cookie__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_the_mask__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_the_mask__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_the_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_the_mask__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__API_js__ = __webpack_require__(19);
 
@@ -66652,7 +66708,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["b" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
+                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["f" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
 
               case 2:
                 dataStep1 = _context2.sent;
@@ -66746,7 +66802,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 7:
                 this.isLoading = true;
                 _context3.next = 10;
-                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["g" /* postDataStep2 */])(this.dataStep2);
+                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["k" /* postDataStep2 */])(this.dataStep2);
 
               case 10:
                 response = _context3.sent;
@@ -66788,6 +66844,12 @@ var calculateAspectRatioFit = function calculateAspectRatioFit(srcWidth, srcHeig
 
 /***/ }),
 /* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.VueTheMask=t():e.VueTheMask=t()})(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var a=n[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,t),a.l=!0,a.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p=".",t(t.s=10)}([function(e,t){e.exports={"#":{pattern:/\d/},X:{pattern:/[0-9a-zA-Z]/},S:{pattern:/[a-zA-Z]/},A:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleUpperCase()}},a:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleLowerCase()}},"!":{escape:!0}}},function(e,t,n){"use strict";function r(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!0),t}var a=n(2),o=n(0),i=n.n(o);t.a=function(e,t){var o=t.value;if((Array.isArray(o)||"string"==typeof o)&&(o={mask:o,tokens:i.a}),"INPUT"!==e.tagName.toLocaleUpperCase()){var u=e.getElementsByTagName("input");if(1!==u.length)throw new Error("v-mask directive requires 1 input, found "+u.length);e=u[0]}e.oninput=function(t){if(t.isTrusted){var i=e.selectionEnd,u=e.value[i-1];for(e.value=n.i(a.a)(e.value,o.mask,!0,o.tokens);i<e.value.length&&e.value.charAt(i-1)!==u;)i++;e===document.activeElement&&(e.setSelectionRange(i,i),setTimeout(function(){e.setSelectionRange(i,i)},0)),e.dispatchEvent(r("input"))}};var s=n.i(a.a)(e.value,o.mask,!0,o.tokens);s!==e.value&&(e.value=s,e.dispatchEvent(r("input")))}},function(e,t,n){"use strict";var r=n(6),a=n(5);t.a=function(e,t){var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=arguments[3];return Array.isArray(t)?n.i(a.a)(r.a,t,i)(e,t,o,i):n.i(r.a)(e,t,o,i)}},function(e,t,n){"use strict";function r(e){e.component(s.a.name,s.a),e.directive("mask",i.a)}Object.defineProperty(t,"__esModule",{value:!0});var a=n(0),o=n.n(a),i=n(1),u=n(7),s=n.n(u);n.d(t,"TheMask",function(){return s.a}),n.d(t,"mask",function(){return i.a}),n.d(t,"tokens",function(){return o.a}),n.d(t,"version",function(){return c});var c="0.11.1";t.default=r,"undefined"!=typeof window&&window.Vue&&window.Vue.use(r)},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1),a=n(0),o=n.n(a),i=n(2);t.default={name:"TheMask",props:{value:[String,Number],mask:{type:[String,Array],required:!0},masked:{type:Boolean,default:!1},tokens:{type:Object,default:function(){return o.a}}},directives:{mask:r.a},data:function(){return{lastValue:null,display:this.value}},watch:{value:function(e){e!==this.lastValue&&(this.display=e)},masked:function(){this.refresh(this.display)}},computed:{config:function(){return{mask:this.mask,tokens:this.tokens,masked:this.masked}}},methods:{onInput:function(e){e.isTrusted||this.refresh(e.target.value)},refresh:function(e){this.display=e;var e=n.i(i.a)(e,this.mask,this.masked,this.tokens);e!==this.lastValue&&(this.lastValue=e,this.$emit("input",e))}}}},function(e,t,n){"use strict";function r(e,t,n){return t=t.sort(function(e,t){return e.length-t.length}),function(r,a){for(var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=0;i<t.length;){var u=t[i];i++;var s=t[i];if(!(s&&e(r,s,!0,n).length>u.length))return e(r,u,o,n)}return""}}t.a=r},function(e,t,n){"use strict";function r(e,t){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=arguments[3];e=e||"",t=t||"";for(var a=0,o=0,i="";a<t.length&&o<e.length;){var u=t[a],s=r[u],c=e[o];s&&!s.escape?(s.pattern.test(c)&&(i+=s.transform?s.transform(c):c,a++),o++):(s&&s.escape&&(a++,u=t[a]),n&&(i+=u),c===u&&o++,a++)}for(var f="";a<t.length&&n;){var u=t[a];if(r[u]){f="";break}f+=u,a++}return i+f}t.a=r},function(e,t,n){var r=n(8)(n(4),n(9),null,null);e.exports=r.exports},function(e,t){e.exports=function(e,t,n,r){var a,o=e=e||{},i=typeof e.default;"object"!==i&&"function"!==i||(a=e,o=e.default);var u="function"==typeof o?o.options:o;if(t&&(u.render=t.render,u.staticRenderFns=t.staticRenderFns),n&&(u._scopeId=n),r){var s=u.computed||(u.computed={});Object.keys(r).forEach(function(e){var t=r[e];s[e]=function(){return t}})}return{esModule:a,exports:o,options:u}}},function(e,t){e.exports={render:function(){var e=this,t=e.$createElement;return(e._self._c||t)("input",{directives:[{name:"mask",rawName:"v-mask",value:e.config,expression:"config"}],attrs:{type:"text"},domProps:{value:e.display},on:{input:e.onInput}})},staticRenderFns:[]}},function(e,t,n){e.exports=n(3)}])});
+
+/***/ }),
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -67152,19 +67214,19 @@ if (false) {
 }
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(192)
+  __webpack_require__(193)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(194)
+var __vue_script__ = __webpack_require__(195)
 /* template */
-var __vue_template__ = __webpack_require__(197)
+var __vue_template__ = __webpack_require__(198)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -67203,17 +67265,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(193);
+var content = __webpack_require__(194);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(16)("0d183e5b", content, false, {});
+var update = __webpack_require__(17)("0d183e5b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67229,7 +67291,7 @@ if(false) {
 }
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)(false);
@@ -67237,23 +67299,23 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.form-error[data-v-5d34f75d] {\n  border: 1px solid red;\n}\n.error[data-v-5d34f75d] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-5d34f75d] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d34f75d] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d34f75d] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d34f75d] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d34f75d] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d34f75d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d34f75d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d34f75d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d34f75d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d34f75d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d34f75d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d34f75d] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d34f75d] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d34f75d] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d34f75d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d34f75d] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d34f75d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d34f75d] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-5d34f75d] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-5d34f75d] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d34f75d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d34f75d] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d34f75d] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d34f75d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d34f75d] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper .btn-custom[data-v-5d34f75d] {\n          max-width: 327px;\n          width: 100%;\n          background-color: #f4511e;\n          border: 1px solid #f4511e;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-5d34f75d] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-5d34f75d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-5d34f75d] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-5d34f75d] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-5d34f75d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-5d34f75d] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-5d34f75d] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-5d34f75d] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-5d34f75d] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-5d34f75d] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-5d34f75d] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-5d34f75d] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-5d34f75d] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-5d34f75d] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-5d34f75d] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-5d34f75d] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-5d34f75d] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-5d34f75d] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-5d34f75d] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-5d34f75d] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-5d34f75d] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-5d34f75d] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-5d34f75d] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
+exports.push([module.i, "\n.form-error[data-v-5d34f75d] {\n  border: 1px solid red;\n}\n.btn-custom[data-v-5d34f75d] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.menu .btn-custom[data-v-5d34f75d] {\n  margin-bottom: 10px;\n}\n.menu .btn-logout[data-v-5d34f75d] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #fff;\n  color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.error[data-v-5d34f75d] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-5d34f75d] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-5d34f75d] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-5d34f75d] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-5d34f75d] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-5d34f75d] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-5d34f75d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-5d34f75d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-5d34f75d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-5d34f75d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-5d34f75d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-5d34f75d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-5d34f75d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d34f75d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-5d34f75d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-5d34f75d] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-5d34f75d] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-5d34f75d] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-5d34f75d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-5d34f75d] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-5d34f75d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-5d34f75d] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-5d34f75d] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-5d34f75d] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-5d34f75d]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-5d34f75d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-5d34f75d] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-5d34f75d] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-5d34f75d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-5d34f75d] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-5d34f75d] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-5d34f75d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-5d34f75d] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-5d34f75d] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-5d34f75d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-5d34f75d] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-5d34f75d] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-5d34f75d] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-5d34f75d] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-5d34f75d] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-5d34f75d] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-5d34f75d] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-5d34f75d] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-5d34f75d] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-5d34f75d] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-5d34f75d] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-5d34f75d] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-5d34f75d] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-5d34f75d] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-5d34f75d] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-5d34f75d] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-5d34f75d] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-5d34f75d] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_cookie__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__API_js__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__ = __webpack_require__(196);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -67451,12 +67513,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["b" /* getDataRegisterStep1 */])(id);
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["f" /* getDataRegisterStep1 */])(id);
 
               case 2:
                 dataStep1 = _context2.sent;
                 _context2.next = 5;
-                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["c" /* getDataRegisterStep2 */])(id);
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["g" /* getDataRegisterStep2 */])(id);
 
               case 5:
                 dataStep2 = _context2.sent;
@@ -67513,7 +67575,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 e.preventDefault();
                 this.isLoading = true;
                 _context3.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["d" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["h" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
                   return console.log(Error);
                 });
 
@@ -67549,7 +67611,7 @@ function capitalizeFirstLetter(string) {
 }
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -67585,7 +67647,7 @@ var IDRFormatter = function IDRFormatter(number) {
 };
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -67850,10 +67912,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 196;
+webpackContext.id = 197;
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -68084,19 +68146,19 @@ if (false) {
 }
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(199)
+  __webpack_require__(200)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(201)
+var __vue_script__ = __webpack_require__(202)
 /* template */
-var __vue_template__ = __webpack_require__(202)
+var __vue_template__ = __webpack_require__(203)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -68135,17 +68197,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(200);
+var content = __webpack_require__(201);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(16)("3f3f8e4a", content, false, {});
+var update = __webpack_require__(17)("3f3f8e4a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68161,7 +68223,7 @@ if(false) {
 }
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)(false);
@@ -68169,13 +68231,13 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.form-error[data-v-27a42c0d] {\n  border: 1px solid red;\n}\n.error[data-v-27a42c0d] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-27a42c0d] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-27a42c0d] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-27a42c0d] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-27a42c0d] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-27a42c0d] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-27a42c0d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-27a42c0d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-27a42c0d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-27a42c0d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-27a42c0d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-27a42c0d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-27a42c0d] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-27a42c0d] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-27a42c0d] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-27a42c0d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-27a42c0d] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-27a42c0d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-27a42c0d] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-27a42c0d] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-27a42c0d] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-27a42c0d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-27a42c0d] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-27a42c0d] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-27a42c0d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-27a42c0d] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper .btn-custom[data-v-27a42c0d] {\n          max-width: 327px;\n          width: 100%;\n          background-color: #f4511e;\n          border: 1px solid #f4511e;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-27a42c0d] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-27a42c0d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-27a42c0d] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-27a42c0d] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-27a42c0d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-27a42c0d] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-27a42c0d] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-27a42c0d] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-27a42c0d] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-27a42c0d] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-27a42c0d] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-27a42c0d] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-27a42c0d] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-27a42c0d] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-27a42c0d] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-27a42c0d] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-27a42c0d] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-27a42c0d] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-27a42c0d] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-27a42c0d] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-27a42c0d] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-27a42c0d] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-27a42c0d] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
+exports.push([module.i, "\n.form-error[data-v-27a42c0d] {\n  border: 1px solid red;\n}\n.btn-custom[data-v-27a42c0d] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.menu .btn-custom[data-v-27a42c0d] {\n  margin-bottom: 10px;\n}\n.menu .btn-logout[data-v-27a42c0d] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #fff;\n  color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.error[data-v-27a42c0d] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-27a42c0d] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-27a42c0d] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-27a42c0d] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-27a42c0d] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-27a42c0d] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-27a42c0d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-27a42c0d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-27a42c0d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-27a42c0d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-27a42c0d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-27a42c0d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-27a42c0d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-27a42c0d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-27a42c0d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-27a42c0d] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-27a42c0d] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-27a42c0d] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-27a42c0d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-27a42c0d] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-27a42c0d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-27a42c0d] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-27a42c0d] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-27a42c0d] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-27a42c0d]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-27a42c0d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-27a42c0d] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-27a42c0d] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-27a42c0d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-27a42c0d] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-27a42c0d] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-27a42c0d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-27a42c0d] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-27a42c0d] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-27a42c0d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-27a42c0d] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-27a42c0d] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-27a42c0d] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-27a42c0d] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-27a42c0d] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-27a42c0d] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-27a42c0d] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-27a42c0d] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-27a42c0d] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-27a42c0d] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-27a42c0d] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-27a42c0d] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-27a42c0d] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-27a42c0d] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-27a42c0d] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-27a42c0d] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-27a42c0d] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-27a42c0d] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68223,7 +68285,7 @@ var getParameterByName = function getParameterByName(name, url) {
 };
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -68283,19 +68345,19 @@ if (false) {
 }
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(204)
+  __webpack_require__(205)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(206)
+var __vue_script__ = __webpack_require__(207)
 /* template */
-var __vue_template__ = __webpack_require__(207)
+var __vue_template__ = __webpack_require__(208)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -68334,17 +68396,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(205);
+var content = __webpack_require__(206);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(16)("4d32892e", content, false, {});
+var update = __webpack_require__(17)("4d32892e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68360,7 +68422,7 @@ if(false) {
 }
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)(false);
@@ -68368,13 +68430,13 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.form-error[data-v-3e2ac97c] {\n  border: 1px solid red;\n}\n.error[data-v-3e2ac97c] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-3e2ac97c] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-3e2ac97c] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-3e2ac97c] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-3e2ac97c] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-3e2ac97c] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-3e2ac97c]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-3e2ac97c] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-3e2ac97c]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-3e2ac97c]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-3e2ac97c] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-3e2ac97c]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-3e2ac97c] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-3e2ac97c] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-3e2ac97c] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-3e2ac97c] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-3e2ac97c] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-3e2ac97c] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-3e2ac97c] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-3e2ac97c] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-3e2ac97c] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-3e2ac97c] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-3e2ac97c] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-3e2ac97c] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-3e2ac97c] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-3e2ac97c] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper .btn-custom[data-v-3e2ac97c] {\n          max-width: 327px;\n          width: 100%;\n          background-color: #f4511e;\n          border: 1px solid #f4511e;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-3e2ac97c] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-3e2ac97c] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-3e2ac97c] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-3e2ac97c] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-3e2ac97c] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-3e2ac97c] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-3e2ac97c] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-3e2ac97c] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-3e2ac97c] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-3e2ac97c] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-3e2ac97c] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-3e2ac97c] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-3e2ac97c] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-3e2ac97c] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-3e2ac97c] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-3e2ac97c] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-3e2ac97c] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-3e2ac97c] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-3e2ac97c] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-3e2ac97c] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-3e2ac97c] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-3e2ac97c] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-3e2ac97c] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
+exports.push([module.i, "\n.form-error[data-v-3e2ac97c] {\n  border: 1px solid red;\n}\n.btn-custom[data-v-3e2ac97c] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.menu .btn-custom[data-v-3e2ac97c] {\n  margin-bottom: 10px;\n}\n.menu .btn-logout[data-v-3e2ac97c] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #fff;\n  color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.error[data-v-3e2ac97c] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-3e2ac97c] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-3e2ac97c] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-3e2ac97c] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-3e2ac97c] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-3e2ac97c] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-3e2ac97c]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-3e2ac97c]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-3e2ac97c] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-3e2ac97c]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-3e2ac97c]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-3e2ac97c]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-3e2ac97c] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-3e2ac97c] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-3e2ac97c]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-3e2ac97c] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-3e2ac97c] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-3e2ac97c] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-3e2ac97c] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-3e2ac97c] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-3e2ac97c] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-3e2ac97c] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-3e2ac97c] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-3e2ac97c] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-3e2ac97c]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-3e2ac97c] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-3e2ac97c] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-3e2ac97c] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-3e2ac97c] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-3e2ac97c] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-3e2ac97c] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-3e2ac97c] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-3e2ac97c] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-3e2ac97c] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-3e2ac97c] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-3e2ac97c] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-3e2ac97c] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-3e2ac97c] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-3e2ac97c] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-3e2ac97c] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-3e2ac97c] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-3e2ac97c] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-3e2ac97c] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-3e2ac97c] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-3e2ac97c] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-3e2ac97c] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-3e2ac97c] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-3e2ac97c] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-3e2ac97c] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-3e2ac97c] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-3e2ac97c] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-3e2ac97c] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-3e2ac97c] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68382,12 +68444,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__API_js__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_js_cookie__);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -68460,7 +68525,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 e.preventDefault();
                 this.isLoading = true;
                 _context.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["e" /* login */])(this.dataLogin);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["i" /* loginAdmin */])(this.dataLogin);
 
               case 4:
                 data = _context.sent;
@@ -68468,11 +68533,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 if (data.data.token) {
                   __WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.set('token', data.data.token);
                   this.errorMessage = '';
-                  this.message = 'Succes Login';
+                  this.message = 'Login berhasil. Mengarahkan dalam 2 detik...';
+                  setTimeout(function () {
+                    window.location.replace('/dashboard');
+                  }, 2000);
                   this.dataLogin = {};
                 } else {
                   this.message = '';
-                  this.errorMessage = 'Email atau password Anda Salah';
+                  this.errorMessage = 'Email atau password Anda salah';
                 }
                 this.isLoading = false;
 
@@ -68494,7 +68562,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 });
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -68502,6 +68570,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container main mx-auto" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "mx-auto register-step1" }, [
@@ -68556,9 +68626,9 @@ var render = function() {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "email",
+                      type: "text",
                       id: "exampleFormControlInput1",
-                      placeholder: "Email",
+                      placeholder: "Email atau Username",
                       required: ""
                     },
                     domProps: { value: _vm.dataLogin.email },
@@ -68623,7 +68693,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-title text-center mt-4" }, [
+      _c("img", { attrs: { src: "/img/its-time-gradient.png", height: "200" } })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -68634,7 +68713,6 @@ if (false) {
 }
 
 /***/ }),
-/* 208 */,
 /* 209 */,
 /* 210 */,
 /* 211 */,
@@ -68646,10 +68724,405 @@ if (false) {
 /* 217 */,
 /* 218 */,
 /* 219 */,
-/* 220 */
+/* 220 */,
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
-(function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.VueTheMask=t():e.VueTheMask=t()})(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var a=n[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,t),a.l=!0,a.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p=".",t(t.s=10)}([function(e,t){e.exports={"#":{pattern:/\d/},X:{pattern:/[0-9a-zA-Z]/},S:{pattern:/[a-zA-Z]/},A:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleUpperCase()}},a:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleLowerCase()}},"!":{escape:!0}}},function(e,t,n){"use strict";function r(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!0),t}var a=n(2),o=n(0),i=n.n(o);t.a=function(e,t){var o=t.value;if((Array.isArray(o)||"string"==typeof o)&&(o={mask:o,tokens:i.a}),"INPUT"!==e.tagName.toLocaleUpperCase()){var u=e.getElementsByTagName("input");if(1!==u.length)throw new Error("v-mask directive requires 1 input, found "+u.length);e=u[0]}e.oninput=function(t){if(t.isTrusted){var i=e.selectionEnd,u=e.value[i-1];for(e.value=n.i(a.a)(e.value,o.mask,!0,o.tokens);i<e.value.length&&e.value.charAt(i-1)!==u;)i++;e===document.activeElement&&(e.setSelectionRange(i,i),setTimeout(function(){e.setSelectionRange(i,i)},0)),e.dispatchEvent(r("input"))}};var s=n.i(a.a)(e.value,o.mask,!0,o.tokens);s!==e.value&&(e.value=s,e.dispatchEvent(r("input")))}},function(e,t,n){"use strict";var r=n(6),a=n(5);t.a=function(e,t){var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=arguments[3];return Array.isArray(t)?n.i(a.a)(r.a,t,i)(e,t,o,i):n.i(r.a)(e,t,o,i)}},function(e,t,n){"use strict";function r(e){e.component(s.a.name,s.a),e.directive("mask",i.a)}Object.defineProperty(t,"__esModule",{value:!0});var a=n(0),o=n.n(a),i=n(1),u=n(7),s=n.n(u);n.d(t,"TheMask",function(){return s.a}),n.d(t,"mask",function(){return i.a}),n.d(t,"tokens",function(){return o.a}),n.d(t,"version",function(){return c});var c="0.11.1";t.default=r,"undefined"!=typeof window&&window.Vue&&window.Vue.use(r)},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1),a=n(0),o=n.n(a),i=n(2);t.default={name:"TheMask",props:{value:[String,Number],mask:{type:[String,Array],required:!0},masked:{type:Boolean,default:!1},tokens:{type:Object,default:function(){return o.a}}},directives:{mask:r.a},data:function(){return{lastValue:null,display:this.value}},watch:{value:function(e){e!==this.lastValue&&(this.display=e)},masked:function(){this.refresh(this.display)}},computed:{config:function(){return{mask:this.mask,tokens:this.tokens,masked:this.masked}}},methods:{onInput:function(e){e.isTrusted||this.refresh(e.target.value)},refresh:function(e){this.display=e;var e=n.i(i.a)(e,this.mask,this.masked,this.tokens);e!==this.lastValue&&(this.lastValue=e,this.$emit("input",e))}}}},function(e,t,n){"use strict";function r(e,t,n){return t=t.sort(function(e,t){return e.length-t.length}),function(r,a){for(var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=0;i<t.length;){var u=t[i];i++;var s=t[i];if(!(s&&e(r,s,!0,n).length>u.length))return e(r,u,o,n)}return""}}t.a=r},function(e,t,n){"use strict";function r(e,t){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=arguments[3];e=e||"",t=t||"";for(var a=0,o=0,i="";a<t.length&&o<e.length;){var u=t[a],s=r[u],c=e[o];s&&!s.escape?(s.pattern.test(c)&&(i+=s.transform?s.transform(c):c,a++),o++):(s&&s.escape&&(a++,u=t[a]),n&&(i+=u),c===u&&o++,a++)}for(var f="";a<t.length&&n;){var u=t[a];if(r[u]){f="";break}f+=u,a++}return i+f}t.a=r},function(e,t,n){var r=n(8)(n(4),n(9),null,null);e.exports=r.exports},function(e,t){e.exports=function(e,t,n,r){var a,o=e=e||{},i=typeof e.default;"object"!==i&&"function"!==i||(a=e,o=e.default);var u="function"==typeof o?o.options:o;if(t&&(u.render=t.render,u.staticRenderFns=t.staticRenderFns),n&&(u._scopeId=n),r){var s=u.computed||(u.computed={});Object.keys(r).forEach(function(e){var t=r[e];s[e]=function(){return t}})}return{esModule:a,exports:o,options:u}}},function(e,t){e.exports={render:function(){var e=this,t=e.$createElement;return(e._self._c||t)("input",{directives:[{name:"mask",rawName:"v-mask",value:e.config,expression:"config"}],attrs:{type:"text"},domProps:{value:e.display},on:{input:e.onInput}})},staticRenderFns:[]}},function(e,t,n){e.exports=n(3)}])});
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(222)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(224)
+/* template */
+var __vue_template__ = __webpack_require__(225)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-1f65406d"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Dashboard.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1f65406d", Component.options)
+  } else {
+    hotAPI.reload("data-v-1f65406d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(223);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("2e3ed909", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f65406d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f65406d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.form-error[data-v-1f65406d] {\n  border: 1px solid red;\n}\n.btn-custom[data-v-1f65406d] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.menu .btn-custom[data-v-1f65406d] {\n  margin-bottom: 10px;\n}\n.menu .btn-logout[data-v-1f65406d] {\n  max-width: 327px;\n  width: 100%;\n  background-color: #fff;\n  color: #f4511e;\n  border: 1px solid #f4511e;\n}\n.error[data-v-1f65406d] {\n  color: red;\n  font-size: 12px;\n}\n.main[data-v-1f65406d] {\n  min-height: 100vh;\n}\n.main .register-step1[data-v-1f65406d] {\n    margin-top: 30px;\n    background-color: #fff;\n    max-width: 375px;\n    margin-bottom: 30px;\n}\n.main .register-step1 .register-step1-header[data-v-1f65406d] {\n      background-color: #f2f3f4;\n      min-height: 90px;\n}\n.main .register-step1 .register-step1-header .wizard[data-v-1f65406d] {\n        counter-reset: stepNo;\n        display: -ms-flex;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        width: 70%;\n        margin: auto;\n}\n@media screen and (max-width: 767px) {\n.main .register-step1 .register-step1-header .wizard[data-v-1f65406d] {\n            width: 80%;\n}\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-1f65406d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-1f65406d]:before {\n            border-top: 1px solid #dadada;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-1f65406d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step[data-v-1f65406d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-1f65406d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link[data-v-1f65406d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-caption[data-v-1f65406d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-1f65406d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step .wizard-step-link-2[data-v-1f65406d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-1f65406d] {\n          -ms-flex: 1 0 0px;\n          -webkit-box-flex: 1;\n                  flex: 1 0 0px;\n          list-style: none;\n          padding: 0 2% 0 0;\n          position: relative;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-1f65406d]:before {\n            border-top: 1px solid #ff5722;\n            content: \"\";\n            left: 0;\n            position: absolute;\n            right: 0;\n            top: 32px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-1f65406d]:last-child {\n            border: 0;\n            margin: 0;\n            padding: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2[data-v-1f65406d]:last-child:before {\n              border: 0;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-1f65406d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #ff5722;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link[data-v-1f65406d]:before {\n              background: #ff5722;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-caption[data-v-1f65406d] {\n            position: relative;\n            left: -12px;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-1f65406d] {\n            margin-top: 20px;\n            text-align: left;\n            color: #b9b7b7;\n            display: block;\n            font-size: 12px;\n            font-weight: bold;\n            position: relative;\n            text-decoration: none;\n            z-index: 10;\n}\n.main .register-step1 .register-step1-header .wizard .wizard-step-2 .wizard-step-link-2[data-v-1f65406d]:before {\n              background: #b9b7b7;\n              color: #fff;\n              counter-increment: stepNo;\n              content: counter(stepNo);\n              display: block;\n              font-size: 12px;\n              line-height: 27px;\n              margin-bottom: 12px;\n              text-align: center;\n              width: 25px;\n              height: 25px;\n              border-radius: 50%;\n}\n.main .register-step1 .register-step1-content[data-v-1f65406d] {\n      padding: 24px;\n      border: solid 1px #e6e6e6;\n      display: grid;\n}\n.main .register-step1 .register-step1-content .detil-order[data-v-1f65406d] {\n        font-size: 20px;\n        text-align: left;\n        color: #333333;\n}\n.main .register-step1 .register-step1-content .content-header[data-v-1f65406d] {\n        padding: 16px;\n        margin-bottom: 16px;\n        max-width: 327px;\n        min-height: 124px;\n        border-radius: 4px;\n        -webkit-box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n                box-shadow: 0 1px 3px 0 rgba(199, 199, 199, 0.5);\n        background-color: #f2f3f4;\n        border: solid 1px #dadada;\n}\n.main .register-step1 .register-step1-content .content-header h5[data-v-1f65406d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n          margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .content-header h3[data-v-1f65406d] {\n          margin-bottom: 14px;\n          font-size: 14px;\n          font-weight: bold;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title[data-v-1f65406d] {\n          font-weight: 400;\n          font-size: 14px;\n          color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title h5[data-v-1f65406d] {\n            margin-bottom: 5px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul[data-v-1f65406d] {\n            margin-bottom: 4px;\n}\n.main .register-step1 .register-step1-content .content-header .content-header-title ul li[data-v-1f65406d] {\n              list-style: none;\n              position: relative;\n              left: -38px;\n}\n.main .register-step1 .register-step1-content input[data-v-1f65406d]::-webkit-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-1f65406d]:-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-1f65406d]::-ms-input-placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content input[data-v-1f65406d]::placeholder {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content select[data-v-1f65406d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .label-jumlah-tiket[data-v-1f65406d] {\n        font-size: 12px;\n        color: #8d8d8d;\n}\n.main .register-step1 .register-step1-content .label-radio[data-v-1f65406d] {\n        font-size: 14px;\n        color: #3b3a3a;\n}\n.main .register-step1 .register-step1-content .form-check-inline[data-v-1f65406d] {\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .btn-wrapper[data-v-1f65406d] {\n        margin-top: 28px;\n}\n.main .register-step1 .register-step1-content .kode-invoice[data-v-1f65406d] {\n        font-size: 12px;\n        color: #333333;\n        margin-bottom: 8px;\n}\n.main .register-step1 .register-step1-content .register-info[data-v-1f65406d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n}\n.main .register-step1 .register-step1-content .register-info h1[data-v-1f65406d] {\n          font-size: 12px;\n          color: #a5a4a4;\n}\n.main .register-step1 .register-step1-content .register-info h5[data-v-1f65406d] {\n          font-size: 14px;\n          color: #333333;\n}\n.main .register-step1 .register-step1-content .booking-info[data-v-1f65406d] {\n        border-bottom: solid 1px #dadada;\n        margin-bottom: 14px;\n        padding-bottom: 14px;\n        font-size: 14px;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-caption[data-v-1f65406d] {\n          text-align: left;\n}\n.main .register-step1 .register-step1-content .booking-info .booking-info-expired .text-content[data-v-1f65406d] {\n          float: right;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper[data-v-1f65406d] {\n        padding-top: 16px;\n        margin: auto;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h1[data-v-1f65406d] {\n          text-align: center;\n          font-size: 14px;\n          color: #333333;\n          font-weight: bold;\n}\n.main .register-step1 .register-step1-content .amount-total-wrapper .amount-total h5[data-v-1f65406d] {\n          text-align: center;\n          font-size: 18px;\n          font-weight: bold;\n          color: #ff5722;\n}\n.main .register-step1 .register-step3-separator[data-v-1f65406d] {\n      height: 12px;\n      background-color: #e6e6e6;\n}\n.main .register-step1 .register-step1-footer[data-v-1f65406d] {\n      height: 64px;\n      background-color: #f2f3f4;\n}\n.main .register-step1 .upload-btn-wrapper[data-v-1f65406d] {\n      display: grid;\n      cursor: pointer;\n      border-radius: 4px;\n      background: #f2f3f4;\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: relative;\n      overflow: hidden;\n      border: 2px solid #ced4da;\n      border-style: dashed;\n}\n.main .register-step1 .upload-btn-wrapper img[data-v-1f65406d] {\n        height: 164px;\n        max-width: 327px;\n        width: 100%;\n        position: relative;\n        overflow: hidden;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload[data-v-1f65406d] {\n        margin: auto;\n        display: grid;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload span[data-v-1f65406d] {\n          margin: auto;\n          font-size: 25px;\n}\n.main .register-step1 .upload-btn-wrapper .label-upload div[data-v-1f65406d] {\n          font-size: 14px;\n          color: #888888;\n}\n.main .register-step1 .upload-btn-wrapper input[type=file][data-v-1f65406d] {\n      height: 164px;\n      max-width: 327px;\n      width: 100%;\n      position: absolute;\n      left: 0;\n      top: 0;\n      opacity: 0;\n      cursor: pointer;\n}\n.register-finish-wrapper[data-v-1f65406d] {\n  margin-top: 60px;\n  display: grid;\n}\n.register-finish-wrapper .register-finish[data-v-1f65406d] {\n    margin: auto;\n    width: 100%;\n    height: 100%;\n}\n.register-finish-wrapper .register-finish h1[data-v-1f65406d] {\n      font-size: 18px;\n}\n.register-finish-wrapper .register-finish .wrapper-logo[data-v-1f65406d] {\n      text-align: center;\n      margin-top: 25px;\n      margin-bottom: 25px;\n}\n.register-finish-wrapper .register-finish p[data-v-1f65406d] {\n      max-width: 290px;\n      margin: 0 auto;\n      font-size: 16px;\n      letter-spacing: -0.6px;\n      text-align: center;\n      color: #363a41;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 224 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__API_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_js_cookie__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'login',
+  data: function data() {
+    return {
+      message: '',
+      errorMessage: '',
+      isLoading: false
+    };
+  },
+  mounted: function mounted() {
+    this.initPage();
+  },
+  beforeCreate: function beforeCreate() {
+    var token = __WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.get('token');
+    if (!token) {
+      window.location.replace('/');
+    }
+  },
+
+  methods: {
+    initPage: function initPage() {
+      this.message = '';
+      this.errorMessage = '';
+    },
+    downloadFiles: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(e, type) {
+        var data, url, link;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault();
+                this.isLoading = true;
+                data = {};
+                _context.t0 = type;
+                _context.next = _context.t0 === 'donations' ? 6 : _context.t0 === 'volunteers' ? 10 : _context.t0 === 'step1' ? 14 : _context.t0 === 'step2' ? 18 : 22;
+                break;
+
+              case 6:
+                _context.next = 8;
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["b" /* downloadDonations */])();
+
+              case 8:
+                data = _context.sent;
+                return _context.abrupt('break', 24);
+
+              case 10:
+                _context.next = 12;
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["e" /* downloadVolunteers */])();
+
+              case 12:
+                data = _context.sent;
+                return _context.abrupt('break', 24);
+
+              case 14:
+                _context.next = 16;
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["c" /* downloadOrderDetails */])();
+
+              case 16:
+                data = _context.sent;
+                return _context.abrupt('break', 24);
+
+              case 18:
+                _context.next = 20;
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["d" /* downloadPersonalData */])();
+
+              case 20:
+                data = _context.sent;
+                return _context.abrupt('break', 24);
+
+              case 22:
+                data = {};
+                return _context.abrupt('break', 24);
+
+              case 24:
+                url = window.URL.createObjectURL(new Blob([data.data]));
+                link = document.createElement('a');
+
+                link.href = url;
+                link.setAttribute('download', type + '.xlsx');
+                document.body.appendChild(link);
+                link.click();
+                this.isLoading = false;
+
+              case 31:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function downloadFiles(_x, _x2) {
+        return _ref.apply(this, arguments);
+      }
+
+      return downloadFiles;
+    }(),
+    logout: function logout() {
+      __WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.remove('token');
+      window.location.replace('/');
+    }
+  }
+});
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container main mx-auto" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "mx-auto register-step1" }, [
+          _c(
+            "div",
+            { staticClass: "register-step1-content" },
+            [
+              _vm.message
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "alert alert-success",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _vm._v(
+                        "\n            " + _vm._s(_vm.message) + "\n          "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.errorMessage
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "alert alert-danger",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(_vm.errorMessage) +
+                          "\n          "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("H1", { staticClass: "detil-order" }, [_vm._v("Dashboard")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "menu" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-custom",
+                    attrs: { type: "button", disabled: _vm.isLoading },
+                    on: {
+                      click: function(e) {
+                        return _vm.downloadFiles(e, "donations")
+                      }
+                    }
+                  },
+                  [_vm._v("Download Donation Data")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-custom",
+                    attrs: { type: "button", disabled: _vm.isLoading },
+                    on: {
+                      click: function(e) {
+                        return _vm.downloadFiles(e, "volunteers")
+                      }
+                    }
+                  },
+                  [_vm._v("Download Volunteer Data")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-custom",
+                    attrs: { type: "button", disabled: _vm.isLoading },
+                    on: {
+                      click: function(e) {
+                        return _vm.downloadFiles(e, "step1")
+                      }
+                    }
+                  },
+                  [_vm._v("Download Pendaftaran Step 1")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-custom",
+                    attrs: { type: "button", disabled: _vm.isLoading },
+                    on: {
+                      click: function(e) {
+                        return _vm.downloadFiles(e, "step2")
+                      }
+                    }
+                  },
+                  [_vm._v("Download Pendaftaran Step 2")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-logout",
+                    attrs: { type: "button", disabled: _vm.isLoading },
+                    on: { click: _vm.logout }
+                  },
+                  [_vm._v("Log Out")]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "register-step1-footer" })
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "image-title text-center mt-4" }, [
+      _c("img", { attrs: { src: "/img/its-time-gradient.png", height: "200" } })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1f65406d", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

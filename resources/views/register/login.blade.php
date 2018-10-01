@@ -1,4 +1,4 @@
-@extends('register')
+@extends('login')
 
 @section('content')
 

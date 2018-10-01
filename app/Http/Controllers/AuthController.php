@@ -26,4 +26,22 @@ class AuthController extends Controller
             return json_encode($status);
         }
     }
+
+    public function authAdmin(Request $req){
+        $email = $req['email'];
+        $password = $req['password'];
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'role' => 'admin'])) {
+           $user = User::where('email', $email)->first();
+           $token = JWTAuth::fromUser($user);
+           return json_encode(array(
+               'token' => $token
+           ));
+        } else {
+            $status = array(
+                'status' => 1,
+                'message' => 'Invalid Credentials'
+            );
+            return json_encode($status);
+        }
+    }
 }

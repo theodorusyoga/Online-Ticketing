@@ -11,10 +11,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $admin = array(
+            'name' => 'Dashboard Admin',
+            'email' => 'adminupr',
+            'password' => bcrypt('Uprising2019'),
+            'role' => 'admin',
+            'created_at' => '2018-09-02 00:00:00',
+            'updated_at' => '2018-09-02 00:00:00'
+        );
         $user1 = array(
             'name' => 'Administrator',
             'email' => 'admin@wgg-globalupr.com',
             'password' => bcrypt('pass@word1'),
+            'role' => 'user',
             'created_at' => '2018-09-02 00:00:00',
             'updated_at' => '2018-09-02 00:00:00'
         );
@@ -22,9 +31,10 @@ class UsersTableSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@wgg-globalupr.com',
             'password' => bcrypt('pass@word1'),
+            'role' => 'user',
             'created_at' => '2018-09-02 00:00:00',
             'updated_at' => '2018-09-02 00:00:00'
         );
-        DB::table('users')->insert([ $user1, $user2 ]);
+        DB::table('users')->insert([ $admin, $user1, $user2 ]);
     }
 }

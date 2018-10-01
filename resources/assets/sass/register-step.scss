@@ -2,6 +2,26 @@
     border: 1px solid red;
 }
 
+.btn-custom {
+    max-width: 327px;
+    width: 100%;
+    background-color: #f4511e;
+    border: 1px solid #f4511e;
+}
+
+.menu{
+    .btn-custom{
+        margin-bottom: 10px;
+    }
+    .btn-logout{
+        max-width: 327px;
+        width: 100%;
+        background-color: #fff;
+        color: #f4511e;
+        border: 1px solid #f4511e;
+    }
+}
+
 .error{
     color: red;
     font-size: 12px;
@@ -266,12 +286,6 @@
       }
       .btn-wrapper {
         margin-top: 28px;
-        .btn-custom {
-          max-width: 327px;
-          width: 100%;
-          background-color: #f4511e;
-          border: 1px solid #f4511e;
-        }
       }
 
       .kode-invoice {

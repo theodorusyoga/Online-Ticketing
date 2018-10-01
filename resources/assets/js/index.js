@@ -15,6 +15,7 @@ Vue.component('register-step2', require('./components/RegisterStep2.vue'));
 Vue.component('register-step3', require('./components/RegisterStep3.vue'));
 Vue.component('register-finish', require('./components/RegisterFinish.vue'));
 Vue.component('login', require('./components/Login.vue'));
+Vue.component('dashboard', require('./components/Dashboard.vue'));
 
 const app = new Vue({
     el: '#app'

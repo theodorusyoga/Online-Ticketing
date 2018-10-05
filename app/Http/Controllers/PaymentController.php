@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use App\Veritrans\Veritrans;
 use App\PaymentData;
 use App\OrderDetails;
+use App\PersonalData;
+use App\Mail\PaymentSuccess;
+
 
 class PaymentController extends Controller
 {
@@ -181,6 +185,32 @@ class PaymentController extends Controller
 
         try{
             $paymentdata->save();
+
+            // email user
+            $orderdetails = OrderDetails::where('user_id', $user_id);
+            $personal = PersonalData::where('user_id', $user_id);
+
+            if($orderdetails->count() > 0){
+                $orderdetails = $orderdetails->first();
+            } else {
+                $orderdetails = null;
+            }
+            if($personal->count() > 0){
+                $personal = $personal->first();
+            } else {
+                $personal = null;
+            }
+            if($status_code != '200'){
+                $paymentdata = null;
+            }
+
+            if($orderdetails != null && $personal != null) {
+                Mail::to($personal->email)
+                ->send(new PaymentSuccess($orderdetails, $personal, $paymentdata));
+            }
+
+            // end email user
+
             return json_encode(array(
                 'status' => 0,
                 'message' => 'Payment notification saved'

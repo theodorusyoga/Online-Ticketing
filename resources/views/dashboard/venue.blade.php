@@ -1,6 +1,6 @@
 <section id="header-home" class="venue mx-auto">
     <div class="container">
-        <h2>22 - 26 Januari 2019</h2>
+        <h2>23 - 26 Januari 2019</h2>
         <h2>Integrity Convention Center</h2>
         <p>MGK Kemayoran, Kota Baru Bandar, Jl. Angkasa No.Kav B-6, Gn. Sahari Sel., Kemayoran, Kota Jakarta Pusat</p>
         <div class="video">

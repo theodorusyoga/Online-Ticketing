@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 209);
+/******/ 	return __webpack_require__(__webpack_require__.s = 214);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -93,21 +93,21 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 209:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(210);
+module.exports = __webpack_require__(215);
 
 
 /***/ }),
 
-/***/ 210:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 window.Vue = __webpack_require__(41);
 
-Vue.component('Countdown', __webpack_require__(211));
+Vue.component('Countdown', __webpack_require__(216));
 
 var app = new Vue({
     el: '#register'
@@ -115,15 +115,15 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 211:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(212)
+var __vue_script__ = __webpack_require__(217)
 /* template */
-var __vue_template__ = __webpack_require__(214)
+var __vue_template__ = __webpack_require__(219)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -163,12 +163,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 212:
+/***/ 217:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countdown__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countdown__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_countdown__);
 //
 //
@@ -230,7 +230,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 213:
+/***/ 218:
 /***/ (function(module, exports) {
 
 /*global window */
@@ -1603,7 +1603,7 @@ function(module) {
 
 /***/ }),
 
-/***/ 214:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

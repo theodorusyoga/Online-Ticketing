@@ -65646,7 +65646,7 @@ var content = __webpack_require__(182);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("0dad6203", content, false, {});
+var update = __webpack_require__(10)("05d8db3a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66555,7 +66555,7 @@ var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("7519263f", content, false, {});
+var update = __webpack_require__(10)("647f569f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67336,7 +67336,7 @@ var content = __webpack_require__(194);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("0d183e5b", content, false, {});
+var update = __webpack_require__(10)("0703228a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67503,7 +67503,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       var _dataStep = this.dataStep1,
           ticket_amount = _dataStep.ticket_amount,
           ticket_type = _dataStep.ticket_type,
-          job_status = _dataStep.job_status;
+          job_status = _dataStep.job_status,
+          transport_to_hotel = _dataStep.transport_to_hotel;
       var identity_card_photo = this.dataStep2.identity_card_photo;
 
       var student_card_photo = job_status === 'pelajar' ? identity_card_photo : '';
@@ -67512,6 +67513,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         grandTotal = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000;
       } else if (ticket === 'silver') {
         grandTotal = student_card_photo != '' ? ticket_amount * 1450000 : ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
+      } else if (ticket === 'bronze' && transport_to_hotel) {
+        grandTotal = student_card_photo != '' ? ticket_amount * 450000 + 100000 * ticket_amount : ticket_amount * 650000 + 100000 * ticket_amount;
       } else {
         grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000;
       }
@@ -67589,6 +67592,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.dataStep1 = JSON.parse(dataStep1.data.data);
                 this.dataStep2 = JSON.parse(dataStep2.data.data);
 
+                console.log(this.dataStep1);
+
                 _dataStep2 = this.dataStep1, ticket_type = _dataStep2.ticket_type, ticket_amount = _dataStep2.ticket_amount, user_id = _dataStep2.user_id, job_status = _dataStep2.job_status;
                 _dataStep3 = this.dataStep2, name = _dataStep3.name, domicile = _dataStep3.domicile, domicile_city = _dataStep3.domicile_city, phone_number = _dataStep3.phone_number, email = _dataStep3.email, identity_card_photo = _dataStep3.identity_card_photo;
 
@@ -67600,6 +67605,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   this.ticket_price = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000;
                 } else if (ticket === 'silver') {
                   this.ticket_price = student_card_photo != '' ? ticket_amount * 1450000 : ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
+                } else if (ticket === 'bronze' && this.dataStep1.transport_to_hotel) {
+                  this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 + 100000 * ticket_amount : ticket_amount * 650000 + 100000 * ticket_amount;
                 } else {
                   this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000;
                 }
@@ -67615,7 +67622,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.dataStep3.email = email;
                 this.dataStep3.student_card_photo = student_card_photo;
 
-              case 24:
+              case 25:
               case 'end':
                 return _context2.stop();
             }
@@ -68271,7 +68278,7 @@ var content = __webpack_require__(201);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("3f3f8e4a", content, false, {});
+var update = __webpack_require__(10)("3c9f69ea", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68470,7 +68477,7 @@ var content = __webpack_require__(206);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("4d32892e", content, false, {});
+var update = __webpack_require__(10)("307f198e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68838,7 +68845,7 @@ var content = __webpack_require__(211);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("2e3ed909", content, false, {});
+var update = __webpack_require__(10)("7e0c3969", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

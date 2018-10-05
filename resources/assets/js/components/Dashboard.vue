@@ -19,10 +19,8 @@
                   class="btn btn-primary btn-custom" :disabled="isLoading">Download Donation Data</button>
                     <button type="button" @click="(e) => downloadFiles(e, 'volunteers')"
                   class="btn btn-primary btn-custom" :disabled="isLoading">Download Volunteer Data</button>
-                   <button type="button" @click="(e) => downloadFiles(e, 'step1')"
-                  class="btn btn-primary btn-custom" :disabled="isLoading">Download Pendaftaran Step 1</button>
-                   <button type="button" @click="(e) => downloadFiles(e, 'step2')"
-                  class="btn btn-primary btn-custom" :disabled="isLoading">Download Pendaftaran Step 2</button>
+                   <button type="button" @click="(e) => downloadFiles(e, 'registration')"
+                  class="btn btn-primary btn-custom" :disabled="isLoading">Download Registration Data</button>
                    <button type="button" @click="logout" :disabled="isLoading"
                   class="btn btn-primary btn-logout">Log Out</button>
               </div>
@@ -37,8 +35,7 @@
 </template>
 
 <script>
-import { downloadDonations, downloadVolunteers, downloadOrderDetails,
-downloadPersonalData } from '../API.js';
+import { downloadDonations, downloadVolunteers, downloadOrderDetails } from '../API.js';
 import Cookie from 'js-cookie'
   export default {
     name: 'login',
@@ -74,11 +71,8 @@ import Cookie from 'js-cookie'
             case 'volunteers':
               data = await downloadVolunteers();
               break;
-            case 'step1':
+            case 'registration':
               data = await downloadOrderDetails();
-              break;
-            case 'step2':
-              data = await downloadPersonalData();
               break;
             default:
               data = {};

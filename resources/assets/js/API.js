@@ -141,13 +141,3 @@ export const downloadOrderDetails = () => {
     }
     return axios(config)
 }
-
-export const downloadPersonalData = () => {
-    setInterceptors('json')
-    const config = {
-      url: `${baseURL}/download-personal-data`,
-      method: 'get',
-      responseType: 'blob'
-    }
-    return axios(config)
-}

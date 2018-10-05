@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Veritrans\Veritrans;
 use App\PaymentData;
+use App\OrderDetails;
 
 class PaymentController extends Controller
 {
@@ -24,8 +25,15 @@ class PaymentController extends Controller
 
     public function requestVeritransUrl(Request $req)
     {
-        $ticket_amount = $req['ticket_amount'];
         $user_id = $req['user_id'];
+        if($user_id == '') {
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'User ID must be provided'
+            ));
+        }
+        $orderdetails = OrderDetails::where('user_id', $user_id)->first();
+        $ticket_amount = $req['ticket_amount'];
         $ticket_type = $req['ticket_type'];
         $ticket_type = strtolower($ticket_type);
         $student_card = $req['student_card_photo'];
@@ -43,6 +51,10 @@ class PaymentController extends Controller
                 }
                 else {
                     $amount = $ticket_amount * $this->bronze;
+                }
+                // check transport to hotel
+                if($orderdetails->transport_to_hotel){
+                    $amount = $amount + (100000 * $ticket_amount);
                 }
                 break;
             case 'silver':

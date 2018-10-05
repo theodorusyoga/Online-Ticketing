@@ -18999,18 +18999,17 @@ module.exports = Cancel;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return postData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return postDataStep2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return postData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return postDataStep2; });
 /* unused harmony export login */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return loginAdmin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return loginAdmin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return checkGroupName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getDataRegisterStep1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getDataRegisterStep2; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getRequestPayment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getDataRegisterStep1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getDataRegisterStep2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getRequestPayment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return downloadDonations; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return downloadVolunteers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return downloadVolunteers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return downloadOrderDetails; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return downloadPersonalData; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_cookie__ = __webpack_require__(9);
@@ -19153,16 +19152,6 @@ var downloadOrderDetails = function downloadOrderDetails() {
   setInterceptors('json');
   var config = {
     url: baseURL + '/download-order-details',
-    method: 'get',
-    responseType: 'blob'
-  };
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default()(config);
-};
-
-var downloadPersonalData = function downloadPersonalData() {
-  setInterceptors('json');
-  var config = {
-    url: baseURL + '/download-personal-data',
     method: 'get',
     responseType: 'blob'
   };
@@ -65646,7 +65635,7 @@ var content = __webpack_require__(182);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("05d8db3a", content, false, {});
+var update = __webpack_require__(10)("0dad6203", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -65904,7 +65893,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 18:
                 _context.next = 20;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["j" /* postData */])(this.dataRegister);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["i" /* postData */])(this.dataRegister);
 
               case 20:
                 data = _context.sent;
@@ -66577,7 +66566,7 @@ var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("647f569f", content, false, {});
+var update = __webpack_require__(10)("7519263f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66791,7 +66780,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["f" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
+                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["e" /* getDataRegisterStep1 */])(this.dataStep2.user_id);
 
               case 2:
                 dataStep1 = _context2.sent;
@@ -66885,7 +66874,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 7:
                 this.isLoading = true;
                 _context3.next = 10;
-                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["k" /* postDataStep2 */])(this.dataStep2);
+                return Object(__WEBPACK_IMPORTED_MODULE_3__API_js__["j" /* postDataStep2 */])(this.dataStep2);
 
               case 10:
                 response = _context3.sent;
@@ -67358,7 +67347,7 @@ var content = __webpack_require__(194);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("0703228a", content, false, {});
+var update = __webpack_require__(10)("0d183e5b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67601,12 +67590,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["f" /* getDataRegisterStep1 */])(id);
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["e" /* getDataRegisterStep1 */])(id);
 
               case 2:
                 dataStep1 = _context2.sent;
                 _context2.next = 5;
-                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["g" /* getDataRegisterStep2 */])(id);
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["f" /* getDataRegisterStep2 */])(id);
 
               case 5:
                 dataStep2 = _context2.sent;
@@ -67666,7 +67655,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 e.preventDefault();
                 this.isLoading = true;
                 _context3.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["h" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
+                return Object(__WEBPACK_IMPORTED_MODULE_2__API_js__["g" /* getRequestPayment */])(this.dataStep3).catch(function (Error) {
                   return console.log(Error);
                 });
 
@@ -68191,7 +68180,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "kode-invoice" }, [
-      _c("i", [_vm._v("Invoice # INV/TWC/2018/9810")])
+      _c("i", [_vm._v("Invoice Anda")])
     ])
   },
   function() {
@@ -68298,7 +68287,7 @@ var content = __webpack_require__(201);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("3c9f69ea", content, false, {});
+var update = __webpack_require__(10)("3f3f8e4a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68497,7 +68486,7 @@ var content = __webpack_require__(206);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("307f198e", content, false, {});
+var update = __webpack_require__(10)("4d32892e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68616,7 +68605,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 e.preventDefault();
                 this.isLoading = true;
                 _context.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["i" /* loginAdmin */])(this.dataLogin);
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["h" /* loginAdmin */])(this.dataLogin);
 
               case 4:
                 data = _context.sent;
@@ -68865,7 +68854,7 @@ var content = __webpack_require__(211);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("7e0c3969", content, false, {});
+var update = __webpack_require__(10)("2e3ed909", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68945,8 +68934,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 
 
@@ -68985,7 +68972,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.isLoading = true;
                 data = {};
                 _context.t0 = type;
-                _context.next = _context.t0 === 'donations' ? 6 : _context.t0 === 'volunteers' ? 10 : _context.t0 === 'step1' ? 14 : _context.t0 === 'step2' ? 18 : 22;
+                _context.next = _context.t0 === 'donations' ? 6 : _context.t0 === 'volunteers' ? 10 : _context.t0 === 'registration' ? 14 : 18;
                 break;
 
               case 6:
@@ -68994,15 +68981,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 8:
                 data = _context.sent;
-                return _context.abrupt('break', 24);
+                return _context.abrupt('break', 20);
 
               case 10:
                 _context.next = 12;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["e" /* downloadVolunteers */])();
+                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["d" /* downloadVolunteers */])();
 
               case 12:
                 data = _context.sent;
-                return _context.abrupt('break', 24);
+                return _context.abrupt('break', 20);
 
               case 14:
                 _context.next = 16;
@@ -69010,21 +68997,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 16:
                 data = _context.sent;
-                return _context.abrupt('break', 24);
+                return _context.abrupt('break', 20);
 
               case 18:
-                _context.next = 20;
-                return Object(__WEBPACK_IMPORTED_MODULE_1__API_js__["d" /* downloadPersonalData */])();
+                data = {};
+                return _context.abrupt('break', 20);
 
               case 20:
-                data = _context.sent;
-                return _context.abrupt('break', 24);
-
-              case 22:
-                data = {};
-                return _context.abrupt('break', 24);
-
-              case 24:
                 url = window.URL.createObjectURL(new Blob([data.data]));
                 link = document.createElement('a');
 
@@ -69034,7 +69013,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 link.click();
                 this.isLoading = false;
 
-              case 31:
+              case 27:
               case 'end':
                 return _context.stop();
             }
@@ -69143,25 +69122,11 @@ var render = function() {
                     attrs: { type: "button", disabled: _vm.isLoading },
                     on: {
                       click: function(e) {
-                        return _vm.downloadFiles(e, "step1")
+                        return _vm.downloadFiles(e, "registration")
                       }
                     }
                   },
-                  [_vm._v("Download Pendaftaran Step 1")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-custom",
-                    attrs: { type: "button", disabled: _vm.isLoading },
-                    on: {
-                      click: function(e) {
-                        return _vm.downloadFiles(e, "step2")
-                      }
-                    }
-                  },
-                  [_vm._v("Download Pendaftaran Step 2")]
+                  [_vm._v("Download Registration Data")]
                 ),
                 _vm._v(" "),
                 _c(

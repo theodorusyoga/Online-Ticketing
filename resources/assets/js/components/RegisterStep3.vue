@@ -24,7 +24,7 @@
             </div>
             <div class="register-step1-content">
               <H1 class="detil-order">Pembayaran</H1>
-              <p class="kode-invoice"><i>Invoice # INV/TWC/2018/9810</i></p>
+              <p class="kode-invoice"><i>Invoice Anda</i></p>
               <div class="register-info">
                 <h1>Nama</h1>
                 <h5>{{dataStep2.fullname}}</h5>

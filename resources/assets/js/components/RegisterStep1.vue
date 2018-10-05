@@ -38,7 +38,7 @@
               <form @submit="handleSubmit">
                 <div class="form-group">
                   <select class="form-control"
-                  @change="showPackage"
+                  @change="showPackage(dataRegister.ticket_type)"
                   id="exampleFormControlSelect3"
                   v-model="dataRegister.ticket_type" required
                   placeholder="tes">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect2"
-                  v-model="dataRegister.job_status" required @change="showPackageByJobStatus"
+                  v-model="dataRegister.job_status" required @change="showPackageByJobStatus(dataRegister.job_status)"
                   placeholder="tes">
                     <option value="" disabled selected>Status Pekerjaan</option>
                     <option value="pelajar">Pelajar</option>
@@ -173,48 +173,83 @@ import { getToken } from '../index.js'
           this.isLoading = false
           window.location.replace(`/register/step2/${data.data.user_id}`)
         },
-        showPackage() {
-          const { ticket_type } = this.dataRegister
-          if (ticket_type === 'Gold') {
+        showPackage(param) {
+          if (param === 'Gold') {
             this.packaging = this.goldPackage
             this.priceList = ['Gold', 'Rp. 2.150.000']
-          } else if (ticket_type === 'Silver') {
+          } else if (param === 'Silver') {
             this.packaging = this.silverPackage
             this.priceList = ['Silver', 'Rp. 1.650.000']
-          } else if (ticket_type === 'Bronze') {
+          } else if (param === 'Bronze') {
             this.packaging = this.bronzepackage
             this.priceList = ['Bronze', 'Rp. 650.000']
           } else {
             this.packaging = []
           }
-        },
-        showPackageByJobStatus() {
-          const { job_status, ticket_type } = this.dataRegister;
-          if (ticket_type === 'Bronze' && job_status === 'pelajar') {
-            this.priceList = ['Bronze', 'Rp. 450.000']
-          }
-          if (ticket_type === 'Silver' && job_status === 'pelajar') {
-            this.priceList = ['Silver', 'Rp. 1.450.000']
-          } else if (ticket_type === 'Silver' && job_status !== 'pelajar') {
-            this.priceList = ['Silver', 'Rp. 1.600.000']
-          }
+
+          this.dataRegister.ticket_amount = ''
+          this.dataRegister.job_status = ''
+          this.dataRegister.registration_type = ''
         },
         changeTicketAmount(e) {
-          const { ticket_type, group_name, job_status } = this.dataRegister;
           const amount = e.target.value
           if(amount > 0 && amount < 10){
             this.dataRegister.registration_type = 'perseorangan'
-          } else if(ticket_type === 'Silver' && amount >= 10 && job_status !== 'pelajar' ) {
+          }
+          if(amount < 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status !== 'pelajar' ) {
+            this.priceList = ['Silver', 'Rp. 1.650.000']
+            this.dataRegister.registration_type = 'perseorangan'
+          }
+          if(amount >= 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status !== 'pelajar' ) {
             this.priceList = ['Silver', 'Rp. 1.600.000']
             this.dataRegister.registration_type = 'group'
-          } else if(ticket_type === 'Silver' && amount < 10 && job_status !== 'pelajar' ) {
-            this.priceList = ['Silver', 'Rp. 1.650.000']
+          }
+          if(amount < 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status === 'pelajar' ) {
+            this.priceList = ['Silver', 'Rp. 1.450.000']
+            this.dataRegister.registration_type = 'perseorangan'
+          }
+          if(amount >= 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status === 'pelajar' ) {
+            this.priceList = ['Silver', 'Rp. 1.450.000']
             this.dataRegister.registration_type = 'group'
-          } else if(ticket_type === 'Gold' && amount >= 10) {
+          }
+          if(amount < 10 && this.dataRegister.ticket_type === 'Gold') {
+            this.priceList = ['Gold', 'Rp. 2.150.000']
+            this.dataRegister.registration_type = 'perseorangan'
+          }
+          if(amount >= 10 && this.dataRegister.ticket_type === 'Gold') {
             this.priceList = ['Gold', 'Rp. 2.100.000']
             this.dataRegister.registration_type = 'group'
-          } else {
-            this.dataRegister.registration_type = ''
+          }
+          if (amount < 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar' ) {
+            this.priceList = ['Bronze', 'Rp. 450.000']
+            this.dataRegister.registration_type = 'perseorangan'
+          }
+          if (amount < 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar' ) {
+            this.priceList = ['Bronze', 'Rp. 650.000']
+            this.dataRegister.registration_type = 'perseorangan'
+          }
+          if (amount >= 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar' ) {
+            this.priceList = ['Bronze', 'Rp. 650.000']
+            this.dataRegister.registration_type = 'group'
+          }
+          if (amount >= 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar' ) {
+            this.priceList = ['Bronze', 'Rp. 450.000']
+            this.dataRegister.registration_type = 'group'
+          }
+          
+        },
+        showPackageByJobStatus(param) {
+          if (param === 'pelajar' && this.dataRegister.ticket_type === 'Bronze') {
+            this.priceList = ['Bronze', 'Rp. 450.000']
+          } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Bronze') {
+            this.priceList = ['Bronze', 'Rp. 650.000']
+          }
+          if (param === 'pelajar' && this.dataRegister.ticket_type === 'Silver') {
+            this.priceList = ['Silver', 'Rp. 1.450.000']
+          } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount >= 10) {
+            this.priceList = ['Silver', 'Rp. 1.600.000']
+          } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount < 10 ) {
+            this.priceList = ['Silver', 'Rp. 1.650.000']
           }
         }
       }

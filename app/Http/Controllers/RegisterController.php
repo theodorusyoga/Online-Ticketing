@@ -161,12 +161,12 @@ class RegisterController extends Controller
             $file = Storage::url($path);
             $personaldata->identity_card_photo = $file;
         }
-        if($req->file('student_card_photo') != null){
-            $file = $req->file('student_card_photo');
-            $path = $file->store('public/registerfiles');
-            $file = Storage::url($path);
-            $personaldata->student_card_photo = $file;
-        }
+        // if($req->file('student_card_photo') != null){
+        //     $file = $req->file('student_card_photo');
+        //     $path = $file->store('public/registerfiles');
+        //     $file = Storage::url($path);
+        //     $personaldata->student_card_photo = $file;
+        // }
 
         try{
             $personaldata->save();

@@ -36,6 +36,7 @@ class PaymentSuccess extends Mailable
     public function build()
     {
         return $this->view('emails.success')
+        ->from('noreply@wgg-globalupr.com', 'World Generation Gathering - Global UPR')
         ->subject('Pembayaran Berhasil: '. $this->order->user_id)
         ->with([
             'order' => $this->order,

@@ -165,8 +165,6 @@
         this.dataStep1 = JSON.parse(dataStep1.data.data)
         this.dataStep2 = JSON.parse(dataStep2.data.data)
 
-        console.log(this.dataStep1)
-
         const { ticket_type, ticket_amount, user_id, job_status } = this.dataStep1
         const { name, domicile, domicile_city, phone_number, email, identity_card_photo } = this.dataStep2
         this.dataStep1.ticket_type = capitalizeFirstLetter(this.dataStep1.ticket_type)

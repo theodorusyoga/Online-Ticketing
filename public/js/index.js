@@ -65943,6 +65943,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       this.dataRegister.ticket_amount = '';
       this.dataRegister.job_status = '';
       this.dataRegister.registration_type = '';
+      this.dataRegister.transport_to_hotel = '';
     },
     changeTicketAmount: function changeTicketAmount(e) {
       var amount = e.target.value;
@@ -66002,6 +66003,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         this.priceList = ['Silver', 'Rp. 1.600.000'];
       } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount < 10) {
         this.priceList = ['Silver', 'Rp. 1.650.000'];
+      }
+    },
+    showPackageByTransportStatus: function showPackageByTransportStatus(param) {
+      if (param) {
+        this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '550.000'] : this.priceList = ['Bronze', '750.000'];
+      } else if (!param) {
+        this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '450.000'] : this.priceList = ['Bronze', '650.000'];
       }
     }
   }
@@ -66350,13 +66358,20 @@ var render = function() {
                               )
                             },
                             on: {
-                              change: function($event) {
-                                _vm.$set(
-                                  _vm.dataRegister,
-                                  "transport_to_hotel",
-                                  true
-                                )
-                              }
+                              change: [
+                                function($event) {
+                                  _vm.$set(
+                                    _vm.dataRegister,
+                                    "transport_to_hotel",
+                                    true
+                                  )
+                                },
+                                function($event) {
+                                  _vm.showPackageByTransportStatus(
+                                    _vm.dataRegister.transport_to_hotel
+                                  )
+                                }
+                              ]
                             }
                           }),
                           _vm._v(" "),
@@ -66398,13 +66413,20 @@ var render = function() {
                               )
                             },
                             on: {
-                              change: function($event) {
-                                _vm.$set(
-                                  _vm.dataRegister,
-                                  "transport_to_hotel",
-                                  false
-                                )
-                              }
+                              change: [
+                                function($event) {
+                                  _vm.$set(
+                                    _vm.dataRegister,
+                                    "transport_to_hotel",
+                                    false
+                                  )
+                                },
+                                function($event) {
+                                  _vm.showPackageByTransportStatus(
+                                    _vm.dataRegister.transport_to_hotel
+                                  )
+                                }
+                              ]
                             }
                           }),
                           _vm._v(" "),
@@ -67592,8 +67614,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.dataStep1 = JSON.parse(dataStep1.data.data);
                 this.dataStep2 = JSON.parse(dataStep2.data.data);
 
-                console.log(this.dataStep1);
-
                 _dataStep2 = this.dataStep1, ticket_type = _dataStep2.ticket_type, ticket_amount = _dataStep2.ticket_amount, user_id = _dataStep2.user_id, job_status = _dataStep2.job_status;
                 _dataStep3 = this.dataStep2, name = _dataStep3.name, domicile = _dataStep3.domicile, domicile_city = _dataStep3.domicile_city, phone_number = _dataStep3.phone_number, email = _dataStep3.email, identity_card_photo = _dataStep3.identity_card_photo;
 
@@ -67622,7 +67642,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.dataStep3.email = email;
                 this.dataStep3.student_card_photo = student_card_photo;
 
-              case 25:
+              case 24:
               case 'end':
                 return _context2.stop();
             }

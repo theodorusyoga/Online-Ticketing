@@ -80,11 +80,11 @@
                 <div class="form-group" v-if="dataRegister.ticket_type === 'Bronze'">
                   <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required @change="showPackageByTransportStatus(dataRegister.transport_to_hotel)">
                     <label class="form-check-label" for="inlineRadio1">Ya</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel" @change="showPackageByTransportStatus(dataRegister.transport_to_hotel)">
                     <label class="form-check-label" for="inlineRadio2">Tidak</label>
                   </div>
                 </div>
@@ -190,6 +190,7 @@ import { getToken } from '../index.js'
           this.dataRegister.ticket_amount = ''
           this.dataRegister.job_status = ''
           this.dataRegister.registration_type = ''
+          this.dataRegister.transport_to_hotel = ''
         },
         changeTicketAmount(e) {
           const amount = e.target.value
@@ -250,6 +251,13 @@ import { getToken } from '../index.js'
             this.priceList = ['Silver', 'Rp. 1.600.000']
           } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount < 10 ) {
             this.priceList = ['Silver', 'Rp. 1.650.000']
+          }
+        },
+        showPackageByTransportStatus(param) {
+          if (param) {
+            this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '550.000'] : this.priceList = ['Bronze', '750.000']
+          } else if (!param) {
+            this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '450.000'] : this.priceList = ['Bronze', '650.000']
           }
         }
       }

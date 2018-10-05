@@ -116,7 +116,7 @@
     computed: {
       total() {
         let grandTotal
-        const { ticket_amount, ticket_type, job_status } = this.dataStep1
+        const { ticket_amount, ticket_type, job_status, transport_to_hotel } = this.dataStep1
         const { identity_card_photo } = this.dataStep2
         const student_card_photo = job_status === 'pelajar' ? identity_card_photo : '';
         const ticket = ticket_type.toLowerCase();
@@ -126,6 +126,8 @@
           grandTotal = student_card_photo != '' ?
           ticket_amount * 1450000 :
            (ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000)
+        } else  if (ticket === 'bronze' && transport_to_hotel) {
+          grandTotal = student_card_photo != '' ? ticket_amount * 450000 + (100000 * ticket_amount) : ticket_amount * 650000 + (100000 * ticket_amount)
         } else {
           grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
         }
@@ -174,6 +176,8 @@
           this.ticket_price = student_card_photo != '' ?
           ticket_amount * 1450000 :
            (ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000)
+        } else if (ticket === 'bronze' && this.dataStep1.transport_to_hotel) {
+          this.ticket_price = student_card_photo != '' ? (ticket_amount * 450000) + (100000 * ticket_amount) : (ticket_amount * 650000) + (100000 *  ticket_amount)
         } else {
           this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
         }

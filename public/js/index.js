@@ -65646,7 +65646,7 @@ var content = __webpack_require__(182);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("0dad6203", content, false, {});
+var update = __webpack_require__(10)("05d8db3a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -65943,6 +65943,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       this.dataRegister.ticket_amount = '';
       this.dataRegister.job_status = '';
       this.dataRegister.registration_type = '';
+      this.dataRegister.transport_to_hotel = '';
     },
     changeTicketAmount: function changeTicketAmount(e) {
       var amount = e.target.value;
@@ -66002,6 +66003,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         this.priceList = ['Silver', 'Rp. 1.600.000'];
       } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount < 10) {
         this.priceList = ['Silver', 'Rp. 1.650.000'];
+      }
+    },
+    showPackageByTransportStatus: function showPackageByTransportStatus(param) {
+      if (param) {
+        this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '550.000'] : this.priceList = ['Bronze', '750.000'];
+      } else if (!param) {
+        this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '450.000'] : this.priceList = ['Bronze', '650.000'];
       }
     }
   }
@@ -66350,13 +66358,20 @@ var render = function() {
                               )
                             },
                             on: {
-                              change: function($event) {
-                                _vm.$set(
-                                  _vm.dataRegister,
-                                  "transport_to_hotel",
-                                  true
-                                )
-                              }
+                              change: [
+                                function($event) {
+                                  _vm.$set(
+                                    _vm.dataRegister,
+                                    "transport_to_hotel",
+                                    true
+                                  )
+                                },
+                                function($event) {
+                                  _vm.showPackageByTransportStatus(
+                                    _vm.dataRegister.transport_to_hotel
+                                  )
+                                }
+                              ]
                             }
                           }),
                           _vm._v(" "),
@@ -66398,13 +66413,20 @@ var render = function() {
                               )
                             },
                             on: {
-                              change: function($event) {
-                                _vm.$set(
-                                  _vm.dataRegister,
-                                  "transport_to_hotel",
-                                  false
-                                )
-                              }
+                              change: [
+                                function($event) {
+                                  _vm.$set(
+                                    _vm.dataRegister,
+                                    "transport_to_hotel",
+                                    false
+                                  )
+                                },
+                                function($event) {
+                                  _vm.showPackageByTransportStatus(
+                                    _vm.dataRegister.transport_to_hotel
+                                  )
+                                }
+                              ]
                             }
                           }),
                           _vm._v(" "),
@@ -66555,7 +66577,7 @@ var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("7519263f", content, false, {});
+var update = __webpack_require__(10)("647f569f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67336,7 +67358,7 @@ var content = __webpack_require__(194);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("0d183e5b", content, false, {});
+var update = __webpack_require__(10)("0703228a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67503,7 +67525,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       var _dataStep = this.dataStep1,
           ticket_amount = _dataStep.ticket_amount,
           ticket_type = _dataStep.ticket_type,
-          job_status = _dataStep.job_status;
+          job_status = _dataStep.job_status,
+          transport_to_hotel = _dataStep.transport_to_hotel;
       var identity_card_photo = this.dataStep2.identity_card_photo;
 
       var student_card_photo = job_status === 'pelajar' ? identity_card_photo : '';
@@ -67512,6 +67535,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         grandTotal = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000;
       } else if (ticket === 'silver') {
         grandTotal = student_card_photo != '' ? ticket_amount * 1450000 : ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
+      } else if (ticket === 'bronze' && transport_to_hotel) {
+        grandTotal = student_card_photo != '' ? ticket_amount * 450000 + 100000 * ticket_amount : ticket_amount * 650000 + 100000 * ticket_amount;
       } else {
         grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000;
       }
@@ -67600,6 +67625,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   this.ticket_price = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000;
                 } else if (ticket === 'silver') {
                   this.ticket_price = student_card_photo != '' ? ticket_amount * 1450000 : ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
+                } else if (ticket === 'bronze' && this.dataStep1.transport_to_hotel) {
+                  this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 + 100000 * ticket_amount : ticket_amount * 650000 + 100000 * ticket_amount;
                 } else {
                   this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000;
                 }
@@ -68271,7 +68298,7 @@ var content = __webpack_require__(201);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("3f3f8e4a", content, false, {});
+var update = __webpack_require__(10)("3c9f69ea", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68470,7 +68497,7 @@ var content = __webpack_require__(206);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("4d32892e", content, false, {});
+var update = __webpack_require__(10)("307f198e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68838,7 +68865,7 @@ var content = __webpack_require__(211);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("2e3ed909", content, false, {});
+var update = __webpack_require__(10)("7e0c3969", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

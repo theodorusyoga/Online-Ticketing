@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect2"
-                  v-model="dataRegister.job_status" required
+                  v-model="dataRegister.job_status" required @change="showPackageByJobStatus"
                   placeholder="tes">
                     <option value="" disabled selected>Status Pekerjaan</option>
                     <option value="pelajar">Pelajar</option>
@@ -188,11 +188,30 @@ import { getToken } from '../index.js'
             this.packaging = []
           }
         },
+        showPackageByJobStatus() {
+          const { job_status, ticket_type } = this.dataRegister;
+          if (ticket_type === 'Bronze' && job_status === 'pelajar') {
+            this.priceList = ['Bronze', 'Rp. 450.000']
+          }
+          if (ticket_type === 'Silver' && job_status === 'pelajar') {
+            this.priceList = ['Silver', 'Rp. 1.450.000']
+          } else if (ticket_type === 'Silver' && job_status !== 'pelajar') {
+            this.priceList = ['Silver', 'Rp. 1.600.000']
+          }
+        },
         changeTicketAmount(e) {
+          const { ticket_type, group_name, job_status } = this.dataRegister;
           const amount = e.target.value
           if(amount > 0 && amount < 10){
             this.dataRegister.registration_type = 'perseorangan'
-          } else if(amount >= 10) {
+          } else if(ticket_type === 'Silver' && amount >= 10 && job_status !== 'pelajar' ) {
+            this.priceList = ['Silver', 'Rp. 1.600.000']
+            this.dataRegister.registration_type = 'group'
+          } else if(ticket_type === 'Silver' && amount < 10 && job_status !== 'pelajar' ) {
+            this.priceList = ['Silver', 'Rp. 1.650.000']
+            this.dataRegister.registration_type = 'group'
+          } else if(ticket_type === 'Gold' && amount >= 10) {
+            this.priceList = ['Gold', 'Rp. 2.100.000']
             this.dataRegister.registration_type = 'group'
           } else {
             this.dataRegister.registration_type = ''

@@ -65942,11 +65942,37 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         this.packaging = [];
       }
     },
+    showPackageByJobStatus: function showPackageByJobStatus() {
+      var _dataRegister = this.dataRegister,
+          job_status = _dataRegister.job_status,
+          ticket_type = _dataRegister.ticket_type;
+
+      if (ticket_type === 'Bronze' && job_status === 'pelajar') {
+        this.priceList = ['Bronze', 'Rp. 450.000'];
+      }
+      if (ticket_type === 'Silver' && job_status === 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.450.000'];
+      } else if (ticket_type === 'Silver' && job_status !== 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.600.000'];
+      }
+    },
     changeTicketAmount: function changeTicketAmount(e) {
+      var _dataRegister2 = this.dataRegister,
+          ticket_type = _dataRegister2.ticket_type,
+          group_name = _dataRegister2.group_name,
+          job_status = _dataRegister2.job_status;
+
       var amount = e.target.value;
       if (amount > 0 && amount < 10) {
         this.dataRegister.registration_type = 'perseorangan';
-      } else if (amount >= 10) {
+      } else if (ticket_type === 'Silver' && amount >= 10 && job_status !== 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.600.000'];
+        this.dataRegister.registration_type = 'group';
+      } else if (ticket_type === 'Silver' && amount < 10 && job_status !== 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.650.000'];
+        this.dataRegister.registration_type = 'group';
+      } else if (ticket_type === 'Gold' && amount >= 10) {
+        this.priceList = ['Gold', 'Rp. 2.100.000'];
         this.dataRegister.registration_type = 'group';
       } else {
         this.dataRegister.registration_type = '';
@@ -66118,23 +66144,26 @@ var render = function() {
                         placeholder: "tes"
                       },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.dataRegister,
-                            "job_status",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.dataRegister,
+                              "job_status",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          _vm.showPackageByJobStatus
+                        ]
                       }
                     },
                     [

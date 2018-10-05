@@ -65926,30 +65926,82 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       return handleSubmit;
     }(),
-    showPackage: function showPackage() {
-      var ticket_type = this.dataRegister.ticket_type;
-
-      if (ticket_type === 'Gold') {
+    showPackage: function showPackage(param) {
+      if (param === 'Gold') {
         this.packaging = this.goldPackage;
         this.priceList = ['Gold', 'Rp. 2.150.000'];
-      } else if (ticket_type === 'Silver') {
+      } else if (param === 'Silver') {
         this.packaging = this.silverPackage;
         this.priceList = ['Silver', 'Rp. 1.650.000'];
-      } else if (ticket_type === 'Bronze') {
+      } else if (param === 'Bronze') {
         this.packaging = this.bronzepackage;
         this.priceList = ['Bronze', 'Rp. 650.000'];
       } else {
         this.packaging = [];
       }
+
+      this.dataRegister.ticket_amount = '';
+      this.dataRegister.job_status = '';
+      this.dataRegister.registration_type = '';
     },
     changeTicketAmount: function changeTicketAmount(e) {
       var amount = e.target.value;
       if (amount > 0 && amount < 10) {
         this.dataRegister.registration_type = 'perseorangan';
-      } else if (amount >= 10) {
+      }
+      if (amount < 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status !== 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.650.000'];
+        this.dataRegister.registration_type = 'perseorangan';
+      }
+      if (amount >= 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status !== 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.600.000'];
         this.dataRegister.registration_type = 'group';
-      } else {
-        this.dataRegister.registration_type = '';
+      }
+      if (amount < 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status === 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.450.000'];
+        this.dataRegister.registration_type = 'perseorangan';
+      }
+      if (amount >= 10 && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.job_status === 'pelajar') {
+        this.priceList = ['Silver', 'Rp. 1.450.000'];
+        this.dataRegister.registration_type = 'group';
+      }
+      if (amount < 10 && this.dataRegister.ticket_type === 'Gold') {
+        this.priceList = ['Gold', 'Rp. 2.150.000'];
+        this.dataRegister.registration_type = 'perseorangan';
+      }
+      if (amount >= 10 && this.dataRegister.ticket_type === 'Gold') {
+        this.priceList = ['Gold', 'Rp. 2.100.000'];
+        this.dataRegister.registration_type = 'group';
+      }
+      if (amount < 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar') {
+        this.priceList = ['Bronze', 'Rp. 450.000'];
+        this.dataRegister.registration_type = 'perseorangan';
+      }
+      if (amount < 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar') {
+        this.priceList = ['Bronze', 'Rp. 650.000'];
+        this.dataRegister.registration_type = 'perseorangan';
+      }
+      if (amount >= 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar') {
+        this.priceList = ['Bronze', 'Rp. 650.000'];
+        this.dataRegister.registration_type = 'group';
+      }
+      if (amount >= 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar') {
+        this.priceList = ['Bronze', 'Rp. 450.000'];
+        this.dataRegister.registration_type = 'group';
+      }
+    },
+    showPackageByJobStatus: function showPackageByJobStatus(param) {
+      if (param === 'pelajar' && this.dataRegister.ticket_type === 'Bronze') {
+        this.priceList = ['Bronze', 'Rp. 450.000'];
+      } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Bronze') {
+        this.priceList = ['Bronze', 'Rp. 650.000'];
+      }
+      if (param === 'pelajar' && this.dataRegister.ticket_type === 'Silver') {
+        this.priceList = ['Silver', 'Rp. 1.450.000'];
+      } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount >= 10) {
+        this.priceList = ['Silver', 'Rp. 1.600.000'];
+      } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount < 10) {
+        this.priceList = ['Silver', 'Rp. 1.650.000'];
       }
     }
   }
@@ -66039,7 +66091,9 @@ var render = function() {
                                 : $$selectedVal[0]
                             )
                           },
-                          _vm.showPackage
+                          function($event) {
+                            _vm.showPackage(_vm.dataRegister.ticket_type)
+                          }
                         ]
                       }
                     },
@@ -66118,23 +66172,30 @@ var render = function() {
                         placeholder: "tes"
                       },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.dataRegister,
-                            "job_status",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.dataRegister,
+                              "job_status",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function($event) {
+                            _vm.showPackageByJobStatus(
+                              _vm.dataRegister.job_status
+                            )
+                          }
+                        ]
                       }
                     },
                     [

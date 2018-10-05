@@ -210,17 +210,23 @@
   margin-bottom: 15px;
 }
 
-.terms .terms-list {
-  list-style-type: none;
+.terms .wrapper-terms-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.terms .terms-list li {
+.terms .wrapper-terms-list .terms-list li {
   margin-left: 20px;
-  text-indent: -2ch;
 }
 
-.terms .terms-list li:before {
-  content: '*';
+.terms .wrapper-terms-list .terms-list li:before {
   margin-right: 10px;
 }
 

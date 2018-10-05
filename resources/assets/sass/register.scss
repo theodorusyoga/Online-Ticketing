@@ -175,15 +175,18 @@
         font-size: 22px;
         margin-bottom: 15px;
     }
-    .terms-list{
-        list-style-type: none;
-        li{
-            margin-left: 20px;
-            text-indent: -2ch;
-            &:before{
-                content: '*';
-                margin-right: 10px;
+    .wrapper-terms-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .terms-list{
+            li{
+                margin-left: 20px;
+                &:before{
+                    margin-right: 10px;
+                }
             }
         }
     }
+    
 }

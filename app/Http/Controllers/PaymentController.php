@@ -13,6 +13,7 @@ class PaymentController extends Controller
     public $bronze_disc = 450000;
     public $silver = 1650000;
     public $silver_disc = 1600000;
+    public $silver_student = 1450000;
     public $gold = 2150000;
     public $gold_disc = 2100000;
 
@@ -45,7 +46,10 @@ class PaymentController extends Controller
                 }
                 break;
             case 'silver':
-                if($ticket_amount >= 10) { // using student card
+                if($student_card !== '' && $student_card !== null){ // using student card
+                    $amount = $ticket_amount * $this->silver_student;
+                }
+                else if($ticket_amount >= 10) { // for group
                     $amount = $ticket_amount * $this->silver_disc;
                 }
                 else {
@@ -53,7 +57,7 @@ class PaymentController extends Controller
                 }
                 break;
             case 'gold':
-                if($ticket_amount >= 10) { // using student card
+                if($ticket_amount >= 10) { // for group
                     $amount = $ticket_amount * $this->gold_disc;
                 }
                 else {

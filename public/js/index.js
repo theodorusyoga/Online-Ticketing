@@ -65646,7 +65646,7 @@ var content = __webpack_require__(182);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("05d8db3a", content, false, {});
+var update = __webpack_require__(10)("0dad6203", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66555,7 +66555,7 @@ var content = __webpack_require__(188);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("647f569f", content, false, {});
+var update = __webpack_require__(10)("7519263f", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67336,7 +67336,7 @@ var content = __webpack_require__(194);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("0703228a", content, false, {});
+var update = __webpack_require__(10)("0d183e5b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67502,21 +67502,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       var grandTotal = void 0;
       var _dataStep = this.dataStep1,
           ticket_amount = _dataStep.ticket_amount,
-          ticket_type = _dataStep.ticket_type;
-      var student_card_photo = this.dataStep2.student_card_photo;
+          ticket_type = _dataStep.ticket_type,
+          job_status = _dataStep.job_status;
+      var identity_card_photo = this.dataStep2.identity_card_photo;
 
+      var student_card_photo = job_status === 'pelajar' ? identity_card_photo : '';
       var ticket = ticket_type.toLowerCase();
       if (ticket === 'gold') {
         grandTotal = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000;
       } else if (ticket === 'silver') {
-        grandTotal = ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
+        grandTotal = student_card_photo != '' ? ticket_amount * 1450000 : ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
       } else {
         grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000;
       }
       return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["a" /* IDRFormatter */])(grandTotal);
     },
     ticket_price_formatter: function ticket_price_formatter() {
-      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["a" /* IDRFormatter */])(this.ticket_price);
+      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["a" /* IDRFormatter */])(this.ticket_price / this.dataStep1.ticket_amount);
     },
     getRegistrationDate: function getRegistrationDate() {
       return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["b" /* dateInWordsWithTime */])(this.dataStep2.created_at);
@@ -67567,7 +67569,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     getData: function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(id) {
-        var dataStep1, dataStep2, _dataStep2, ticket_type, ticket_amount, user_id, _dataStep3, name, domicile, domicile_city, phone_number, email, student_card_photo, ticket;
+        var dataStep1, dataStep2, _dataStep2, ticket_type, ticket_amount, user_id, job_status, _dataStep3, name, domicile, domicile_city, phone_number, email, identity_card_photo, student_card_photo, ticket;
 
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -67587,16 +67589,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.dataStep1 = JSON.parse(dataStep1.data.data);
                 this.dataStep2 = JSON.parse(dataStep2.data.data);
 
-                _dataStep2 = this.dataStep1, ticket_type = _dataStep2.ticket_type, ticket_amount = _dataStep2.ticket_amount, user_id = _dataStep2.user_id;
-                _dataStep3 = this.dataStep2, name = _dataStep3.name, domicile = _dataStep3.domicile, domicile_city = _dataStep3.domicile_city, phone_number = _dataStep3.phone_number, email = _dataStep3.email, student_card_photo = _dataStep3.student_card_photo;
+                _dataStep2 = this.dataStep1, ticket_type = _dataStep2.ticket_type, ticket_amount = _dataStep2.ticket_amount, user_id = _dataStep2.user_id, job_status = _dataStep2.job_status;
+                _dataStep3 = this.dataStep2, name = _dataStep3.name, domicile = _dataStep3.domicile, domicile_city = _dataStep3.domicile_city, phone_number = _dataStep3.phone_number, email = _dataStep3.email, identity_card_photo = _dataStep3.identity_card_photo;
 
                 this.dataStep1.ticket_type = capitalizeFirstLetter(this.dataStep1.ticket_type);
+                student_card_photo = job_status === 'pelajar' ? identity_card_photo : '';
                 ticket = ticket_type.toLowerCase();
 
                 if (ticket === 'gold') {
                   this.ticket_price = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000;
                 } else if (ticket === 'silver') {
-                  this.ticket_price = ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
+                  this.ticket_price = student_card_photo != '' ? ticket_amount * 1450000 : ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000;
                 } else {
                   this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000;
                 }
@@ -67612,7 +67615,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.dataStep3.email = email;
                 this.dataStep3.student_card_photo = student_card_photo;
 
-              case 23:
+              case 24:
               case 'end':
                 return _context2.stop();
             }
@@ -68268,7 +68271,7 @@ var content = __webpack_require__(201);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("3c9f69ea", content, false, {});
+var update = __webpack_require__(10)("3f3f8e4a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68467,7 +68470,7 @@ var content = __webpack_require__(206);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("307f198e", content, false, {});
+var update = __webpack_require__(10)("4d32892e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -68835,7 +68838,7 @@ var content = __webpack_require__(211);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("7e0c3969", content, false, {});
+var update = __webpack_require__(10)("2e3ed909", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

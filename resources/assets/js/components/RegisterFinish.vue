@@ -10,7 +10,7 @@
           <p>
             Terima Kasih telah melakukan pemesanan.<br/><br/>
             Simpan atau screenshot kode booking Anda.<br/><br/>
-            Kode booking Anda adalah: <strong>{{booking_code}}</strong>
+            Kode booking Anda adalah: <br/><strong>{{booking_code}}</strong>
           </p>
         </div>
       </div>

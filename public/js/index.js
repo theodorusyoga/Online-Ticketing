@@ -68341,6 +68341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'register-finish',
@@ -68386,9 +68387,13 @@ var render = function() {
             _vm._m(0),
             _vm._v(" "),
             _c("p", [
-              _vm._v(
-                "\n          Terima Kasih telah melakukan pemesanan.\n          Kode booking Anda adalah: "
-              ),
+              _vm._v("\n          Terima Kasih telah melakukan pemesanan."),
+              _c("br"),
+              _c("br"),
+              _vm._v("\n          Simpan atau screenshot kode booking Anda."),
+              _c("br"),
+              _c("br"),
+              _vm._v("\n          Kode booking Anda adalah: "),
               _c("strong", [_vm._v(_vm._s(_vm.booking_code))])
             ])
           ],
@@ -68406,9 +68411,9 @@ var staticRenderFns = [
     return _c("div", { staticClass: "wrapper-logo" }, [
       _c("img", {
         attrs: {
-          width: "100",
-          height: "100",
-          src: "/img/its-time-gradient.png",
+          width: "200",
+          height: "200",
+          src: "/img/logo-top-black.png",
           alt: "Global UPR"
         }
       })

@@ -1,7 +1,7 @@
 <table data-module="module-3" data-thumb="thumbnails/img-03.jpg" class="main-table" width="100%" cellpadding="0" cellspacing="0">
   <tbody><tr>
     <td data-bgcolor="bg-module" bgcolor="#ffffff">
-    <img src="https://wgg-globalupr.com/img/its-time-gradient.png" height="300" style="margin: 0 auto; display: table;" />
+    <img src="https://wgg-globalupr.com/img/logo-top-black.png" height="300" style="margin: 0 auto; display: table;" />
       <table class="flexible" width="600" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
         <tbody><tr>
           <td data-bgcolor="bg-block-02" class="l-white p-25" bgcolor="#f4511e" style="padding:53px 150px 60px;">

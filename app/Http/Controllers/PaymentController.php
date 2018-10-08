@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use App\Veritrans\Veritrans;
 use App\PaymentData;
+use App\OrderDetails;
+use App\PersonalData;
+use App\Mail\PaymentSuccess;
+
 
 class PaymentController extends Controller
 {
@@ -24,8 +29,15 @@ class PaymentController extends Controller
 
     public function requestVeritransUrl(Request $req)
     {
-        $ticket_amount = $req['ticket_amount'];
         $user_id = $req['user_id'];
+        if($user_id == '') {
+            return json_encode(array(
+                'status' => 1,
+                'message' => 'User ID must be provided'
+            ));
+        }
+        $orderdetails = OrderDetails::where('user_id', $user_id)->first();
+        $ticket_amount = $req['ticket_amount'];
         $ticket_type = $req['ticket_type'];
         $ticket_type = strtolower($ticket_type);
         $student_card = $req['student_card_photo'];
@@ -43,6 +55,10 @@ class PaymentController extends Controller
                 }
                 else {
                     $amount = $ticket_amount * $this->bronze;
+                }
+                // check transport to hotel
+                if($orderdetails->transport_to_hotel){
+                    $amount = $amount + (100000 * $ticket_amount);
                 }
                 break;
             case 'silver':
@@ -169,6 +185,32 @@ class PaymentController extends Controller
 
         try{
             $paymentdata->save();
+
+            // email user
+            $orderdetails = OrderDetails::where('user_id', $user_id);
+            $personal = PersonalData::where('user_id', $user_id);
+
+            if($orderdetails->count() > 0){
+                $orderdetails = $orderdetails->first();
+            } else {
+                $orderdetails = null;
+            }
+            if($personal->count() > 0){
+                $personal = $personal->first();
+            } else {
+                $personal = null;
+            }
+            if($status_code != '200'){
+                $paymentdata = null;
+            }
+
+            if($orderdetails != null && $personal != null) {
+                Mail::to($personal->email)
+                ->send(new PaymentSuccess($orderdetails, $personal, $paymentdata));
+            }
+
+            // end email user
+
             return json_encode(array(
                 'status' => 0,
                 'message' => 'Payment notification saved'

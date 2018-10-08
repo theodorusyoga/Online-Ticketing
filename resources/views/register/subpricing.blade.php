@@ -9,11 +9,10 @@
                         <h5 class="card-subtitle">Bronze</h5>
                         <ul class="subpricing-list">
                             <li>Tiket konferensi selama 4 hari</li>
-                            <li>Termasuk 2 makan selama konferensi berlangsung</li>
-                            <li>Harga spesial untuk pelajar/mahasiswa</li>
-                            <li>Harga sama untuk individual maupun kelompok</li>
-                            <li>Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara</li>
-                            <li>Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konferensi</li>
+                            <li>Termasuk 2 kali makan per hari selama konferensi berlangsung</li>
+                            <li>Tidak termasuk untuk biaya akomodasi dari bandara ke venue dan venue ke bandara</li>
+                            <li>Tersedia opsi tambahan untuk akomodasi dari bandara ke venue konferensi</li>
+                            <li>Tersedia harga khusus untuk pelajar/mahasiswa</li>
                         </ul>
                     </div>
                 </div>
@@ -27,9 +26,9 @@
                                 <ul class="subpricing-list">
                                     <li>Tiket konferensi selama konferensi berlangsung</li>
                                     <li>Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga</li>
-                                    <li>Sarapan dan 2 kali makan selama konfrensi berlangsung.</li>
-                                    <li>Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.</li>
-                                    <li>Harga spesial untuk pelajar/mahasiswa</li>
+                                    <li>Sarapan dan 2 kali makan selama konfrensi berlangsung</li>
+                                    <li>Akomodasi dari banda ke hotel dan dari hotel ke bandara</li>
+                                    <li>Harga khusus untuk pelajar/mahasiswa</li>
                                     <li>Harga spesial untuk group register</li>
                                 </ul>
                             </div>
@@ -44,8 +43,8 @@
                                 <ul class="subpricing-list">
                                     <li>Tiket konferensi selama konferensi berlangsung</li>
                                     <li>Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima</li>
-                                    <li>Sarapan dan 2 kali makan selama konfrensi berlangsung.</li>
-                                    <li>Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.</li>
+                                    <li>Sarapan dan 2 kali makan selama konfrensi berlangsung</li>
+                                    <li>Akomodasi dari bandara ke hotel dan dari hotel ke bandara</li>
                                     <li>Harga spesial untuk group register</li>
                                 </ul>
                             </div>

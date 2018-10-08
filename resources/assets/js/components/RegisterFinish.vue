@@ -5,11 +5,12 @@
         <div class="register-finish">
           <H1 class="detil-order text-center">Transaksi Selesai</H1>
           <div class="wrapper-logo">
-            <img width="100" height="100" src="/img/its-time-gradient.png" alt="Global UPR" />
+            <img width="200" height="200" src="/img/logo-top-black.png" alt="Global UPR" />
           </div>
           <p>
-            Terima Kasih telah melakukan pemesanan.
-            Kode booking Anda adalah: <strong>{{booking_code}}</strong>
+            Terima Kasih telah melakukan pemesanan.<br/><br/>
+            Simpan atau screenshot kode booking Anda.<br/><br/>
+            Kode booking Anda adalah: <br/><strong>{{booking_code}}</strong>
           </p>
         </div>
       </div>

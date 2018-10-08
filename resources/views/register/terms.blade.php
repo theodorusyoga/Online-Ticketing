@@ -3,14 +3,14 @@
     <div class="row">
         <div class="wrapper-terms-list">
             <ol class="terms-list">
-                <li>Airport Transfer availability<br>
-                    22 January ( 3 Option)<br>
-                    23 January ( 2 Option)<br>
-                    26 January ( 2 Option)<br>
-                    27 January ( 3 Option)<br>
+                <li>Ketersediaan akomodasi dari bandara ke hotel dan dari hotel ke bandara:<br>
+                    22 January (3 pilihan)<br>
+                    23 January (2 pilihan)<br>
+                    26 January (2 pilihan)<br>
+                    27 January (3 pilihan)<br>
                 </li>
-                <li>Untuk pelajar harus menunjukan bukti mahasiswa/pelajar aktif</li>
-                <li>Terdapat pilihan tambahan biaya akomodasi Rp100,000 untuk bronze package</li>
+                <li>Untuk pelajar/mahasiswa harus menunjukkan bukti pelajar/mahasiswa aktif</li>
+                <li>Terdapat pilihan tambahan untuk akomodasi dengan biaya sebesar Rp100,000 untuk bronze package</li>
             </ol>
         </div>
     </div>

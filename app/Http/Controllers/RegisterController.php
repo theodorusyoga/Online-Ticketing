@@ -18,7 +18,7 @@ class RegisterController extends Controller
     public function generateUniqueNumber($ticket_type){
         $ticket_type = strtolower($ticket_type);
         $count = OrderDetails::where('ticket_type', $ticket_type)->count();
-        $uniqueid = str_pad(($count + 1000), 4, '0', STR_PAD_LEFT);
+        $uniqueid = str_pad(($count + 1), 4, '0', STR_PAD_LEFT);
         $prefix = 'WGG19';
         $ticket_short = '';
         switch($ticket_type){

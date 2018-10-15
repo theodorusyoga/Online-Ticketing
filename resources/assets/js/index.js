@@ -91,6 +91,16 @@ $(document).ready(() => {
     onScroll();
     $(window).scroll(onScroll);
 
+    if(window.location.pathname === '/'){
+        const search = window.location.search;
+        if(search !== '') {
+            const scrollTop = $('#header-home').offset().top + 60;
+            $('html, body').animate({
+                scrollTop
+            }, 500);
+        }
+    }
+
     $('.navbar-toggler').click(() => {
         const opened = $('.navbar-collapse').hasClass('active');
         console.log(opened)
@@ -107,10 +117,14 @@ $(document).ready(() => {
     });
 
     $('#about-link').click(() => {
-        const scrollTop = $('#header-home').offset().top + 60;
-        $('html, body').animate({
-            scrollTop
-        }, 500);
+        if(window.location.pathname === '/'){
+            const scrollTop = $('#header-home').offset().top + 60;
+            $('html, body').animate({
+                scrollTop
+            }, 500);
+        } else {
+            window.location.replace('/?goto=about');
+        }
     });
 
     $('#join-volunteer-link').click(async () => {

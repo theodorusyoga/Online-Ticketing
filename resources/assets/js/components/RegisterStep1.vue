@@ -74,7 +74,7 @@
                 <div class="form-group">
                   <input v-if="dataRegister.registration_type == 'group'" type="text" class="form-control"
                   :class="{'form-error' : !isGroupNameValid}" v-model="dataRegister.group_name"
-                  id="exampleFormControlInput1" placeholder="Nama Grup" required>
+                  id="exampleFormControlInput1" placeholder="Nama Grup (nama Gereja, nama Youth, dll.)" required>
                    <span class="error" v-if="!isGroupNameValid && dataRegister.registration_type == 'group'">Nama grup sudah dipakai</span>
                 </div>
                 <div class="form-group" v-if="dataRegister.ticket_type === 'Bronze'">
@@ -124,25 +124,26 @@ import { getToken } from '../index.js'
           packaging: [],
           priceList: [],
           goldPackage: [
-            'Tiket konfrensi selama konfrensi berlangsung.',
+            'Tiket konferensi selama konferensi berlangsung.',
             'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.',
             'Sarapan dan 2 kali makan selama konfrensi berlangsung.',
-            'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.',
-            ' Harga spesial untuk group register.'
+            'Akomodasi dari bandara ke hotel dan dari hotel ke bandara.',
+            'Harga spesial untuk group register.'
           ],
           silverPackage: [
-            'Tiket konfrensi selama konfrensi berlangsung.',
+            'Tiket konferensi selama konferensi berlangsung.',
             'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.',
             'Sarapan dan 2 kali makan selama konfrensi berlangsung.',
-            'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.','Harga spesial untuk pelajar/mahasiswa.',
+            'Akomodasi dari banda ke hotel dan dari hotel ke bandara.',
+            'Harga khusus untuk pelajar/mahasiswa.',
             'Harga spesial untuk group register.'
           ],
           bronzepackage: [
-            'Tiket konfrensi selama 4 hari.',
-            'Termasuk 2 makan selama konfrensi berlangsung.',
-            'Harga spesial untuk pelajar/mahasiswa.',
-            'Harga sama untuk individual maupun kelompok.',
-            'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.','Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi'
+            'Tiket konferensi selama 4 hari.',
+            'Termasuk 2 kali makan per hari selama konferensi berlangsung.',
+            'Tidak termasuk untuk biaya akomodasi dari bandara ke venue dan venue ke bandara.',
+            'Tersedia opsi tambahan untuk akomodasi dari bandara ke venue konferensi.',
+            'Tersedia harga khusus untuk pelajar/mahasiswa.'
           ],
           isGroupNameValid: true
         }
@@ -237,7 +238,7 @@ import { getToken } from '../index.js'
             this.priceList = ['Bronze', 'Rp. 450.000']
             this.dataRegister.registration_type = 'group'
           }
-          
+
         },
         showPackageByJobStatus(param) {
           if (param === 'pelajar' && this.dataRegister.ticket_type === 'Bronze') {

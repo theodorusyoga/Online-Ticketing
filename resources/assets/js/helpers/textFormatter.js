@@ -2,13 +2,13 @@ import moment from 'moment';
 import 'moment/locale/id';
 
 /* ----------- example format date: 19 Jan, 3.20 PM ----------- */
-export const dateNow = () => moment();
+export const dateNow = () => moment().lang('id');
 
 /* ----------- example format date: 19 Jan, 3.20 PM ----------- */
-export const dateInWordsWithTime = date => moment(date).format('DD MMMM YYYY, HH:mm');
+export const dateInWordsWithTime = date => moment(date).add(7, 'hours').lang('id').format('DD MMMM YYYY, HH:mm');
 
 /* ----------- expired date 24 hours from now ----------- */
-export const expiredDate = date => moment(date).add(24, 'hours').format('DD MMMM YYYY, HH:mm');
+export const expiredDate = date => moment(date).lang('id').add(31, 'hours').format('DD MMMM YYYY, HH:mm');
 
 
 /* -- Indonesian Rupiah Style -- */

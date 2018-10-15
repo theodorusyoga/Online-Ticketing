@@ -137,10 +137,10 @@
         return IDRFormatter(this.ticket_price/this.dataStep1.ticket_amount)
       },
       getRegistrationDate() {
-        return dateInWordsWithTime(this.dataStep2.created_at)
+        return this.dataStep2.created_at ? dateInWordsWithTime(this.dataStep2.created_at) : '-'
       },
       getExpiredDate() {
-        return expiredDate(this.dataStep2.created_at)
+        return this.dataStep2.created_at ? expiredDate(this.dataStep2.created_at) : '-'
       }
     },
      beforeCreate() {

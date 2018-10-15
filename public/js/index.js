@@ -52705,6 +52705,16 @@ __WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
     onScroll();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()(window).scroll(onScroll);
 
+    if (window.location.pathname === '/') {
+        var search = window.location.search;
+        if (search !== '') {
+            var scrollTop = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#header-home').offset().top + 60;
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').animate({
+                scrollTop: scrollTop
+            }, 500);
+        }
+    }
+
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-toggler').click(function () {
         var opened = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.navbar-collapse').hasClass('active');
         console.log(opened);
@@ -52721,10 +52731,14 @@ __WEBPACK_IMPORTED_MODULE_1_jquery___default()(document).ready(function () {
     });
 
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#about-link').click(function () {
-        var scrollTop = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#header-home').offset().top + 60;
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').animate({
-            scrollTop: scrollTop
-        }, 500);
+        if (window.location.pathname === '/') {
+            var _scrollTop = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#header-home').offset().top + 60;
+            __WEBPACK_IMPORTED_MODULE_1_jquery___default()('html, body').animate({
+                scrollTop: _scrollTop
+            }, 500);
+        } else {
+            window.location.replace('/?goto=about');
+        }
     });
 
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#join-volunteer-link').click(_asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
@@ -65836,9 +65850,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       isLoading: false,
       packaging: [],
       priceList: [],
-      goldPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.', ' Harga spesial untuk group register.'],
-      silverPackage: ['Tiket konfrensi selama konfrensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Sudah termasuk akomodasi dari airport ke hotel dan dari hotel ke bandara.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga spesial untuk group register.'],
-      bronzepackage: ['Tiket konfrensi selama 4 hari.', 'Termasuk 2 makan selama konfrensi berlangsung.', 'Harga spesial untuk pelajar/mahasiswa.', 'Harga sama untuk individual maupun kelompok.', 'Tidak termasuk untuk akomodasi dari Bandara ke venue dan venue ke Bandara.', 'Tersedia opsi tambahan untuk akomodasi dari Bandara ke venue konfrensi'],
+      goldPackage: ['Tiket konferensi selama konferensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang lima.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Akomodasi dari bandara ke hotel dan dari hotel ke bandara.', 'Harga spesial untuk group register.'],
+      silverPackage: ['Tiket konferensi selama konferensi berlangsung.', 'Twin share room dari tanggal 22-27 Januari 2019 di hotel berbintang tiga.', 'Sarapan dan 2 kali makan selama konfrensi berlangsung.', 'Akomodasi dari banda ke hotel dan dari hotel ke bandara.', 'Harga khusus untuk pelajar/mahasiswa.', 'Harga spesial untuk group register.'],
+      bronzepackage: ['Tiket konferensi selama 4 hari.', 'Termasuk 2 kali makan per hari selama konferensi berlangsung.', 'Tidak termasuk untuk biaya akomodasi dari bandara ke venue dan venue ke bandara.', 'Tersedia opsi tambahan untuk akomodasi dari bandara ke venue konferensi.', 'Tersedia harga khusus untuk pelajar/mahasiswa.'],
       isGroupNameValid: true
     };
   },
@@ -66286,7 +66300,8 @@ var render = function() {
                         attrs: {
                           type: "text",
                           id: "exampleFormControlInput1",
-                          placeholder: "Nama Grup",
+                          placeholder:
+                            "Nama Grup (nama Gereja, nama Youth, dll.)",
                           required: ""
                         },
                         domProps: { value: _vm.dataRegister.group_name },
@@ -67535,10 +67550,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["a" /* IDRFormatter */])(this.ticket_price / this.dataStep1.ticket_amount);
     },
     getRegistrationDate: function getRegistrationDate() {
-      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["b" /* dateInWordsWithTime */])(this.dataStep2.created_at);
+      return this.dataStep2.created_at ? Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["b" /* dateInWordsWithTime */])(this.dataStep2.created_at) : '-';
     },
     getExpiredDate: function getExpiredDate() {
-      return Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["c" /* expiredDate */])(this.dataStep2.created_at);
+      return this.dataStep2.created_at ? Object(__WEBPACK_IMPORTED_MODULE_3__helpers_textFormatter_js__["c" /* expiredDate */])(this.dataStep2.created_at) : '-';
     }
   },
   beforeCreate: function beforeCreate() {
@@ -67708,17 +67723,17 @@ function capitalizeFirstLetter(string) {
 
 /* ----------- example format date: 19 Jan, 3.20 PM ----------- */
 var dateNow = function dateNow() {
-  return __WEBPACK_IMPORTED_MODULE_0_moment___default()();
+  return __WEBPACK_IMPORTED_MODULE_0_moment___default()().lang('id');
 };
 
 /* ----------- example format date: 19 Jan, 3.20 PM ----------- */
 var dateInWordsWithTime = function dateInWordsWithTime(date) {
-  return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).format('DD MMMM YYYY, HH:mm');
+  return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).add(7, 'hours').lang('id').format('DD MMMM YYYY, HH:mm');
 };
 
 /* ----------- expired date 24 hours from now ----------- */
 var expiredDate = function expiredDate(date) {
-  return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).add(24, 'hours').format('DD MMMM YYYY, HH:mm');
+  return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).lang('id').add(31, 'hours').format('DD MMMM YYYY, HH:mm');
 };
 
 /* -- Indonesian Rupiah Style -- */

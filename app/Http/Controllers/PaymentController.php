@@ -132,7 +132,7 @@ class PaymentController extends Controller
         $transaction_data = array(
             'payment_type'          => 'vtweb',
             'vtweb'                         => array(
-                'enabled_payments' => array('bank_transfer', 'gopay', 'credit_card'),
+                'enabled_payments' => array('bank_transfer', 'gopay'),
                 'credit_card_3d_secure' => true
             ),
             'transaction_details'=> $transaction_details,

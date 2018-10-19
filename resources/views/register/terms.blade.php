@@ -11,6 +11,7 @@
                 </li>
                 <li>Untuk pelajar/mahasiswa harus menunjukkan bukti pelajar/mahasiswa aktif</li>
                 <li>Terdapat pilihan tambahan untuk akomodasi dengan biaya sebesar Rp100,000 untuk bronze package</li>
+                <li>Lihat peraturan pengembalian dana kami <a href="/refund-policy">di sini</a></li>
             </ol>
         </div>
     </div>

@@ -1,0 +1,42 @@
+#terms-and-conditions{
+    .header-jumbotron{
+        height: 400px;
+        .upr-logo{
+            z-index: 999999;
+        }
+    }
+}
+
+.terms{
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    margin-bottom: 40px;
+    background: #f9f9f9;
+    @media screen and (max-width: 767px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        padding-left: 20px;
+        padding-right: 40px;
+    }
+    h3{
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .wrapper-terms-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .terms-list{
+            li{
+                margin-left: 20px;
+                &:before{
+                    margin-right: 10px;
+                }
+            }
+        }
+    }   
+}

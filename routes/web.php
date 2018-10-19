@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
+Route::get('/refund-policy', function () {
+    return view('privacy.index');
+});
+
 Route::get('/register/step1', function () {
     return view('register.step1');
 });

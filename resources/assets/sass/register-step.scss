@@ -399,6 +399,7 @@
       cursor: pointer;
     }
   }
+
 }
 
 .register-finish-wrapper {
@@ -426,4 +427,38 @@
     }
   }
 
+}
+
+.container-register-payment {
+  background-image: url('/img/starbg.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  .register-payment-wrapper {
+    margin-top: 60px;
+    .detil-order {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .register-payment {
+      display: grid;
+      border: 1px solid #a5a4a4;
+      background-color: #fff;
+      border-radius: 4px;
+      height: 320px;
+      min-width: 290px;
+      img {
+        margin: auto;
+      }
+      .register-payment-content {
+        color: black;
+        margin: 0 auto;
+        position: relative;
+        top: -30px;
+      }
+    }
+  }
+  
 }

@@ -471,3 +471,44 @@
   color: #363a41;
 }
 
+.container-register-payment {
+  background-image: url("/img/starbg.jpg");
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+}
+
+.container-register-payment .register-payment-wrapper {
+  margin-top: 60px;
+}
+
+.container-register-payment .register-payment-wrapper .detil-order {
+  color: #fff;
+  font-size: 20px;
+}
+
+.container-register-payment .register-payment-wrapper .register-payment {
+  display: grid;
+  border: 1px solid #a5a4a4;
+  background-color: #fff;
+  border-radius: 4px;
+  height: 320px;
+  min-width: 290px;
+}
+
+.container-register-payment .register-payment-wrapper .register-payment img {
+  margin: auto;
+}
+
+.container-register-payment .register-payment-wrapper .register-payment .register-payment-content {
+  color: black;
+  margin: 0 auto;
+  position: relative;
+  top: -30px;
+}
+

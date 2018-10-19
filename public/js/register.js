@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 215);
+/******/ 	return __webpack_require__(__webpack_require__.s = 220);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -93,21 +93,21 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 215:
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(216);
+module.exports = __webpack_require__(221);
 
 
 /***/ }),
 
-/***/ 216:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 window.Vue = __webpack_require__(41);
 
-Vue.component('Countdown', __webpack_require__(217));
+Vue.component('Countdown', __webpack_require__(222));
 
 var app = new Vue({
     el: '#register'
@@ -115,15 +115,15 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 217:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(218)
+var __vue_script__ = __webpack_require__(223)
 /* template */
-var __vue_template__ = __webpack_require__(220)
+var __vue_template__ = __webpack_require__(225)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -163,12 +163,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 218:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countdown__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countdown__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_countdown__);
 //
 //
@@ -230,7 +230,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 219:
+/***/ 224:
 /***/ (function(module, exports) {
 
 /*global window */
@@ -1603,7 +1603,7 @@ function(module) {
 
 /***/ }),
 
-/***/ 220:
+/***/ 225:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -13010,11 +13010,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(8)))
 
 /***/ }),
 
-/***/ 6:
+/***/ 8:
 /***/ (function(module, exports) {
 
 // shim for using process in browser

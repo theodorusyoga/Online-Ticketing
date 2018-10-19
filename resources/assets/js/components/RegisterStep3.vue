@@ -196,16 +196,17 @@
       },
 
       async handleSubmitStep3(e) {
-        e.preventDefault()
-        this.isLoading = true;
-        const result = await getRequestPayment(this.dataStep3)
-        .catch(Error => console.log(Error))
-        if(result.data.status === 0) {
-            window.location.replace(result.data.url)
-        } else {
-            console.log('error')
-        }
-        this.isLoading = false;
+        // e.preventDefault()
+        // this.isLoading = true;
+        // const result = await getRequestPayment(this.dataStep3)
+        // .catch(Error => console.log(Error))
+        // if(result.data.status === 0) {
+        //     window.location.replace(result.data.url)
+        // } else {
+        //     console.log('error')
+        // }
+        // this.isLoading = false;
+        window.location.replace('/register/payment')
       }
     }
   }

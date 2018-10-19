@@ -498,17 +498,22 @@
   background-color: #fff;
   border-radius: 4px;
   height: 320px;
-  min-width: 290px;
+  min-width: 320px;
+  text-align: center;
 }
 
 .container-register-payment .register-payment-wrapper .register-payment img {
+  height: 50px;
   margin: auto;
 }
 
 .container-register-payment .register-payment-wrapper .register-payment .register-payment-content {
   color: black;
-  margin: 0 auto;
   position: relative;
-  top: -30px;
+  text-align: center;
+}
+
+.container-register-payment .register-payment-wrapper .register-payment .btn-custom {
+  max-width: 250px;
 }
 

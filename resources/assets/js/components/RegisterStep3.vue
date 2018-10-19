@@ -206,7 +206,7 @@
         //     console.log('error')
         // }
         // this.isLoading = false;
-        window.location.replace('/register/payment')
+        window.location.replace('/register/payment/' + this.id)
       }
     }
   }

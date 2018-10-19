@@ -10744,6 +10744,11 @@ body {
   font-size: 16px;
 }
 
+.custom-media .custom-media-img img {
+  max-width: 200px;
+  min-width: 200px;
+}
+
 .location iframe {
   width: 100%;
   height: 400px;

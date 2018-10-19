@@ -35,7 +35,7 @@ Route::get('/register/finish', function () {
     return view('register.finish');
 });
 
-Route::get('/register/payment', function () {
+Route::get('/register/payment/{user_id}', function () {
     return view('register.payment');
 });
 

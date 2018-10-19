@@ -10,6 +10,9 @@
             <div class="register-payment-content">
               <div>BCA a/n Wilson Sophian</div>
               <div> No Rek: 5315187165</div>
+              <div>Masukkan kode booking: <br/><strong>{{booking_code}}</strong></div>
+              <br/>
+               <a href="/" class="btn btn-primary btn-custom">Kembali ke Beranda</a>
             </div>
           </div>
         </div>
@@ -20,7 +23,12 @@
 
 <script>
   export default {
-    name: 'register-payment'
+    name: 'register-payment',
+    data () {
+      return {
+        booking_code: location.pathname.split('/')[3]
+      }
+    }
   }
 </script>
 

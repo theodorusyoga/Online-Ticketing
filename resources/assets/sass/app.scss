@@ -262,6 +262,12 @@ html, body{
     p{
         font-size: 16px;
     }
+    .custom-media-img{
+        img{
+            max-width: 200px;
+            min-width: 200px;
+        }
+    }
 }
 
 .location{

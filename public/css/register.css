@@ -1,1 +1,232 @@
-#register .container{max-width:768px}#register .container.subpricing{max-width:1100px}#register .container.line-container{height:2px;max-width:960px;border-top:1px solid #d5d5d5;margin-top:70px;margin-bottom:70px}.countdown{padding-top:150px}@media screen and (max-width:767px){.countdown{padding-top:200px}}.countdown .col-3.odd .subtitle,.countdown .col-3.odd .title{color:#d4db48}.countdown .col-3 .title{color:#fff;font-weight:700;font-size:54px}@media screen and (max-width:767px){.countdown .col-3 .title{font-size:32px}}.countdown .col-3 .subtitle{color:#fff;font-weight:500;font-size:26px}@media screen and (max-width:767px){.countdown .col-3 .subtitle{font-size:20px}}.register-pricing{text-align:center;padding-top:30px;padding-bottom:30px;line-height:1.67}.register-pricing .title{font-weight:700;font-size:38px}.register-pricing .subtitle{font-size:24px;margin-top:30px;margin-bottom:60px}.register-pricing .title-line{background:#d4db48;min-height:.5rem;max-width:8rem;border-radius:4.5px;margin:0 auto;margin-bottom:4rem}.register-pricing .card-group{-webkit-box-shadow:0 3px 10px 0 hsla(0,0%,80%,.5);box-shadow:0 3px 10px 0 hsla(0,0%,80%,.5);background-color:#fff;border:.5px solid #c2c2c2;padding:30px;padding-left:10px;padding-right:10px}@media screen and (max-width:767px){.register-pricing .card-group{border:0;-webkit-box-shadow:none;box-shadow:none;border-top:.5px solid #c2c2c2;border-bottom:.5px solid #c2c2c2}}.register-pricing .card-group .column{padding:0}.register-pricing .card-group .column .card{border-radius:0;border:0}@media screen and (max-width:767px){.register-pricing .card-group .column .card{padding-top:30px}}.register-pricing .card-group .column .card .card-body{min-height:650px}.register-pricing .card-group .column .card .card-img-top{max-width:105px;width:105px;margin:0 auto}.register-pricing .card-group .column .card .card-title{color:#767676;font-size:26px}.register-pricing .card-group .column .card .card-subtitle{font-size:22px;margin-bottom:32px}.register-pricing .card-group .column .subpricing-list{padding-left:0;text-align:left;list-style-type:none;font-size:16px;line-height:2.3}.register-pricing .card-group .column .subpricing-list .not-eligible{color:#a5a5a5}.register-pricing .card-group .column .subpricing-list li{margin-left:20px;text-indent:-2.5ch}.register-pricing .card-group .column .subpricing-list li:before{content:"\2713";margin-right:10px}.register-pricing .card-group .column .subpricing-list li.not-eligible:before{content:"\2716"}@media screen and (max-width:767px){.register-pricing .card-group .column:not(:last-child) .card{border-right:0!important;border-bottom:1px solid #d5d5d5}}.register-pricing .card-group .column:not(:last-child) .card{border-right:1px solid #d5d5d5}.register-pricing .subpricing-register{margin-top:40px;margin-bottom:40px}.terms{padding:18px 150px;margin-bottom:40px;background:#f9f9f9}@media screen and (max-width:767px){.terms{padding-left:20px;padding-right:20px}}@media screen and (min-width:768px) and (max-width:1023px){.terms{padding-left:20px;padding-right:40px}}.terms h3{font-size:22px;margin-bottom:15px}.terms .wrapper-terms-list{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.terms .wrapper-terms-list .terms-list li{margin-left:20px}.terms .wrapper-terms-list .terms-list li:before{margin-right:10px}
+@charset "UTF-8";
+
+#register .container {
+  max-width: 768px;
+}
+
+#register .container.subpricing {
+  max-width: 1100px;
+}
+
+#register .container.line-container {
+  height: 2px;
+  max-width: 960px;
+  border-top: solid 1px #d5d5d5;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.countdown {
+  padding-top: 150px;
+}
+
+@media screen and (max-width: 767px) {
+  .countdown {
+    padding-top: 200px;
+  }
+}
+
+.countdown .col-3.odd .title {
+  color: #d4db48;
+}
+
+.countdown .col-3.odd .subtitle {
+  color: #d4db48;
+}
+
+.countdown .col-3 .title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 54px;
+}
+
+@media screen and (max-width: 767px) {
+  .countdown .col-3 .title {
+    font-size: 32px;
+  }
+}
+
+.countdown .col-3 .subtitle {
+  color: #fff;
+  font-weight: 500;
+  font-size: 26px;
+}
+
+@media screen and (max-width: 767px) {
+  .countdown .col-3 .subtitle {
+    font-size: 20px;
+  }
+}
+
+.register-pricing {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  line-height: 1.67;
+}
+
+.register-pricing .title {
+  font-weight: bold;
+  font-size: 38px;
+}
+
+.register-pricing .subtitle {
+  font-size: 24px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.register-pricing .title-line {
+  background: #d4db48;
+  min-height: 0.5rem;
+  max-width: 8rem;
+  border-radius: 4.5px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+}
+
+.register-pricing .card-group {
+  -webkit-box-shadow: 0 3px 10px 0 rgba(205, 205, 205, 0.5);
+          box-shadow: 0 3px 10px 0 rgba(205, 205, 205, 0.5);
+  background-color: #ffffff;
+  border: solid 0.5px #c2c2c2;
+  padding: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .register-pricing .card-group {
+    border: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-top: solid 0.5px #c2c2c2;
+    border-bottom: solid 0.5px #c2c2c2;
+  }
+}
+
+.register-pricing .card-group .column {
+  padding: 0;
+}
+
+.register-pricing .card-group .column .card {
+  border-radius: 0px;
+  border: 0px;
+}
+
+@media screen and (max-width: 767px) {
+  .register-pricing .card-group .column .card {
+    padding-top: 30px;
+  }
+}
+
+.register-pricing .card-group .column .card .card-body {
+  min-height: 650px;
+}
+
+.register-pricing .card-group .column .card .card-img-top {
+  max-width: 105px;
+  width: 105px;
+  margin: 0 auto;
+}
+
+.register-pricing .card-group .column .card .card-title {
+  color: #767676;
+  font-size: 26px;
+}
+
+.register-pricing .card-group .column .card .card-subtitle {
+  font-size: 22px;
+  margin-bottom: 32px;
+}
+
+.register-pricing .card-group .column .subpricing-list {
+  padding-left: 0;
+  text-align: left;
+  list-style-type: none;
+  font-size: 16px;
+  line-height: 2.3;
+}
+
+.register-pricing .card-group .column .subpricing-list .not-eligible {
+  color: #a5a5a5;
+}
+
+.register-pricing .card-group .column .subpricing-list li {
+  margin-left: 20px;
+  text-indent: -2.5ch;
+}
+
+.register-pricing .card-group .column .subpricing-list li:before {
+  content: '\2713';
+  margin-right: 10px;
+}
+
+.register-pricing .card-group .column .subpricing-list li.not-eligible:before {
+  content: '\2716';
+}
+
+@media screen and (max-width: 767px) {
+  .register-pricing .card-group .column:not(:last-child) .card {
+    border-right: 0px !important;
+    border-bottom: solid 1px #d5d5d5;
+  }
+}
+
+.register-pricing .card-group .column:not(:last-child) .card {
+  border-right: solid 1px #d5d5d5;
+}
+
+.register-pricing .subpricing-register {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.terms {
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-bottom: 40px;
+  background: #f9f9f9;
+}
+
+@media screen and (max-width: 767px) {
+  .terms {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .terms {
+    padding-left: 20px;
+    padding-right: 40px;
+  }
+}
+
+.terms h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.terms .wrapper-terms-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.terms .wrapper-terms-list .terms-list li {
+  margin-left: 20px;
+}
+
+.terms .wrapper-terms-list .terms-list li:before {
+  margin-right: 10px;
+}
+

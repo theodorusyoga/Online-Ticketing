@@ -106,7 +106,7 @@
 
 <script>
 import { postData, checkGroupName } from '../API.js';
-import { getToken } from '../index.js'
+import { getToken } from '../index_11102018.js'
     export default {
       name: 'register-step1',
       data () {

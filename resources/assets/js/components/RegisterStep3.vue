@@ -126,7 +126,7 @@
           grandTotal = student_card_photo != '' ?
           ticket_amount * 1450000 :
            (ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000)
-        } else  if (ticket === 'bronze' && transport_to_hotel) {
+        } else  if (ticket === 'bronze' && (transport_to_hotel === 1 || transport_to_hotel === true)) {
           grandTotal = student_card_photo != '' ? ticket_amount * 450000 + (100000 * ticket_amount) : ticket_amount * 650000 + (100000 * ticket_amount)
         } else {
           grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
@@ -176,7 +176,7 @@
           this.ticket_price = student_card_photo != '' ?
           ticket_amount * 1450000 :
            (ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000)
-        } else if (ticket === 'bronze' && this.dataStep1.transport_to_hotel) {
+        } else if (ticket === 'bronze' && (this.dataStep1.transport_to_hotel === 1 || this.dataStep1.transport_to_hotel === true)) {
           this.ticket_price = student_card_photo != '' ? (ticket_amount * 450000) + (100000 * ticket_amount) : (ticket_amount * 650000) + (100000 *  ticket_amount)
         } else {
           this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
@@ -198,17 +198,17 @@
       async handleSubmitStep3(e) {
         e.preventDefault()
         this.isLoading = true;
-        const result = await getRequestPayment(this.dataStep3)
-        .catch(Error => console.log(Error))
-        if(result.data.status === 0) {
-            window.location.replace(result.data.url)
-        } else {
-            console.log('error')
-        }
-        this.isLoading = false;
+        // const result = await getRequestPayment(this.dataStep3)
+        // .catch(Error => console.log(Error))
+        // if(result.data.status === 0) {
+        //     window.location.replace(result.data.url)
+        // } else {
+        //     console.log('error')
+        // }
+        // this.isLoading = false;
 
         // for disabling midtrans
-        //window.location.replace('/register/payment/' + this.id)
+        window.location.replace('/register/payment/' + this.id)
       }
     }
   }

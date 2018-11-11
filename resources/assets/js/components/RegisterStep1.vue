@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="exampleFormControlSelect2"
-                  v-model="dataRegister.job_status" required @change="showPackageByJobStatus(dataRegister.job_status)"
+                  v-model="dataRegister.job_status" required @change="changeTicketAmount"
                   placeholder="tes">
                     <option value="" disabled selected>Status Pekerjaan</option>
                     <option value="pelajar">Pelajar</option>
@@ -80,11 +80,11 @@
                 <div class="form-group" v-if="dataRegister.ticket_type === 'Bronze'">
                   <div class="label-radio">Transportasi Dari Airport ke Hotel</div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required @change="showPackageByTransportStatus(dataRegister.transport_to_hotel)">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="dataRegister.transport_to_hotel" required @change="changeTicketAmount">
                     <label class="form-check-label" for="inlineRadio1">Ya</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel" @change="showPackageByTransportStatus(dataRegister.transport_to_hotel)">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="dataRegister.transport_to_hotel" @change="changeTicketAmount">
                     <label class="form-check-label" for="inlineRadio2">Tidak</label>
                   </div>
                 </div>
@@ -106,7 +106,7 @@
 
 <script>
 import { postData, checkGroupName } from '../API.js';
-import { getToken } from '../index.js'
+import { getToken } from '../index_11102018.js'
     export default {
       name: 'register-step1',
       data () {
@@ -155,7 +155,7 @@ import { getToken } from '../index.js'
           await getToken()
 
           // check group name
-          if(this.dataRegister.ticket_amount >= 10) {
+          if(this.dataRegister.ticket_amount >= 10 && this.dataRegister.ticket_type !== 'Bronze') {
               const checkgroup = await checkGroupName({
                   group_name: this.dataRegister.group_name
               })
@@ -194,7 +194,7 @@ import { getToken } from '../index.js'
           this.dataRegister.transport_to_hotel = ''
         },
         changeTicketAmount(e) {
-          const amount = e.target.value
+          const amount =this.dataRegister.ticket_amount;
           if(amount > 0 && amount < 10){
             this.dataRegister.registration_type = 'perseorangan'
           }
@@ -222,43 +222,25 @@ import { getToken } from '../index.js'
             this.priceList = ['Gold', 'Rp. 2.100.000']
             this.dataRegister.registration_type = 'group'
           }
-          if (amount < 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar' ) {
+          if (this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar'
+          && this.dataRegister.transport_to_hotel ) {
+            this.priceList = ['Bronze', 'Rp. 550.000']
+            this.dataRegister.registration_type = 'perseorangan'
+          }
+            if (this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar'
+          && !this.dataRegister.transport_to_hotel ) {
             this.priceList = ['Bronze', 'Rp. 450.000']
             this.dataRegister.registration_type = 'perseorangan'
           }
-          if (amount < 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar' ) {
+          if (this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar'
+          && !this.dataRegister.transport_to_hotel ) {
             this.priceList = ['Bronze', 'Rp. 650.000']
             this.dataRegister.registration_type = 'perseorangan'
           }
-          if (amount >= 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar' ) {
-            this.priceList = ['Bronze', 'Rp. 650.000']
-            this.dataRegister.registration_type = 'group'
-          }
-          if (amount >= 10 && this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status === 'pelajar' ) {
-            this.priceList = ['Bronze', 'Rp. 450.000']
-            this.dataRegister.registration_type = 'group'
-          }
-
-        },
-        showPackageByJobStatus(param) {
-          if (param === 'pelajar' && this.dataRegister.ticket_type === 'Bronze') {
-            this.priceList = ['Bronze', 'Rp. 450.000']
-          } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Bronze') {
-            this.priceList = ['Bronze', 'Rp. 650.000']
-          }
-          if (param === 'pelajar' && this.dataRegister.ticket_type === 'Silver') {
-            this.priceList = ['Silver', 'Rp. 1.450.000']
-          } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount >= 10) {
-            this.priceList = ['Silver', 'Rp. 1.600.000']
-          } else if (param !== 'pelajar' && this.dataRegister.ticket_type === 'Silver' && this.dataRegister.ticket_amount < 10 ) {
-            this.priceList = ['Silver', 'Rp. 1.650.000']
-          }
-        },
-        showPackageByTransportStatus(param) {
-          if (param) {
-            this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '550.000'] : this.priceList = ['Bronze', '750.000']
-          } else if (!param) {
-            this.priceList = this.dataRegister.job_status === 'pelajar' ? ['Bronze', '450.000'] : this.priceList = ['Bronze', '650.000']
+        if (this.dataRegister.ticket_type === 'Bronze' && this.dataRegister.job_status !== 'pelajar'
+        && this.dataRegister.transport_to_hotel ) {
+            this.priceList = ['Bronze', 'Rp. 750.000']
+            this.dataRegister.registration_type = 'perseorangan'
           }
         }
       }

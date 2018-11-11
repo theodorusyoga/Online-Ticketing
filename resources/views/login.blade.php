@@ -26,7 +26,7 @@
         <div id="app" class="content">
             @yield('content')
         </div>
-        <script src="/js/index.js" type="text/javascript"></script>
+        <script src="/js/index_11102018.js" type="text/javascript"></script>
         @yield('scripts')
     </body>
 </html>

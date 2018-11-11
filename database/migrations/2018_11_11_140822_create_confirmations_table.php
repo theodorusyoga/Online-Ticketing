@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentDataTable extends Migration
+class CreateConfirmationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,15 @@ class CreatePaymentDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_data', function (Blueprint $table) {
+        Schema::create('confirmations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_id');
-            $table->datetime('transaction_date');
-            $table->string('status_code');
-            $table->string('message');
-            $table->string('signature_key');
-            $table->string('payment_type');
-            $table->string('masked_card');
-            $table->decimal('gross_amount', 20, 2);
-            $table->string('channel_response_message');
+            $table->string('name');
             $table->string('bank');
-            $table->string('approval_code');
+            $table->decimal('amount', 20, 2);
+            $table->date('transfer_date');
+            $table->string('file');
+            $table->string('other')->nullable();
             $table->timestamps();
              // foreign key
              $table->foreign('user_id')->references('user_id')->on('order_details');
@@ -39,6 +35,6 @@ class CreatePaymentDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_data');
+        Schema::dropIfExists('confirmations');
     }
 }

@@ -15,7 +15,7 @@ class CreatePersonalDataTable extends Migration
     {
         Schema::create('personal_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id');
+            $table->string('user_id')->unique();
             $table->string('identity_card');
             $table->string('identity_card_photo');
             $table->string('fullname');
@@ -25,6 +25,8 @@ class CreatePersonalDataTable extends Migration
             $table->string('domicile_city');
             $table->integer('age');
             $table->timestamps();
+            // foreign key
+            $table->foreign('user_id')->references('user_id')->on('order_details');
         });
     }
 

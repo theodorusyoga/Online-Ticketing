@@ -97,7 +97,7 @@
 
 <script>
   import Cookie from 'js-cookie';
-  import { getDataRegisterStep1, getDataRegisterStep2, getRequestPayment } from '../API.js';
+  import { getDataRegisterStep1, getDataRegisterStep2, getRequestPayment, calculatePrice } from '../API.js';
   import { IDRFormatter, dateInWordsWithTime, expiredDate } from '../helpers/textFormatter.js';
   export default {
     name: 'register-step3',
@@ -120,17 +120,7 @@
         const { identity_card_photo } = this.dataStep2
         const student_card_photo = job_status === 'pelajar' ? identity_card_photo : '';
         const ticket = ticket_type.toLowerCase();
-        if (ticket === 'gold') {
-          grandTotal = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000
-        } else if (ticket === 'silver') {
-          grandTotal = student_card_photo != '' ?
-          ticket_amount * 1450000 :
-           (ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000)
-        } else  if (ticket === 'bronze' && (transport_to_hotel === 1 || transport_to_hotel === true)) {
-          grandTotal = student_card_photo != '' ? ticket_amount * 450000 + (100000 * ticket_amount) : ticket_amount * 650000 + (100000 * ticket_amount)
-        } else {
-          grandTotal = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
-        }
+        grandTotal = calculatePrice(ticket, ticket_amount, student_card_photo, transport_to_hotel);
         return IDRFormatter(grandTotal)
       },
       ticket_price_formatter() {
@@ -165,22 +155,14 @@
         this.dataStep1 = JSON.parse(dataStep1.data.data)
         this.dataStep2 = JSON.parse(dataStep2.data.data)
 
-        const { ticket_type, ticket_amount, user_id, job_status } = this.dataStep1
+        const { ticket_type, ticket_amount, user_id, job_status,
+        transport_to_hotel } = this.dataStep1
         const { name, domicile, domicile_city, phone_number, email, identity_card_photo } = this.dataStep2
         this.dataStep1.ticket_type = capitalizeFirstLetter(this.dataStep1.ticket_type)
         const student_card_photo = job_status === 'pelajar' ? identity_card_photo : '';
         const ticket = ticket_type.toLowerCase();
-        if (ticket === 'gold') {
-          this.ticket_price = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000
-        } else if (ticket === 'silver') {
-          this.ticket_price = student_card_photo != '' ?
-          ticket_amount * 1450000 :
-           (ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000)
-        } else if (ticket === 'bronze' && (this.dataStep1.transport_to_hotel === 1 || this.dataStep1.transport_to_hotel === true)) {
-          this.ticket_price = student_card_photo != '' ? (ticket_amount * 450000) + (100000 * ticket_amount) : (ticket_amount * 650000) + (100000 *  ticket_amount)
-        } else {
-          this.ticket_price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
-        }
+
+        this.ticket_price = calculatePrice(ticket, ticket_amount, student_card_photo, transport_to_hotel);
 
         this.dataStep3.ticket_amount = ticket_amount
         this.dataStep3.user_id = user_id

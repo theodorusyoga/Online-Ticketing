@@ -18,4 +18,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/register.scss', 'public/css')
    .sass('resources/assets/sass/terms.scss', 'public/css')
    .sass('resources/assets/sass/donation.scss', 'public/css')
-   .sass('resources/assets/sass/register-step.scss', 'public/css');
+   .sass('resources/assets/sass/register-step.scss', 'public/css')
+   .sass('resources/assets/sass/confirmation.scss', 'public/css');

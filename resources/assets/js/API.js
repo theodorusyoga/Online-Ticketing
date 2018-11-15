@@ -141,3 +141,20 @@ export const downloadOrderDetails = () => {
     }
     return axios(config)
 }
+
+export const calculatePrice = (ticket, ticket_amount,
+    student_card_photo, transport_to_hotel) => {
+    let price = 0;
+    if (ticket === 'gold') {
+        price = ticket_amount >= 10 ? ticket_amount * 2100000 : ticket_amount * 2150000
+    } else if (ticket === 'silver') {
+        price = student_card_photo != '' ?
+        ticket_amount * 1450000 :
+        (ticket_amount >= 10 ? ticket_amount * 1600000 : ticket_amount * 1650000)
+    } else if (ticket === 'bronze' && (transport_to_hotel === 1 || transport_to_hotel === true)) {
+        price = student_card_photo != '' ? (ticket_amount * 450000) + (100000 * ticket_amount) : (ticket_amount * 650000) + (100000 *  ticket_amount)
+    } else {
+        price = student_card_photo != '' ? ticket_amount * 450000 : ticket_amount * 650000
+    }
+    return price;
+}

@@ -39,6 +39,10 @@ Route::get('/register/payment/{user_id}', function () {
     return view('register.payment');
 });
 
+Route::get('/register/confirmation/{user_id}', function () {
+    return view('register.confirmation');
+});
+
 Route::get('/login', function () {
     return view('register.login');
 });

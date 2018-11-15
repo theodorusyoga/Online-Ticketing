@@ -17,6 +17,7 @@ Vue.component('register-finish', require('./components/RegisterFinish.vue'));
 Vue.component('register-payment', require('./components/RegisterPayment.vue'));
 Vue.component('login', require('./components/Login.vue'));
 Vue.component('dashboard', require('./components/Dashboard.vue'));
+Vue.component('confirmation', require('./components/Confirmation.vue'));
 
 const app = new Vue({
     el: '#app'
